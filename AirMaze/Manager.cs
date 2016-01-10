@@ -1,0 +1,189 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
+using System;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace Utilities
+{
+    internal static class Manager
+    {
+        static StateManager stateManager;
+        static SmartContentManager contentManager;        
+        static Game parentGame;
+        static Settings settings;
+        static UserData userdata;
+        const int timeout = 5000;
+#if ANDROID
+        static FBButton fboverlay;
+#endif
+        //static EncryptionProvider crypto = new EncryptionProvider();
+        static bool initd = false;
+        const string settingsfile = "GameSettings.xml";
+        const string datafile = "UserData.xml";
+        internal static void SaveSettings()
+        {
+            DataHandler.SaveData<Settings>(settings, settingsfile);
+        }
+        internal static void LoadSettings()
+        {
+            Settings temp = DataHandler.LoadData<Settings>(settingsfile);
+            if (temp != null) GameSettings = temp;
+            else settings = new Settings();
+        }
+        static bool syncingdata = false, connected = false;
+        internal static bool IsIdle { get { return !syncingdata; } }
+
+        internal static void SaveUserDataLocal()
+        {
+            userdata.UpdateRawData();
+            userdata.EncryptStrings();
+            DataHandler.SaveData<UserData>(userdata, datafile);
+        }
+
+        internal static Task<Exception> LoadUserDataLocal()
+        {
+            if (!IsIdle) return null;
+            UserData temp = DataHandler.LoadData<UserData>(datafile);
+            if (temp != null) userdata = temp;
+            else userdata = new UserData();
+            userdata.LoadRawData();
+            return null;
+        }
+
+        internal static StateManager StateManager { get { return stateManager; } }
+        internal static SmartContentManager RandomAccessContentManager { get { return contentManager; } }
+        internal static Settings GameSettings { get { return settings; } set { settings = value; } }
+        //internal static EncryptionProvider Cipher { get { return crypto; } set { crypto = value; } }
+        internal static Game Parent { get { return parentGame; } }
+        internal static UserData UserData { get { return userdata; } set { userdata = value; } }
+        internal static bool Connected { get { return connected; } }
+        internal static void init(Game parent)
+        {
+            LoadUserDataLocal();
+            parentGame = parent;
+            contentManager = parent.Content as SmartContentManager;
+            LoadSettings();
+            DataHandler.LoadCurrentTheme();
+            stateManager = new StateManager();
+
+            /*stateManager.AddGameState(GameState.MainMenu, menu);
+            stateManager.AddGameState(GameState.OnStage, stagecont);
+            stateManager.AddGameState(GameState.Options, optionsmenu);*/
+
+            initInput();
+
+            stateManager.SwitchTo(GameState.MainMenu);
+
+            initd = true;
+        }   
+
+        internal static void HandleEvent(WorldEvent e)
+        {
+            if (!initd) return;
+            // Debugging commands
+            if(Debugger.IsAttached && e is KeyDownEvent)
+            {
+                if((e as KeyDownEvent).Key == Keys.OemTilde)
+                {
+                    // Could open a console here later
+                }
+            }
+            VirtualKeyboard.HandleEvent(e);
+            stateManager.CurrentGameState.HandleEvent(e);
+        }
+        internal static void Draw(SpriteBatch spriteBatch)
+        {
+            if (!initd) return;
+            stateManager.Draw(spriteBatch);
+#if ANDROID
+            fboverlay.Draw(spriteBatch);
+#endif
+            // Should stay last (Topmost)
+            VirtualKeyboard.Draw(spriteBatch);
+        }
+        internal static void Update(GameTime time)
+        {
+            if (!initd) return;
+            stateManager.Update(time);
+            SoundManager.Update(time);
+#if ANDROID
+            fboverlay.Update(time);
+#endif
+            VirtualKeyboard.Update(time);
+        }
+
+        private static void initInput()
+        {
+            InputManager.init();
+            InputManager.KeyDown += keydown;
+            InputManager.KeyUp += keyup;
+            InputManager.MouseDown += mdown;
+            InputManager.MouseUp += mup;
+            InputManager.Scrolled += mscrolled;
+            InputManager.MouseMoved += mmoved;
+            InputManager.Dragged += dragged;
+            InputManager.Tapped += tapped;
+            InputManager.Pinched += pinched;
+            InputManager.DragComplete += drcomplete;
+            InputManager.AllFingersOff += afo;
+        }
+
+        private static void afo()
+        {
+            HandleEvent(new TouchAllFingersOffEvent());
+        }
+
+        private static void drcomplete(Vector2 position)
+        {
+            HandleEvent(new TouchDragCompleteEvent(position));
+        }
+
+        private static void keyup(Keys k)
+        {
+            HandleEvent(new KeyUpEvent(k));
+        }
+
+        private static void mdown(InputManager.MouseKey k, Vector2 position)
+        {
+            HandleEvent(new MouseDownEvent(k, position));
+        }
+
+        private static void pinched(float delta)
+        {
+            HandleEvent(new TouchPinchEvent(delta));
+        }
+
+        private static void tapped(Vector2 position)
+        {
+            HandleEvent(new TouchTapEvent(position));
+        }
+
+        private static void dragged(Vector2 delta, Vector2 pos)
+        {
+            HandleEvent(new TouchFreeDragEvent(delta, pos));
+        }
+
+        private static void mmoved(Vector2 position, Vector2 offset)
+        {
+            HandleEvent(new MouseMovedEvent(position, offset));
+        }
+
+        private static void mscrolled(int value)
+        {
+            HandleEvent(new MouseScrollEvent(value));
+        }
+
+        private static void mup(InputManager.MouseKey k, Vector2 pos)
+        {
+            HandleEvent(new MouseUpEvent(k, pos));
+        }
+
+        private static void keydown(Keys k)
+        {
+            HandleEvent(new KeyDownEvent(k));
+        }
+    }
+}
