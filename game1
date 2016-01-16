@@ -1,0 +1,112 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using AirMaze.Extra;
+
+
+namespace AirMaze
+{
+    /// <summary>
+    /// This is the main type for your game.
+    /// </summary>
+    public class Game1 : Game
+    {
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        Camera cam;
+        Camera cam1;
+        Floor floor;
+        BasicEffect e;
+        MainModel Mymodel;
+        Model model;
+        Texture2D tex;
+        Texture2D background;
+        Model M;
+        ModelView MV;
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            //graphics.IsFullScreen = true;
+            Content.RootDirectory = "Content";
+        }
+
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
+        protected override void Initialize()
+        {
+            // TODO: Add your initialization logic here
+            cam = new Camera(this, new Vector3(-100, -800, -5000), Vector3.Backward, 5f);
+            cam1 = new Camera(this, new Vector3(10, 5, -10), Vector3.Zero, 5f);
+            Components.Add(cam);
+            Components.Add(cam1);
+            floor = new Floor(GraphicsDevice, Window.ClientBounds.Width, Window.ClientBounds.Width);//5000, 500
+            e = new BasicEffect(GraphicsDevice);
+           model = Content.Load<Model>("Used");
+           M = Content.Load<Model>("Ellie");
+           tex = Content.Load<Texture2D>("tut4");
+           background = Content.Load<Texture2D>("Space");
+           Mymodel = new MainModel(model,tex);
+           MV = new ModelView(M,graphics);
+            base.Initialize();
+        }
+
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // TODO: use this.Content to load your game content here
+        }
+
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// game-specific content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
+
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            // TODO: Add your update logic here
+
+            base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+            spriteBatch.End();
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            floor.Draw(cam1, e);
+            Mymodel.Draw(cam,cam1);
+            MV.Draw();
+            base.Draw(gameTime);
+        }
+    }
+}
