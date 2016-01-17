@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Utilities
+namespace LoneWolf
 {
     class SmartContentManager : ContentManager
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Utilities
+namespace LoneWolf
 {
-    internal class WorldEvent
+    internal abstract class WorldEvent
     {
         /// <summary>
         /// For parent/child communication.

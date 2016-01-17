@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirMaze
+namespace LoneWolf
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +14,7 @@ namespace AirMaze
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new GameClass())
                 game.Run();
         }
     }

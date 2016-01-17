@@ -1,4 +1,4 @@
-﻿namespace Utilities
+﻿namespace LoneWolf
 {
     internal class Settings
     {

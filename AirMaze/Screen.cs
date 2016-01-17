@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Utilities
+namespace LoneWolf
 {
     class Screen
     {

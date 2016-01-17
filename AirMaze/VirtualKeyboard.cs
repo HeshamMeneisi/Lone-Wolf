@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
-namespace Utilities
+namespace LoneWolf
 {
     static class VirtualKeyboard
     {

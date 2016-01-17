@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 #endif
 
-namespace Utilities
+namespace LoneWolf
 {
     // Warning, Encryption results are different on UAP and Android. Probably due to a different default vector.
     class SecurityProvider

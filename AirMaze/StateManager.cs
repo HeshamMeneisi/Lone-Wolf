@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Utilities
+namespace LoneWolf
 {
     internal class StateManager
     {
@@ -98,12 +98,6 @@ namespace Utilities
     }
     internal enum GameState
     {
-        MainMenu, OnStage,
-        EditMode,
-        SaveLevel,
-        SelectLevel,
-        Options,
-        PackageSelector,
-        SaveLevelCloud
+        MainMenu, OnStage
     }
 }

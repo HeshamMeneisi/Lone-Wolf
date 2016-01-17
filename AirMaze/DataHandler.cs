@@ -16,7 +16,7 @@ using System.Net.Http;
 using Windows.Storage;
 #endif
 
-namespace Utilities
+namespace LoneWolf
 {
     class DataHandler
     {

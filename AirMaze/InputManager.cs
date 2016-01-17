@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace Utilities
+namespace LoneWolf
 {
     static class InputManager
     {

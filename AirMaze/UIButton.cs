@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace Utilities
+namespace LoneWolf
 {
     class UIButton : UIVisibleObject
     {

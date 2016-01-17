@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using AirMaze.Extra;
+using LoneWolf.Extra;
+using LoneWolf;
 
-
-namespace AirMaze
+namespace LoneWolf
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GameClass : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -19,12 +19,20 @@ namespace AirMaze
         MainModel Mymodel;
         Model model;
         Texture2D tex;
-        public Game1()
-        {
+
+        static GameClass instance = null;
+
+        public GameClass()
+        {            
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            instance = this;
         }
 
+        public static GameClass GetInstance()
+        {
+            return instance;
+        }
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -52,7 +60,7 @@ namespace AirMaze
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Manager.init(this);            
             // TODO: use this.Content to load your game content here
         }
 
@@ -74,7 +82,7 @@ namespace AirMaze
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            Manager.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -87,10 +95,11 @@ namespace AirMaze
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            Manager.Draw(spriteBatch);
+            /*
             floor.Draw(cam, e);
             Mymodel.Draw(cam);
-            base.Draw(gameTime);
+            base.Draw(gameTime);*/
         }
     }
 }

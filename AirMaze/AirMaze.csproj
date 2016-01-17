@@ -41,13 +41,15 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
-    <Compile Include="Extra\Camera.cs" />
-    <Compile Include="Extra\Floor.cs" />
-    <Compile Include="Extra\MainModel.cs" />
+    <Compile Include="3DClasses\Camera.cs" />
+    <Compile Include="3DClasses\Floor.cs" />
+    <Compile Include="3DClasses\MainModel.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IState.cs" />
+    <Compile Include="MainMenuCont.cs" />
     <Compile Include="Manager.cs" />
+    <Compile Include="3DClasses\Model3D.cs" />
     <Compile Include="OptimizedMazeGenerator.cs" />
     <Compile Include="Padding.cs" />
     <Compile Include="Program.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="SmartContentManager.cs" />
     <Compile Include="SoundManager.cs" />
+    <Compile Include="StageCont.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="TextureID2D.cs" />
     <Compile Include="UIButton.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="UIVisibleObject.cs" />
     <Compile Include="UserData.cs" />
     <Compile Include="VirtualKeyboard.cs" />
+    <Compile Include="3DClasses\World.cs" />
     <Compile Include="WorldEvent.cs" />
   </ItemGroup>
   <ItemGroup>

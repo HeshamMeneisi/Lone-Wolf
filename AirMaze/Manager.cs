@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace Utilities
+namespace LoneWolf
 {
     internal static class Manager
     {
@@ -69,9 +69,8 @@ namespace Utilities
             DataHandler.LoadCurrentTheme();
             stateManager = new StateManager();
 
-            /*stateManager.AddGameState(GameState.MainMenu, menu);
+            stateManager.AddGameState(GameState.MainMenu, menu);
             stateManager.AddGameState(GameState.OnStage, stagecont);
-            stateManager.AddGameState(GameState.Options, optionsmenu);*/
 
             initInput();
 

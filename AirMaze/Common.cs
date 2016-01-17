@@ -12,7 +12,7 @@ using Xamarin.Facebook;
 #else
 #endif
 
-namespace Utilities
+namespace LoneWolf
 {
     // Common gampelay code affecting multiple classes is kept here
     static class Common
