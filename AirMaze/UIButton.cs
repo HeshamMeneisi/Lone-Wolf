@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace LoneWolf
 {
@@ -38,6 +39,7 @@ namespace LoneWolf
             else return;
             UIGrid p = parent as UIGrid;
             if (p != null) pos = p.Camera.DeTransform(pos);
+            Debug.WriteLine(pos.ToString());
             if (BoundingBox.ContainsPoint(pos))
             {
                 e.Handled = true;

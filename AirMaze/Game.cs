@@ -9,7 +9,7 @@ namespace LoneWolf
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class GameClass : Game
+    public class Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -20,16 +20,17 @@ namespace LoneWolf
         Model model;
         Texture2D tex;
 
-        static GameClass instance = null;
+        static Game instance = null;
 
-        public GameClass()
-        {            
+        public Game()
+        {
             graphics = new GraphicsDeviceManager(this);
+            Content = new SmartContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
             instance = this;
         }
 
-        public static GameClass GetInstance()
+        public static Game GetInstance()
         {
             return instance;
         }
@@ -42,13 +43,20 @@ namespace LoneWolf
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            cam = new Camera(this, new Vector3(10,1,5),Vector3.Zero,5f);
+            /*cam = new Camera(this, new Vector3(10, 1, 5), Vector3.Zero, 5f);
             Components.Add(cam);
             floor = new Floor(GraphicsDevice, 20, 20);
             e = new BasicEffect(GraphicsDevice);
-           model = Content.Load<Model>("Used");
-           tex = Content.Load<Texture2D>("tut4");
-           Mymodel = new MainModel(model,tex);
+            model = Content.Load<Model>("Used");
+            tex = Content.Load<Texture2D>("tut4");
+            Mymodel = new MainModel(model, tex);*/
+            Screen.SetUp(Window, graphics);
+#if !DEBUG
+            Screen.SetFullScreen(true);
+#endif
+#if WINDOWS || WINDOWS_UAP
+            IsMouseVisible = true;
+#endif
             base.Initialize();
         }
 
@@ -60,7 +68,7 @@ namespace LoneWolf
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Manager.init(this);            
+            Manager.init();
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,7 +103,9 @@ namespace LoneWolf
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
             Manager.Draw(spriteBatch);
+            spriteBatch.End();
             /*
             floor.Draw(cam, e);
             Mymodel.Draw(cam);

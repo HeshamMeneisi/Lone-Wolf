@@ -6,10 +6,17 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace AirMaze
+namespace LoneWolf
 {
     class StageCont : IState
     {
+        static StageCont instance = null;
+
+        public StageCont()
+        {
+            //TODO: init
+            instance = this;
+        }
         public void Draw(SpriteBatch batch)
         {
             // Draw world
@@ -33,6 +40,12 @@ namespace AirMaze
         public void Update(GameTime time)
         {
             throw new NotImplementedException();
+        }
+
+        internal static IState GetInstance()
+        {
+            if (instance != null) return instance;
+            return new StageCont();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace LoneWolf
 
             // package lock state
             List<string> data = new List<string>();
-            throw new NotImplementedException();
+            // TODO: implement data parsing
 
             Encrypted = false;
         }
@@ -36,7 +36,7 @@ namespace LoneWolf
         {
             if (Encrypted) DecryptStrings();
             string[] data = SData.Split('|');
-            throw new NotImplementedException();
+            // TODO: Implement data parsing
         }        
         [XmlIgnore]
         public bool Encrypted { get; private set; }

@@ -135,28 +135,7 @@ namespace LoneWolf
 }
 enum UIObjectType
 {
-    PlayBtn, EditModeBtn, OptionsBtn,
-    Cell,
-    MenuButton,
-    ResetButton,
-    ToggleButton,
-    SaveButton,
-    LeftButton,
-    RightButton,
-    UpButton,
-    DownButton,
-    BackButton,
-    MainUser,
-    DeleteBtn,
-    Star,
-    Log,
-    Next,
-    Lock,
-    Border,
-    TryAgain,
-    Frame,
-    Ropes,
-    TopLog,
-    ShareBtn,
-    FBBtn
+    PlayBtn,
+    ExitBtn,
+    Cell
 }

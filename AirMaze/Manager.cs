@@ -11,15 +11,18 @@ namespace LoneWolf
     internal static class Manager
     {
         static StateManager stateManager;
-        static SmartContentManager contentManager;        
-        static Game parentGame;
+        static SmartContentManager contentManager;
+        static Microsoft.Xna.Framework.Game parentGame;
         static Settings settings;
         static UserData userdata;
         const int timeout = 5000;
-#if ANDROID
-        static FBButton fboverlay;
-#endif
-        //static EncryptionProvider crypto = new EncryptionProvider();
+
+        internal static void StartNewGame()
+        {
+            // TODO: build a map first
+            stateManager.SwitchTo(GameState.OnStage);
+        }
+
         static bool initd = false;
         const string settingsfile = "GameSettings.xml";
         const string datafile = "UserData.xml";
@@ -57,35 +60,34 @@ namespace LoneWolf
         internal static SmartContentManager RandomAccessContentManager { get { return contentManager; } }
         internal static Settings GameSettings { get { return settings; } set { settings = value; } }
         //internal static EncryptionProvider Cipher { get { return crypto; } set { crypto = value; } }
-        internal static Game Parent { get { return parentGame; } }
+        internal static Game Parent { get { return Game.GetInstance(); } }
         internal static UserData UserData { get { return userdata; } set { userdata = value; } }
         internal static bool Connected { get { return connected; } }
-        internal static void init(Game parent)
-        {
-            LoadUserDataLocal();
-            parentGame = parent;
-            contentManager = parent.Content as SmartContentManager;
+        internal static void init()
+        {            
+            LoadUserDataLocal();            
+            contentManager = Parent.Content as SmartContentManager;
             LoadSettings();
             DataHandler.LoadCurrentTheme();
             stateManager = new StateManager();
 
-            stateManager.AddGameState(GameState.MainMenu, menu);
-            stateManager.AddGameState(GameState.OnStage, stagecont);
+            stateManager.AddGameState(GameState.MainMenu, MainMenuCont.GetInstance());
+            stateManager.AddGameState(GameState.OnStage, StageCont.GetInstance());
 
             initInput();
 
             stateManager.SwitchTo(GameState.MainMenu);
 
             initd = true;
-        }   
+        }
 
         internal static void HandleEvent(WorldEvent e)
         {
             if (!initd) return;
             // Debugging commands
-            if(Debugger.IsAttached && e is KeyDownEvent)
+            if (Debugger.IsAttached && e is KeyDownEvent)
             {
-                if((e as KeyDownEvent).Key == Keys.OemTilde)
+                if ((e as KeyDownEvent).Key == Keys.OemTilde)
                 {
                     // Could open a console here later
                 }
@@ -97,9 +99,6 @@ namespace LoneWolf
         {
             if (!initd) return;
             stateManager.Draw(spriteBatch);
-#if ANDROID
-            fboverlay.Draw(spriteBatch);
-#endif
             // Should stay last (Topmost)
             VirtualKeyboard.Draw(spriteBatch);
         }
@@ -108,10 +107,8 @@ namespace LoneWolf
             if (!initd) return;
             stateManager.Update(time);
             SoundManager.Update(time);
-#if ANDROID
-            fboverlay.Update(time);
-#endif
             VirtualKeyboard.Update(time);
+            InputManager.Update(time);
         }
 
         private static void initInput()

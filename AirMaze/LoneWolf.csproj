@@ -8,8 +8,8 @@
     <ProjectGuid>{EC52ED2C-46B2-4E2E-8487-98F26EEFD5F3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AirMaze</RootNamespace>
-    <AssemblyName>AirMaze</AssemblyName>
+    <RootNamespace>LoneWolf</RootNamespace>
+    <AssemblyName>LoneWolf</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
@@ -44,7 +44,7 @@
     <Compile Include="3DClasses\Camera.cs" />
     <Compile Include="3DClasses\Floor.cs" />
     <Compile Include="3DClasses\MainModel.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="MainMenuCont.cs" />
@@ -71,8 +71,8 @@
     <Compile Include="UITextField.cs" />
     <Compile Include="UIVisibleObject.cs" />
     <Compile Include="UserData.cs" />
-    <Compile Include="VirtualKeyboard.cs" />
     <Compile Include="3DClasses\World.cs" />
+    <Compile Include="VirtualKeyboard.cs" />
     <Compile Include="WorldEvent.cs" />
   </ItemGroup>
   <ItemGroup>

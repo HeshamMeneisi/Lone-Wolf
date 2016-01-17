@@ -51,7 +51,7 @@ namespace LoneWolf
         internal static void init()
         {
             TouchPanel.EnabledGestures = GestureType.Tap | GestureType.FreeDrag | GestureType.Pinch | GestureType.PinchComplete;
-#if WINDOWS_UAP
+#if WINDOWS_UAP || WINDOWS
             ms = Mouse.GetState();
             lmx = ms.X;
             lmy = ms.Y;

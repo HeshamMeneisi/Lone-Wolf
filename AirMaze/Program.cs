@@ -14,7 +14,7 @@ namespace LoneWolf
         [STAThread]
         static void Main()
         {
-            using (var game = new GameClass())
+            using (var game = new Game())
                 game.Run();
         }
     }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AirMaze
+namespace LoneWolf
 {
     class Model3D
     {

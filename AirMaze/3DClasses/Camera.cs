@@ -38,7 +38,7 @@ namespace LoneWolf.Extra
             }
         }
         //Constructor
-        public Camera(Game game,Vector3 position,Vector3 rotation,float speed)
+        public Camera(Microsoft.Xna.Framework.Game game,Vector3 position,Vector3 rotation,float speed)
             : base(game)
         {
             camSpeed = speed;

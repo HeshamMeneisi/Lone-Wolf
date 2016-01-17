@@ -70,7 +70,7 @@ namespace LoneWolf
         internal static void SetFullScreen(bool state)
         {
             if (device.IsFullScreen != state)
-                device.ToggleFullScreen();
+            { device.ToggleFullScreen(); device.PreferredBackBufferWidth = (int)Width;device.PreferredBackBufferHeight = (int)Height;device.ApplyChanges(); }
         }
 
         internal static void MakeVirtual(Vector2 virtualbounds)
