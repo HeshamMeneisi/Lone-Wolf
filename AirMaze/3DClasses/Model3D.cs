@@ -11,18 +11,60 @@ namespace LoneWolf
     {
         Model model;
         protected Vector3 position;
-        protected Matrix trans;
         protected Vector3 rotation;
-        public Model3D(Model m,Vector3 pos)
+        protected float scale = 1f;
+        protected Matrix trans;
+
+        protected Vector3 Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+
+        protected Vector3 Rotation
+        {
+            get
+            {
+                return rotation;
+            }
+
+            set
+            {
+                rotation = value;
+            }
+        }
+
+        protected float Scale
+        {
+            get
+            {
+                return scale;
+            }
+
+            set
+            {
+                scale = value;
+            }
+        }
+
+        public Model3D(Model m, Vector3 pos = default(Vector3), Vector3 rot = default(Vector3), float scale = 1)
         {
             model = m;
-            position = pos;            
+            position = pos;
+            rotation = rot;
+            this.scale = scale;
             rotation = Vector3.Zero;
         }
         public virtual void Update(GameTime time)
         {
-            trans = Matrix.CreateScale(0.2f) * Matrix.CreateRotationX(rotation.X) *
-                        Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z) * Matrix.CreateTranslation(position);
+            trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position);
         }
         public virtual void Draw(Camera cam)
         {
@@ -32,6 +74,7 @@ namespace LoneWolf
             {
                 foreach (BasicEffect effect in m.Effects)
                 {
+                    effect.VertexColorEnabled = true;
                     effect.EnableDefaultLighting();
                     effect.World = transform[m.ParentBone.Index] * trans;
                     effect.View = cam.View;

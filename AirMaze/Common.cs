@@ -57,7 +57,7 @@ namespace LoneWolf
             MemoryStream s = new MemoryStream();
             s.Write(data, 0, data.Length);
             s.Position = 0;
-            Texture2D ret = Texture2D.FromStream(Manager.Parent.GraphicsDevice, s);
+            Texture2D ret = Texture2D.FromStream(Manager.Game.GraphicsDevice, s);
             s.Dispose();
             return ret;
         }

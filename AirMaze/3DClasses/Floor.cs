@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LoneWolf.Extra
+namespace LoneWolf
 {
     class Floor
     {
@@ -56,8 +56,6 @@ namespace LoneWolf.Extra
             FT.Add(new VertexPositionColor(new Vector3(1 + xOffset, 0, zOffset), tileColor));
             FT.Add(new VertexPositionColor(new Vector3(1 + xOffset, 0, 1 + zOffset), tileColor));
             FT.Add(new VertexPositionColor(new Vector3(xOffset, 0, 1 + zOffset), tileColor));
-
-
             return FT;
         }
         public void Draw(BasicEffect effect, Camera cam)

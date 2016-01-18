@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using LoneWolf.Extra;
+
 namespace LoneWolf
 {
     class World
@@ -23,9 +23,8 @@ namespace LoneWolf
             set { cam = value; }
         }
 
-        public World(Model m, GraphicsDeviceManager g, Camera c, BasicEffect eff)
-        {
-            model = new Player(m, new Vector3(-29, 0, 37));
+        public World(GraphicsDeviceManager g, Camera c, BasicEffect eff)
+        {            
             cam = c;
             e = eff;
             floor = new Floor(g.GraphicsDevice, 1000, 1000);
@@ -37,8 +36,7 @@ namespace LoneWolf
         }
 
         public void Draw()
-        {
-            model.Draw(cam);
+        {            
             floor.Draw(e, cam);
             foreach (Model3D m in obs)
             {
@@ -47,8 +45,7 @@ namespace LoneWolf
         }
 
         internal void Update(GameTime time)
-        {            
-            model.Update(time);
+        {                        
             foreach (Model3D m in obs)
             {
                 m.Update(time);

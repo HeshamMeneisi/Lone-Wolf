@@ -127,7 +127,7 @@ namespace LoneWolf
             int w = (int)Width, h = (int)Height;
             if (w < 1 || h == 1) return;
             if (rect != null && rect.Width == w && rect.Height == h) return;
-            rect = new Texture2D(Manager.Parent.GraphicsDevice, w, h);
+            rect = new Texture2D(Manager.Game.GraphicsDevice, w, h);
             Color[] data = new Color[w * h];
             for (int i = 0; i < data.Length; ++i) data[i] = background;
             rect.SetData(data);

@@ -23,7 +23,7 @@ namespace LoneWolf
             = new UIButton(DataHandler.UIObjectsTextureMap[UIObjectType.PlayBtn],
                 (sender) => Manager.StartNewGame()));
             menu.Add(exitbtn = new UIButton(DataHandler.UIObjectsTextureMap[UIObjectType.ExitBtn],
-                (sender) => Manager.Parent.Exit()));
+                (sender) => Manager.Game.Exit()));
             instance = this;
         }
 

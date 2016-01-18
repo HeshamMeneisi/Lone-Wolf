@@ -32,12 +32,13 @@ namespace LoneWolf
         World world;
         public void OnActivated(params object[] args)
         {
-            var model = Manager.Parent.Content.Load<Model>("ManCatMotion");
-            var wall = Manager.Parent.Content.Load<Model>("Wall");
-            var cam = new Camera(Manager.Parent, new Vector3(10, 0, 10), Vector3.Zero, 10f);
-            world = new World(model, Manager.Parent.Graphics, cam, new BasicEffect(Manager.Parent.GraphicsDevice));
-            Model3D w = new Model3D(wall, new Vector3(20, 0, 20));
-            world.Add(w);
+            var model = Manager.Game.Content.Load<Model>("ManCatMotion");
+            var wall = Manager.Game.Content.Load<Model>("Wall");
+            var cam = new Camera(new Vector3(50, 10, 50), Vector3.Zero);
+            world = new World(Manager.Game.Graphics, cam, new BasicEffect(Manager.Game.GraphicsDevice));
+            var player = new Player(model, new Vector3(1, 0, 1), Vector3.Zero, 1f);
+            var wallobj = new Model3D(wall, new Vector3(10, 0, 10));
+            world.Add(player);
         }
 
         public void Update(GameTime time)

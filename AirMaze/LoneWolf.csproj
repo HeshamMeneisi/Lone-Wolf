@@ -38,12 +38,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="3DClasses\OrbitCamera.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
     <Compile Include="3DClasses\Camera.cs" />
     <Compile Include="3DClasses\Floor.cs" />
-    <Compile Include="3DClasses\MainModel.cs" />
+    <Compile Include="3DClasses\Player.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IState.cs" />

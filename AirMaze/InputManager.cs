@@ -196,7 +196,7 @@ namespace LoneWolf
 
         static internal bool isMouseVisible()
         {
-            return Manager.Parent.IsMouseVisible;
+            return Manager.Game.IsMouseVisible;
         }
 
         static internal bool isMouseDown(MouseKey button)

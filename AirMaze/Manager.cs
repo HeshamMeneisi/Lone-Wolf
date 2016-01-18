@@ -60,13 +60,13 @@ namespace LoneWolf
         internal static SmartContentManager RandomAccessContentManager { get { return contentManager; } }
         internal static Settings GameSettings { get { return settings; } set { settings = value; } }
         //internal static EncryptionProvider Cipher { get { return crypto; } set { crypto = value; } }
-        internal static Game Parent { get { return Game.GetInstance(); } }
+        internal static Game Game { get { return Game.GetInstance(); } }
         internal static UserData UserData { get { return userdata; } set { userdata = value; } }
         internal static bool Connected { get { return connected; } }
         internal static void init()
         {            
             LoadUserDataLocal();            
-            contentManager = Parent.Content as SmartContentManager;
+            contentManager = Game.Content as SmartContentManager;
             LoadSettings();
             DataHandler.LoadCurrentTheme();
             stateManager = new StateManager();
