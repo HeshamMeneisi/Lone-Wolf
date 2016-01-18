@@ -19,14 +19,14 @@ namespace LoneWolf
             model = m;
             projection = proj;
             position = pos;
-            view = Matrix.CreateLookAt(position, Vector3.Zero, Vector3.Up);
+            //view = Matrix.CreateLookAt(position, Vector3.Zero, Vector3.Up);
             rot = Vector3.Zero;
         }
         public virtual void Update()
         {
-            trans = Matrix.CreateRotationX(rot.X) * Matrix.CreateRotationY(rot.Y) * Matrix.CreateRotationZ(rot.Z);
+            trans = Matrix.CreateRotationX(rot.X) * Matrix.CreateRotationY(rot.Y) * Matrix.CreateRotationZ(rot.Z)*Matrix.CreateTranslation(position);
         }
-        public virtual void Draw()
+        public virtual void Draw(Matrix View)
         {
             Update();
             Matrix[] transform = new Matrix[model.Bones.Count];
@@ -37,7 +37,7 @@ namespace LoneWolf
                 {
                     effect.EnableDefaultLighting();
                     effect.World = transform[m.ParentBone.Index] * trans;
-                    effect.View = view;
+                    effect.View = View;
                     effect.Projection = projection;
                 }
                 m.Draw();

@@ -17,13 +17,13 @@ namespace LoneWolf.Extra
         Vector3 campos;
         Vector3 rotation;
         float speed;
-        public MainModel(Model m, Vector3 positition, GraphicsDeviceManager graphics)
+        public MainModel(Model m, Vector3 position, GraphicsDeviceManager graphics)
         {
             speed = 15f;
             model = m;
-            pos = positition;
+            pos = position;
             rotation = Vector3.Zero;
-            campos = new Vector3(pos.X, pos.Y - 25, pos.Z - 20);
+            campos = new Vector3(pos.X, pos.Y, pos.Z - 80);
             //view = Matrix.CreateLookAt(campos, Vector3.Zero, Vector3.Up);
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f),
                 graphics.GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000f);
@@ -31,32 +31,26 @@ namespace LoneWolf.Extra
         public void Update()
         {
             KeyboardState ks = Keyboard.GetState();
-            bool change = false;
-            rotation.Y += .05f;
             if (ks.IsKeyDown(Keys.A))
             {
                 rotation.Y += .05f;
-                change = true;
             }
             if (ks.IsKeyDown(Keys.D))
             {
                 rotation.Y -= .05f;
-                change = true;
             }
             if (ks.IsKeyDown(Keys.W))
             {
                 pos.X += speed * (float)Math.Sin(rotation.Y);
                 pos.Z += speed * (float)Math.Cos(rotation.Y);
-                change = true;
             }
             if (ks.IsKeyDown(Keys.S))
             {
                 pos.X -= speed * (float)Math.Sin(rotation.Y);
                 pos.Z -= speed * (float)Math.Cos(rotation.Y);
-                change = true;
             }
-            campos.X = pos.X - 20 * (float)Math.Sin(rotation.Y);
-            campos.Z = pos.Z - 20 * (float)Math.Cos(rotation.Y);
+            campos.X = pos.X - 80 * (float)Math.Sin(rotation.Y);
+            campos.Z = pos.Z - 80 * (float)Math.Cos(rotation.Y);
             view = Matrix.CreateLookAt(campos, pos, Vector3.Up);
         }
         public void Draw()

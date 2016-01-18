@@ -14,12 +14,9 @@ namespace LoneWolf
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Camera cam;
-        Floor floor;
-        BasicEffect e;
-        MainModel Mymodel;
         Model model;
-        Texture2D tex;
-
+        Model wall;
+        World world;
         static Game instance = null;
 
         public Game()
@@ -43,13 +40,8 @@ namespace LoneWolf
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            /*cam = new Camera(this, new Vector3(10, 1, 5), Vector3.Zero, 5f);
+            cam = new Camera(this, new Vector3(20, 0, 20), Vector3.Zero, 5f);
             Components.Add(cam);
-            floor = new Floor(GraphicsDevice, 20, 20);
-            e = new BasicEffect(GraphicsDevice);
-            model = Content.Load<Model>("Used");
-            tex = Content.Load<Texture2D>("tut4");
-            Mymodel = new MainModel(model, tex);*/
             Screen.SetUp(Window, graphics);
 #if !DEBUG
             Screen.SetFullScreen(true);
@@ -68,6 +60,13 @@ namespace LoneWolf
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            model = Content.Load<Model>("ManCatMotion");
+            wall= Content.Load<Model>("Wall");
+            cam = new Camera(this, new Vector3(10, 0, 10), Vector3.Zero, 10f);
+            world = new World(model, graphics, cam, new BasicEffect(GraphicsDevice));
+            Model3D w = new Model3D(wall, Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f),
+                graphics.GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000f), new Vector3(20, 0, 20));
+            world.Add(w);
             Manager.init();
             // TODO: use this.Content to load your game content here
         }
@@ -106,10 +105,8 @@ namespace LoneWolf
             spriteBatch.Begin();
             Manager.Draw(spriteBatch);
             spriteBatch.End();
-            /*
-            floor.Draw(cam, e);
-            Mymodel.Draw(cam);
-            base.Draw(gameTime);*/
+            world.Draw();
+            base.Draw(gameTime);
         }
     }
 }

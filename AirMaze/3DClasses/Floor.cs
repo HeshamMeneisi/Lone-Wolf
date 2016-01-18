@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,17 +11,13 @@ namespace LoneWolf.Extra
         private VertexBuffer floorBuffer;
         private GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
-        Matrix view, projection;
 
         //Constructor
-        public Floor(GraphicsDevice GD, int width, int height, Vector3 pos, GraphicsDeviceManager graphics)
+        public Floor(GraphicsDevice GD, int width, int height)
         {
             this.device = GD;
             this.floorWidth = width;
             this.floorHeight = height;
-            view = Matrix.CreateLookAt(pos, Vector3.Zero, Vector3.Up);
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f),
-                graphics.GraphicsDevice.Viewport.AspectRatio, .1f, 1000f);
             BuildFloor();
         }
 
@@ -67,11 +60,11 @@ namespace LoneWolf.Extra
 
             return FT;
         }
-        public void Draw(BasicEffect effect, Matrix View)
+        public void Draw(BasicEffect effect, Camera cam)
         {
             effect.VertexColorEnabled = true;
-            effect.View = view;
-            effect.Projection = projection;
+            effect.View = cam.View;
+            effect.Projection = cam.Projection;
             effect.World = Matrix.Identity;
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {

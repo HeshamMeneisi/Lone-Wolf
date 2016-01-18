@@ -13,24 +13,26 @@ namespace LoneWolf
         List<Model3D> obs;
         MainModel model;
         Floor floor;
-        GraphicsDeviceManager graphics;
         BasicEffect e;
-        public void AddModel(Model3D model)
+        Camera cam;
+        public World(Model m,GraphicsDeviceManager g,Camera c,BasicEffect eff)
+        {
+            model = new MainModel(m, new Vector3(-29, 0, 37), g);
+            cam = c;
+            e = eff;
+        }
+        public void Add(Model3D model)
         {
             obs.Add(model);
         }
-        public void AddMain(MainModel m,Floor f)
-        {
-            model = m;
-            floor = f;
-        }
+        
         public void Draw()
         {
             model.Draw();
-            floor.Draw(e, model.view);
+            floor.Draw(e,cam);
             foreach(Model3D m in obs)
             {
-                m.Draw();
+                m.Draw(model.view);
             }
         }
     }
