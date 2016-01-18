@@ -12,23 +12,20 @@ namespace LoneWolf
         Model model;
         protected Vector3 position;
         protected Matrix trans;
-        protected Vector3 rot;
-        protected Matrix view,projection;
-        public Model3D(Model m,Matrix proj,Vector3 pos)
+        protected Vector3 rotation;
+        public Model3D(Model m,Vector3 pos)
         {
             model = m;
-            projection = proj;
-            position = pos;
-            //view = Matrix.CreateLookAt(position, Vector3.Zero, Vector3.Up);
-            rot = Vector3.Zero;
+            position = pos;            
+            rotation = Vector3.Zero;
         }
-        public virtual void Update()
+        public virtual void Update(GameTime time)
         {
-            trans = Matrix.CreateRotationX(rot.X) * Matrix.CreateRotationY(rot.Y) * Matrix.CreateRotationZ(rot.Z)*Matrix.CreateTranslation(position);
+            trans = Matrix.CreateScale(0.2f) * Matrix.CreateRotationX(rotation.X) *
+                        Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z) * Matrix.CreateTranslation(position);
         }
-        public virtual void Draw(Matrix View)
+        public virtual void Draw(Camera cam)
         {
-            Update();
             Matrix[] transform = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transform);
             foreach (ModelMesh m in model.Meshes)
@@ -37,8 +34,8 @@ namespace LoneWolf
                 {
                     effect.EnableDefaultLighting();
                     effect.World = transform[m.ParentBone.Index] * trans;
-                    effect.View = View;
-                    effect.Projection = projection;
+                    effect.View = cam.View;
+                    effect.Projection = cam.Projection;
                 }
                 m.Draw();
             }

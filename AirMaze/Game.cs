@@ -13,15 +13,20 @@ namespace LoneWolf
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Camera cam;
-        Model model;
-        Model wall;
-        World world;
         static Game instance = null;
+
+        public GraphicsDeviceManager Graphics
+        {
+            get
+            {
+                return graphics;
+            }
+            private set { graphics = value; }
+        }
 
         public Game()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content = new SmartContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
             instance = this;
@@ -40,9 +45,7 @@ namespace LoneWolf
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            cam = new Camera(this, new Vector3(20, 0, 20), Vector3.Zero, 5f);
-            Components.Add(cam);
-            Screen.SetUp(Window, graphics);
+            Screen.SetUp(Window, Graphics);
 #if !DEBUG
             Screen.SetFullScreen(true);
 #endif
@@ -60,13 +63,6 @@ namespace LoneWolf
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            model = Content.Load<Model>("ManCatMotion");
-            wall= Content.Load<Model>("Wall");
-            cam = new Camera(this, new Vector3(10, 0, 10), Vector3.Zero, 10f);
-            world = new World(model, graphics, cam, new BasicEffect(GraphicsDevice));
-            Model3D w = new Model3D(wall, Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f),
-                graphics.GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000f), new Vector3(20, 0, 20));
-            world.Add(w);
             Manager.init();
             // TODO: use this.Content to load your game content here
         }
@@ -105,7 +101,6 @@ namespace LoneWolf
             spriteBatch.Begin();
             Manager.Draw(spriteBatch);
             spriteBatch.End();
-            world.Draw();
             base.Draw(gameTime);
         }
     }

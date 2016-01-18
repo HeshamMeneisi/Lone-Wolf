@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace LoneWolf.Extra
+namespace LoneWolf
 {
     class Camera:GameComponent
     {
@@ -37,6 +37,19 @@ namespace LoneWolf.Extra
                 UpdateLookAt();
             }
         }
+        public Vector3 LookAt
+        {
+            get
+            {
+                return camLookAt;
+            }
+
+            set
+            {
+                camLookAt = value;
+            }
+        }
+
         //Constructor
         public Camera(Microsoft.Xna.Framework.Game game,Vector3 position,Vector3 rotation,float speed)
             : base(game)
@@ -46,7 +59,7 @@ namespace LoneWolf.Extra
             Projection= Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
                 Game.GraphicsDevice.Viewport.AspectRatio,
                 0.05f,
-                1000f);
+                1000f);    
             //Set the camera position and Rotation
             MoveTo(position, rotation);
             // Setting previous mouse state
@@ -83,31 +96,13 @@ namespace LoneWolf.Extra
             //Build a lookAt Offset
             Vector3 LookAtOffset = Vector3.Transform(Vector3.UnitZ,roatationMatrix);
             //Update cameras
-            camLookAt = camPosition + LookAtOffset;
+            LookAt = camPosition + LookAtOffset;
         }
         public override void Update(GameTime gameTime)
-        {
+        {            
+            float deltaX, deltaY;
             //For smooth mouse movement and kinda stuff xD
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            mouseState = Mouse.GetState();
-            //key movement
-            KeyboardState ks = Keyboard.GetState();
-            Vector3 moveVector = Vector3.Zero;
-            if (ks.IsKeyDown(Keys.W))
-                moveVector.Z = 1;
-            if (ks.IsKeyDown(Keys.S))
-                moveVector.Z = -1;
-            if (ks.IsKeyDown(Keys.D))
-                moveVector.X = -1;
-            if (ks.IsKeyDown(Keys.A))
-                moveVector.X = 1;
-            if (moveVector != Vector3.Zero)
-            {
-                moveVector.Normalize();
-                moveVector *= dt * camSpeed;
-                Move(moveVector);
-            }
-            float deltaX, deltaY;
             if (mouseState != previousState)
             {
                 //Cache mouse movement
