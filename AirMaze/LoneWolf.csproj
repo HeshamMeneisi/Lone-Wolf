@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="3DClasses\Walls.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
