@@ -7,14 +7,15 @@ namespace LoneWolf
     class Camera
     {
         //Attributes
-        private Vector3 camPosition;
-        private Vector3 camRotation;
-        private Vector3 camLookAt;
+        protected Vector3 camPosition;
+        protected Vector3 camRotation;
+        protected Vector3 camLookAt;
+        private Matrix mat;
 
         //Properties
         public Matrix Projection { get; protected set; }
-        public Matrix View { get { return Matrix.CreateLookAt(camPosition, camLookAt, Vector3.Up); } }
-        public Vector3 Position
+        public Matrix View { get { return mat; } }
+        public virtual Vector3 Position
         {
             get
             {
@@ -23,7 +24,7 @@ namespace LoneWolf
             set
             {
                 camPosition = value;
-                UpdateLookAt();
+                UpdateMatrix();
             }
         }
         public Vector3 Rotation
@@ -32,9 +33,21 @@ namespace LoneWolf
             set
             {
                 camRotation = value;
-                UpdateLookAt();
+                UpdateLookat();
             }
         }
+
+        private void UpdateLookat()
+        {
+            //Build a rotation matrix
+            //simply just adding camera's rotations to prevent the game from crashing
+            Matrix roatationMatrix = Matrix.CreateRotationX(camRotation.X) + Matrix.CreateRotationY(camRotation.Y);
+            //Build a lookAt Offset
+            Vector3 LookAtOffset = Vector3.Transform(Vector3.UnitZ, roatationMatrix);
+            //Update cameras
+            LookAt = camPosition + LookAtOffset;
+        }
+
         public Vector3 LookAt
         {
             get
@@ -45,6 +58,7 @@ namespace LoneWolf
             set
             {
                 camLookAt = value;
+                UpdateMatrix();
             }
         }
 
@@ -60,7 +74,7 @@ namespace LoneWolf
             MoveTo(position, rotation);
         }
 
-        internal void Update(GameTime time)
+        public virtual void Update(GameTime time)
         {
 
         }
@@ -84,18 +98,11 @@ namespace LoneWolf
         private void Move(Vector3 scale)
         {
             MoveTo(PreviewMove(scale), Rotation);
-
         }
         //Update LookAt Matrix
-        private void UpdateLookAt()
+        private void UpdateMatrix()
         {
-            //Build a rotation matrix
-            //simply just adding camera's rotations to prevent the game from crashing
-            Matrix roatationMatrix = Matrix.CreateRotationX(camRotation.X) + Matrix.CreateRotationY(camRotation.Y);
-            //Build a lookAt Offset
-            Vector3 LookAtOffset = Vector3.Transform(Vector3.UnitZ, roatationMatrix);
-            //Update cameras
-            LookAt = camPosition + LookAtOffset;
+            mat = Matrix.CreateLookAt(camPosition, camLookAt, Vector3.Up);
         }
     }
 }

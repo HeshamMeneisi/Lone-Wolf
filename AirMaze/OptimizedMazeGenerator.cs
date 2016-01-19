@@ -49,7 +49,8 @@ namespace HelperClasses
                 short sign = (short)(ran.Next(99) > 49 ? 1 : -1);
                 for (short i = 0; i < 4; i++)
                 {
-                    short dir = (short)((3 + startdir + sign * i) % 4);
+                    // +4 to compensate for counter clock wise rotation. %4 to stay in range
+                    short dir = (short)((4 + startdir + sign * i) % 4);
                     short tx = (short)(x + (dir == 1 ? 1 : dir == 3 ? -1 : 0));
                     short ty = (short)(y + (dir == 2 ? 1 : dir == 0 ? -1 : 0));
                     // More overhead checking here means less memory usage

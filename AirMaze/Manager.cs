@@ -12,7 +12,6 @@ namespace LoneWolf
     {
         static StateManager stateManager;
         static SmartContentManager contentManager;
-        static Microsoft.Xna.Framework.Game parentGame;
         static Settings settings;
         static UserData userdata;
         const int timeout = 5000;
