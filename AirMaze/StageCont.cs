@@ -39,6 +39,7 @@ namespace LoneWolf
             var cam = new OrbitCamera(80);
             world = new World(Manager.Game.Graphics, cam, new BasicEffect(Manager.Game.GraphicsDevice));
             world.Add(player);
+            world.Add(wallobj);
         }
 
         public void Update(GameTime time)

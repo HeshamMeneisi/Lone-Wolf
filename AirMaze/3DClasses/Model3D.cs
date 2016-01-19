@@ -70,7 +70,7 @@ namespace LoneWolf
             {
                 foreach (BasicEffect effect in m.Effects)
                 {
-                    effect.VertexColorEnabled = true;
+                    //effect.VertexColorEnabled = true;
                     effect.EnableDefaultLighting();
                     effect.World = transform[m.ParentBone.Index] * trans;
                     effect.View = cam.View;
