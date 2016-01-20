@@ -34,9 +34,9 @@ namespace LoneWolf
         {
             var model = Manager.Game.Content.Load<Model>("carr");
             var wall = Manager.Game.Content.Load<Model>("Wall");
-            var player = new Player(model, new Vector3(20, 400, 20), Vector3.Zero, 1f);
+            var player = new Player(model, new Vector3(20, 0, 20), Vector3.Zero, 1f);
             var cam = new OrbitCamera(80);
-            float celld = 100, wallw = 30; short cellspr = 10;
+            float celld = 100, wallw = 10; short cellspr = 10;
             world = new World(cam, new BasicEffect(Manager.Game.GraphicsDevice), new Floor(Manager.Game.GraphicsDevice, (int)(celld * cellspr), (int)(celld * cellspr)));
             player.Scale = 4f;
             world.Add(player);

@@ -12,7 +12,7 @@ namespace LoneWolf
     {
         float speed;
         
-        float faceheight = 150;
+        float faceheight = 20;
         Vector3 camoffset;
         float wheelrot = 0.1f;
         public Player(Model m, Vector3 position, Vector3 rotation, float scale) : base(m, position, rotation, scale)
@@ -22,15 +22,15 @@ namespace LoneWolf
         }
         /*2,8,9,10*/
         public void RotateWheels() {
-            if (base.model != null)
+            if (model != null)
             {
-                base.model.Bones[2].Transform = Matrix.CreateRotationX(wheelrot)
+                model.Bones[2].Transform = Matrix.CreateRotationX(wheelrot)
                     * Matrix.CreateTranslation(base.model.Bones[2].Transform.Translation);
-                base.model.Bones[8].Transform = Matrix.CreateRotationX(wheelrot)
+                model.Bones[8].Transform = Matrix.CreateRotationX(wheelrot)
                     * Matrix.CreateTranslation(base.model.Bones[8].Transform.Translation);
-                base.model.Bones[9].Transform = Matrix.CreateRotationX(wheelrot)
+                model.Bones[9].Transform = Matrix.CreateRotationX(wheelrot)
                     * Matrix.CreateTranslation(base.model.Bones[9].Transform.Translation);
-                base.model.Bones[10].Transform = Matrix.CreateRotationX(wheelrot)
+                model.Bones[10].Transform = Matrix.CreateRotationX(wheelrot)
                     * Matrix.CreateTranslation(base.model.Bones[10].Transform.Translation);
             }
         }
