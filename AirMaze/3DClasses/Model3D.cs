@@ -71,13 +71,12 @@ namespace LoneWolf
         public virtual void Draw(Camera cam)
         {
             //model.Draw(trans, cam.View, cam.Projection);
-            
             if (model != null)
             {
                 Matrix[] transform = new Matrix[model.Bones.Count];
                 model.CopyAbsoluteBoneTransformsTo(transform);
                 foreach (ModelMesh m in model.Meshes)
-                {                    
+                {
                     foreach (BasicEffect effect in m.Effects)
                     {
                         //effect.VertexColorEnabled = true;
@@ -90,7 +89,7 @@ namespace LoneWolf
                     }
                     m.Draw();
                 }
-            }
+            }            
         }
     }
 }

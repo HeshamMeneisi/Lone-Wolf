@@ -15,7 +15,7 @@ namespace LoneWolf
         float faceheight = 20;
         Vector3 camoffset;
         float wheelrot = 0.1f;
-        public Player(Model m, Vector3 position, Vector3 rotation, float scale) : base(m, position, rotation, scale)
+        public Player(Model m, Vector3 position, Vector3 rotation, float scale = 1) : base(m, position, rotation, scale)
         {
             speed = 1f;
             camoffset = new Vector3(0, faceheight, 0);
@@ -36,7 +36,7 @@ namespace LoneWolf
         }
         public override void Update(GameTime time)
         {
-            RotateWheels();
+            //RotateWheels();
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.A))
             {
