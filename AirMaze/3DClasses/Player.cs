@@ -11,17 +11,18 @@ namespace LoneWolf
     class Player : Model3D
     {
         float speed;
-        
+
         float faceheight = 20;
         Vector3 camoffset;
         float wheelrot = 0.1f;
-        public Player(Model m, Vector3 position, Vector3 rotation, float scale = 1) : base(m, position, rotation, scale)
+        public Player(Model m, Vector3 offset, Vector3 position, Vector3 rotation, float scale = 1) : base(m, offset, position, rotation, scale)
         {
             speed = 1f;
             camoffset = new Vector3(0, faceheight, 0);
         }
         /*2,8,9,10*/
-        public void RotateWheels() {
+        public void RotateWheels()
+        {
             if (model != null)
             {
                 model.Bones[2].Transform = Matrix.CreateRotationX(wheelrot)
@@ -58,7 +59,7 @@ namespace LoneWolf
                 position.Z -= speed * (float)Math.Cos(rotation.Y);
                 wheelrot = -0.5f;
             }
-            World.GetInstance().ActiveCam.Position = position+camoffset;
+            World.GetInstance().ActiveCam.Position = position + camoffset;
             base.Update(time);
         }
     }

@@ -7,6 +7,7 @@ namespace LoneWolf
     class Model3D
     {
         protected Model model;
+        protected Vector3 modeloffset;
         protected Vector3 position;
         protected Vector3 rotation;
         protected float scale = 1f;
@@ -51,11 +52,12 @@ namespace LoneWolf
             }
         }
 
-        public Model3D(Model m, Vector3 pos = default(Vector3), Vector3 rot = default(Vector3), float scale = 1)
+        public Model3D(Model m, Vector3 offset, Vector3 pos = default(Vector3), Vector3 rot = default(Vector3), float scale = 1)
         {
             model = m;
             position = pos;
             rotation = rot;
+            modeloffset = offset;
             this.scale = scale;
         }
 
@@ -66,7 +68,7 @@ namespace LoneWolf
 
         public virtual void Update(GameTime time)
         {
-            trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position);
+            trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position + modeloffset);
         }
         public virtual void Draw(Camera cam)
         {
@@ -89,7 +91,7 @@ namespace LoneWolf
                     }
                     m.Draw();
                 }
-            }            
+            }
         }
     }
 }
