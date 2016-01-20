@@ -34,12 +34,22 @@ namespace LoneWolf
         {
             var model = Manager.Game.Content.Load<Model>("ManCatMotion");
             var wall = Manager.Game.Content.Load<Model>("Wall");
-            var player = new Player(model, new Vector3(1, 0, 1), Vector3.Zero, 1f);
-            var wallobj = new Model3D(wall, new Vector3(10, 0, 10));
+            var player = new Player(wall, new Vector3(20, 400, 20), Vector3.Zero, 1f);
             var cam = new OrbitCamera(80);
-            world = new World(Manager.Game.Graphics, cam, new BasicEffect(Manager.Game.GraphicsDevice));
+            float celld = 100, wallw = 30; short cellspr = 10;
+            world = new World(cam, new BasicEffect(Manager.Game.GraphicsDevice), new Floor(Manager.Game.GraphicsDevice, (int)(celld * cellspr), (int)(celld * cellspr)));
+            player.Scale = 0.5f;
             world.Add(player);
-            world.Add(wallobj);
+            //world.Add(new Model3D(wall,new Vector3(celld/2,0,wallw/2)));            
+            byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
+            for (short x = 0; x <= cellspr; x++)
+                for (short z = 0; z <= cellspr; z++)
+                {
+                    if (x < cellspr && walls[0, x, z] < 0xFF)
+                        world.Add(new Model3D(wall, new Vector3(x * celld + celld / 2, 0, z * celld + wallw / 2)));
+                    if (z < cellspr && walls[1, x, z] < 0xFF)
+                        world.Add(new Model3D(wall, new Vector3(x * celld + wallw / 2, 0, z * celld + celld / 2), new Vector3(0, MathHelper.PiOver2, 0)));
+                }                
         }
 
         public void Update(GameTime time)

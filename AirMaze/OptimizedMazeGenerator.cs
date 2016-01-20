@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HelperClasses
 {
-    class OptimizedMazeGenerator
+    static class OptimizedMazeGenerator
     {
         static Random ran;
         static bool[,] visited;

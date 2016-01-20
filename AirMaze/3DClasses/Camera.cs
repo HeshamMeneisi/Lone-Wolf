@@ -10,11 +10,15 @@ namespace LoneWolf
         protected Vector3 camPosition;
         protected Vector3 camRotation;
         protected Vector3 camLookAt;
-        private Matrix mat;
+        private float nearclip = 0.5f;
+        private float farclip = 1000;
+        private float fov = MathHelper.PiOver4;
+        private Matrix viewmat;
+        private Matrix projmat;
 
         //Properties
-        public Matrix Projection { get; protected set; }
-        public Matrix View { get { return mat; } }
+        public Matrix Projection { get { return projmat; } }
+        public Matrix View { get { return viewmat; } }
         public virtual Vector3 Position
         {
             get
@@ -24,7 +28,7 @@ namespace LoneWolf
             set
             {
                 camPosition = value;
-                UpdateMatrix();
+                UpdateViewMatrix();
             }
         }
         public Vector3 Rotation
@@ -58,7 +62,49 @@ namespace LoneWolf
             set
             {
                 camLookAt = value;
-                UpdateMatrix();
+                UpdateViewMatrix();
+            }
+        }
+
+        public float NearClip
+        {
+            get
+            {
+                return nearclip;
+            }
+
+            set
+            {
+                nearclip = value;
+                UpdateProjMatrix();
+            }
+        }
+
+        public float FarClip
+        {
+            get
+            {
+                return farclip;
+            }
+
+            set
+            {
+                farclip = value;
+                UpdateProjMatrix();
+            }
+        }
+
+        public float Fov
+        {
+            get
+            {
+                return fov;
+            }
+
+            set
+            {
+                fov = value;
+                UpdateProjMatrix();
             }
         }
 
@@ -66,12 +112,17 @@ namespace LoneWolf
         public Camera(Vector3 position = default(Vector3), Vector3 rotation = default(Vector3))
         {
             //Create perspective projection cuz we live in a perspective world
-            Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
-                Manager.Game.GraphicsDevice.Viewport.AspectRatio,
-                0.05f,
-                1000f);
+            UpdateProjMatrix();
             //Set the camera position and Rotation
             MoveTo(position, rotation);
+        }
+
+        private void UpdateProjMatrix()
+        {
+            projmat = Matrix.CreatePerspectiveFieldOfView(fov,
+                Manager.Game.GraphicsDevice.Viewport.AspectRatio,
+                nearclip,
+                farclip);
         }
 
         public virtual void Update(GameTime time)
@@ -85,24 +136,10 @@ namespace LoneWolf
             Position = pos;
             Rotation = rot;
         }
-        //Motion simulation
-        private Vector3 PreviewMove(Vector3 amount)
-        {
-            Matrix rotate = Matrix.CreateRotationY(camRotation.Y);
-            //movement vector
-            Vector3 movement = new Vector3(amount.X, amount.Y, amount.Z);
-            movement = Vector3.Transform(movement, rotate);
-            return camPosition + movement;
-        }
-        //movin the camera
-        private void Move(Vector3 scale)
-        {
-            MoveTo(PreviewMove(scale), Rotation);
-        }
         //Update LookAt Matrix
-        private void UpdateMatrix()
+        private void UpdateViewMatrix()
         {
-            mat = Matrix.CreateLookAt(camPosition, camLookAt, Vector3.Up);
+            viewmat = Matrix.CreateLookAt(camPosition, camLookAt, Vector3.Up);
         }
     }
 }

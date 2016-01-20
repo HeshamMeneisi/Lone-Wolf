@@ -23,11 +23,11 @@ namespace LoneWolf
             set { cam = value; }
         }
 
-        public World(GraphicsDeviceManager g, Camera c, BasicEffect eff)
-        {            
+        public World(Camera c, BasicEffect feff, Floor floor)
+        {
             cam = c;
-            e = eff;
-            floor = new Floor(g.GraphicsDevice, 1000, 1000);
+            e = feff;
+            this.floor = floor;
             instance = this;
         }
         public void Add(Model3D model)
@@ -36,16 +36,17 @@ namespace LoneWolf
         }
 
         public void Draw()
-        {            
+        {
             floor.Draw(e, cam);
-            foreach (Model3D m in obs)
+            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip)
+                .OrderByDescending(obj => obj.DistanceTo(cam.Position)))
             {
                 m.Draw(cam);
             }
         }
 
         internal void Update(GameTime time)
-        {                        
+        {
             foreach (Model3D m in obs)
             {
                 m.Update(time);

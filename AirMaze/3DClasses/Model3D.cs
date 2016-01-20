@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LoneWolf
@@ -11,7 +12,7 @@ namespace LoneWolf
         protected float scale = 1f;
         protected Matrix trans;
 
-        protected Vector3 Position
+        public Vector3 Position
         {
             get
             {
@@ -24,7 +25,7 @@ namespace LoneWolf
             }
         }
 
-        protected Vector3 Rotation
+        public Vector3 Rotation
         {
             get
             {
@@ -37,7 +38,7 @@ namespace LoneWolf
             }
         }
 
-        protected float Scale
+        public float Scale
         {
             get
             {
@@ -56,22 +57,30 @@ namespace LoneWolf
             position = pos;
             rotation = rot;
             this.scale = scale;
-            rotation = Vector3.Zero;
         }
+
+        internal float DistanceTo(Vector3 position)
+        {
+            return (position - Position).Length();
+        }
+
         public virtual void Update(GameTime time)
         {
             trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position);
         }
         public virtual void Draw(Camera cam)
         {
+            //model.Draw(trans, cam.View, cam.Projection);            
             Matrix[] transform = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(transform);
+            model.CopyAbsoluteBoneTransformsTo(transform);                        
             foreach (ModelMesh m in model.Meshes)
-            {
+            {                
                 foreach (BasicEffect effect in m.Effects)
                 {
                     //effect.VertexColorEnabled = true;
+                    //effect.TextureEnabled = true;
                     effect.EnableDefaultLighting();
+                    //effect.PreferPerPixelLighting = true;
                     effect.World = transform[m.ParentBone.Index] * trans;
                     effect.View = cam.View;
                     effect.Projection = cam.Projection;

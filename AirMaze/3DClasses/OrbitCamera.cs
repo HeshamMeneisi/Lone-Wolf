@@ -12,7 +12,7 @@ namespace LoneWolf
         float bottomcone = 0.5f;
         public override Vector3 Position
         {
-            get { return LookAt; }
+            get { return camPosition; }
             set { camLookAt = value; UpdatePosToOrbit(); }
         }
         public float Distance { get { return r; } set { r = value; } }
