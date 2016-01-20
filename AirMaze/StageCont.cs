@@ -33,7 +33,6 @@ namespace LoneWolf
         public void OnActivated(params object[] args)
         {
             var model = Manager.Game.Content.Load<Model>("Models\\beanbag\\model");
-            var wall = Manager.Game.Content.Load<Model>("Models\\wall\\model");
             var player = new Player(model, Vector3.Zero, new Vector3(8, 0, 40), Vector3.Zero, 20);
             var cam = new OrbitCamera(80);
             float celld = 80, wallw = 16; short cellspr = 10;
@@ -45,9 +44,9 @@ namespace LoneWolf
                 for (short z = 0; z <= cellspr; z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(new Model3D(wall, new Vector3(0, 40, 0), new Vector3(x * celld + celld / 2, 0, z * celld + wallw / 2), new Vector3(0, MathHelper.PiOver2, 0), 80));
+                        world.Add(new BrickWall(new Vector3(x * celld + celld / 2, 0, z * celld + wallw / 2), 1));
                     if (z < cellspr && walls[1, x, z] < 0xFF)
-                        world.Add(new Model3D(wall, new Vector3(0, 40, 0), new Vector3(x * celld + wallw / 2, 0, z * celld + celld / 2), Vector3.Zero, 80));
+                        world.Add(new BrickWall(new Vector3(x * celld + wallw / 2, 0, z * celld + celld / 2), 0));
                 }
         }
 

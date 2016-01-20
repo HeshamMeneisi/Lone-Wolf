@@ -8,6 +8,8 @@ namespace LoneWolf
     {
         protected Model model;
         protected Vector3 modeloffset;
+        protected Vector3 lowanchor;
+        protected Vector3 highanchor;
         protected Vector3 position;
         protected Vector3 rotation;
         protected float scale = 1f;
@@ -52,13 +54,13 @@ namespace LoneWolf
             }
         }
 
-        public Model3D(Model m, Vector3 offset, Vector3 pos = default(Vector3), Vector3 rot = default(Vector3), float scale = 1)
+        public Model3D(Model m, Vector3 offset, Vector3 lowanchor, Vector3 highanchor, float scale = 1)
         {
             model = m;
-            position = pos;
-            rotation = rot;
             modeloffset = offset;
             this.scale = scale;
+            this.lowanchor = lowanchor;
+            this.highanchor = highanchor;
         }
 
         internal float DistanceTo(Vector3 position)
