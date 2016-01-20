@@ -6,7 +6,7 @@ namespace LoneWolf
 {
     class Model3D
     {
-        Model model;
+        protected Model model;
         protected Vector3 position;
         protected Vector3 rotation;
         protected float scale = 1f;
@@ -70,22 +70,25 @@ namespace LoneWolf
         }
         public virtual void Draw(Camera cam)
         {
-            //model.Draw(trans, cam.View, cam.Projection);            
-            Matrix[] transform = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(transform);                        
-            foreach (ModelMesh m in model.Meshes)
-            {                
-                foreach (BasicEffect effect in m.Effects)
+            //model.Draw(trans, cam.View, cam.Projection); 
+            if (model != null)
+            {
+                Matrix[] transform = new Matrix[model.Bones.Count];
+                model.CopyAbsoluteBoneTransformsTo(transform);
+                foreach (ModelMesh m in model.Meshes)
                 {
-                    //effect.VertexColorEnabled = true;
-                    //effect.TextureEnabled = true;
-                    effect.EnableDefaultLighting();
-                    //effect.PreferPerPixelLighting = true;
-                    effect.World = transform[m.ParentBone.Index] * trans;
-                    effect.View = cam.View;
-                    effect.Projection = cam.Projection;
+                    foreach (BasicEffect effect in m.Effects)
+                    {
+                        //effect.VertexColorEnabled = true;
+                        //effect.TextureEnabled = true;
+                        effect.EnableDefaultLighting();
+                        //effect.PreferPerPixelLighting = true;
+                        effect.World = transform[m.ParentBone.Index] * trans;
+                        effect.View = cam.View;
+                        effect.Projection = cam.Projection;
+                    }
+                    m.Draw();
                 }
-                m.Draw();
             }
         }
     }
