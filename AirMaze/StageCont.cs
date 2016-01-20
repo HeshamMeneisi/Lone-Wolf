@@ -32,8 +32,8 @@ namespace LoneWolf
         World world;
         public void OnActivated(params object[] args)
         {
-            var model = Manager.Game.Content.Load<Model>("Models\\beanbag\\bean-bag");
-            var wall = Manager.Game.Content.Load<Model>("Models\\beanbag\\bean-bag");
+            var model = Manager.Game.Content.Load<Model>("Models\\beanbag\\model");
+            var wall = Manager.Game.Content.Load<Model>("Models\\wall");
             var player = new Player(model, new Vector3(20, 0, 20), Vector3.Zero);            
             var cam = new OrbitCamera(80);
             float celld = 100, wallw = 10; short cellspr = 10;
