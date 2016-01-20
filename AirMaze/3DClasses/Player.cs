@@ -12,7 +12,7 @@ namespace LoneWolf
     {
         float speed;
         
-        float faceheight = 18;
+        float faceheight = 150;
         Vector3 camoffset;
 
         public Player(Model m, Vector3 position, Vector3 rotation, float scale) : base(m, position, rotation, scale)
