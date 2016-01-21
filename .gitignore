@@ -2,7 +2,13 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/AirMaze/Content/bin/Windows
-/AirMaze/Content/obj/Windows
-/AirMaze/bin/Windows/Debug
-/AirMaze/obj/x86/Debug
+/LoneWolf/bin
+/LoneWolf/obj
+/SkinnedModel/bin
+/SkinnedModel/obj
+/SkinnedModelPipeline/bin
+/SkinnedModelPipeline/obj
+/SkinningSample/bin
+/SkinningSample/obj
+/LoneWolf/Content/bin
+/LoneWolf/Content/obj
