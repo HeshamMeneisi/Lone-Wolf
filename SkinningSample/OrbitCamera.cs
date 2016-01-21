@@ -10,6 +10,13 @@ namespace LoneWolf
         float mousescale = 0.02f;
         float topcone = 0.5f;
         float bottomcone = 1;
+        public override Vector3 Rotation
+        {
+            get
+            {
+                return new Vector3(lat * (float)Math.Sin(lon), lon, lat * (float)Math.Cos(lon));
+            }
+        }
         public override Vector3 Position
         {
             get { return camPosition; }

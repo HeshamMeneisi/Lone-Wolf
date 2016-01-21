@@ -8,14 +8,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace LoneWolf
 {
-    class Player : SkinnedModel3D
+    class Player : DynamicObject
     {
         public static Model Model = Manager.Game.Content.Load<Model>("Models\\Player\\model");
+        public static Vector3 ModelLowAnchor = new Vector3(-5, 0, -10);
+        public static Vector3 ModelHighAnchor = new Vector3(5, 25, 10);
         float speed;
 
         float faceheight = 30;
         Vector3 camoffset;
-        public Player(Vector3 position, Vector3 rotation, float scale = 1) : base(Model, Vector3.Zero, new Vector3(0, MathHelper.Pi, 0), position, rotation, scale, "Take 001")
+        public Player(Vector3 position, Vector3 rotation, float scale = 1) : base(Model, Vector3.Zero, new Vector3(0, MathHelper.Pi, 0), ModelLowAnchor, ModelHighAnchor, scale, "Take 001", true)
         {
             speed = 1f;
             camoffset = new Vector3(0, faceheight, 0);
@@ -25,33 +27,38 @@ namespace LoneWolf
         public override void Update(GameTime time)
         {
             bool ismoving = false;
+            // Vector3 is passed on assignment as a clone not a reference
+            Vector3 newpos = position;
+            Vector3 newrot = rotation;
             if (InputManager.IsKeyDown(Keys.A))
             {
                 ismoving = true;
-                rotation.Y += .05f;
+                newrot.Y += .05f;
             }
             if (InputManager.IsKeyDown(Keys.D))
             {
                 ismoving = true;
-                rotation.Y -= .05f;
+                newrot.Y -= .05f;
             }
             if (InputManager.IsKeyDown(Keys.W))
             {
                 ismoving = true;
-                position.X += speed * (float)Math.Sin(rotation.Y);
-                position.Z += speed * (float)Math.Cos(rotation.Y);
+                newpos.X += speed * (float)Math.Sin(World.GetInstance().ActiveCam.Rotation.Y);
+                newpos.Z += speed * (float)Math.Cos(newrot.Y);
             }
             if (InputManager.IsKeyDown(Keys.S))
             {
                 ismoving = true;
-                position.X -= speed * (float)Math.Sin(rotation.Y);
-                position.Z -= speed * (float)Math.Cos(rotation.Y);
+                newpos.X -= speed * (float)Math.Sin(newrot.Y);
+                newpos.Z -= speed * (float)Math.Cos(newrot.Y);
             }
             var test = new TimeSpan(0, 0, 1);
             if (ismoving)
                 StarWalking();
             else
                 StandStill();
+            Position = newpos;
+            Rotation = newrot;
             World.GetInstance().ActiveCam.Position = Position + camoffset;
             base.Update(time);
         }

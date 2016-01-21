@@ -10,9 +10,9 @@ namespace LoneWolf
 {
     class Wall : Model3D
     {
-        public static Vector3 WallLowAnchor = new Vector3(-40, 0, -8);
-        public static Vector3 WallHighAnchor = new Vector3(40, 0, 8);
-        public Wall(Model model, Vector3 offset, Vector3 position, float scale, float orientation = 0) : base(model, offset, Vector3.Zero, WallLowAnchor, WallHighAnchor, scale)
+        public static Vector3 WallLowAnchor = new Vector3(-10, 0, -50);
+        public static Vector3 WallHighAnchor = new Vector3(10, 100, 50);
+        public Wall(Model model, Vector3 origin, Vector3 position, float scale, float orientation = 0) : base(model, origin, Vector3.Zero, WallLowAnchor, WallHighAnchor, scale)
         {
             this.position = position;
             rotation = new Vector3(0, MathHelper.PiOver2 * orientation, 0);

@@ -112,8 +112,10 @@
     <Compile Include="BrickWall.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="CollisionHandler.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
+    <Compile Include="DynamicObject.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />

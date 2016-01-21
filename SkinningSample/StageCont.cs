@@ -18,14 +18,14 @@ namespace LoneWolf
             instance = this;
         }
         public void Draw(SpriteBatch batch)
-        {            
+        {
             // 3D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             Manager.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             Manager.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
-            world.Draw();        
-            
+            world.Draw();
+
             // 2D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.AlphaBlend;
             //batch.begin
@@ -41,20 +41,22 @@ namespace LoneWolf
         }
         World world;
         public void OnActivated(params object[] args)
-        {            
+        {
             var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
             var cam = new OrbitCamera(50);
-            float celld = 100, wallw = 20; short cellspr = 10;
+            float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z; short cellspr = 10;
             world = new World(cam, new BasicEffect(Manager.Game.GraphicsDevice), new Floor((int)(celld * cellspr), (int)(celld * cellspr)));
             world.Add(player);
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));            
             byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
             for (short x = 0; x <= cellspr; x++)
                 for (short z = 0; z <= cellspr; z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld + celld / 2, 0, z * celld + wallw / 2), 1));
+                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.Z, 0, z * celld - Wall.WallLowAnchor.X), 1));
                     if (z < cellspr && walls[1, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld + wallw / 2, 0, z * celld + celld / 2), 0));
+                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.X, 0, z * celld - Wall.WallLowAnchor.Z), 0));
                 }
         }
 

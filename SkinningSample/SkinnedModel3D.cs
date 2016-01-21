@@ -23,7 +23,7 @@ namespace LoneWolf
             }
         }
 
-        public SkinnedModel3D(Model m, Vector3 offset, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null) : base(m, offset, baserot, lowanchor, highanchor, scale)
+        public SkinnedModel3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null) : base(m, origin, baserot, lowanchor, highanchor, scale)
         {
             skinningData = model.Tag as SkinningData;
             if (skinningData == null)

@@ -38,8 +38,8 @@ namespace LoneWolf
         public void Draw()
         {
             floor.Draw(e, cam);
-            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip)
-                .OrderByDescending(obj => obj.DistanceTo(cam.Position)))
+            foreach (Model3D m in obs)//.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip)
+                //.OrderByDescending(obj => obj.DistanceTo(cam.Position)))
             {
                 m.Draw(cam);
             }
@@ -52,6 +52,7 @@ namespace LoneWolf
                 m.Update(time);
             }
             cam.Update(time);
+            CollisionHandler.Handle(obs);
         }
 
         public static World GetInstance()

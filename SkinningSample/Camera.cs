@@ -31,7 +31,7 @@ namespace LoneWolf
                 UpdateViewMatrix();
             }
         }
-        public Vector3 Rotation
+        public virtual Vector3 Rotation
         {
             get { return camRotation; }
             set
