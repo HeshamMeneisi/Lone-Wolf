@@ -56,7 +56,7 @@ namespace LoneWolf
             lmx = ms.X;
             lmy = ms.Y;
             lwv = ms.ScrollWheelValue;
-            WatchKeys(Keys.GetValues(typeof(Keys)).Cast<Keys>().ToArray());
+            //WatchKeys(Keys.GetValues(typeof(Keys)).Cast<Keys>().ToArray());
 #endif
         }
 

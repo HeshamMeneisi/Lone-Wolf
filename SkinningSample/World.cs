@@ -12,7 +12,6 @@ namespace LoneWolf
     {
         static World instance;
         List<Model3D> obs = new List<Model3D>();
-        Player model;
         Floor floor;
         BasicEffect e;
         Camera cam;
@@ -58,6 +57,14 @@ namespace LoneWolf
         public static World GetInstance()
         {
             return instance;
+        }
+
+        internal object GetObjectAt(Vector3 pos)
+        {
+            foreach (Model3D obj in obs)
+                if (obj.Contains(pos))
+                    return obj;
+            return null;
         }
     }
 }

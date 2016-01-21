@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace LoneWolf
@@ -19,22 +21,21 @@ namespace LoneWolf
             DynamicObject dobj;
             foreach (Model3D obj in obs)
             {
-                if (obj!= target && obj.Intersects(target))
+                if (obj != target && obj.Intersects(target))
                 {
                     if ((dobj = obj as DynamicObject) != null)
                     {
                         if (dobj.TimeStamp > target.TimeStamp)
-                        { target.UndoLastTranslation(); break; }
-                        else { dobj.UndoLastTranslation(); break; }
+                        { target.SeparateFrom(obj); break; }
+                        else { dobj.SeparateFrom(target); break; }
                     }
                     else
                     {
-                        target.UndoLastTranslation();
+                        target.SeparateFrom(obj);
                         break;
                     }
                 }
             }
-            // TODO: Handle badly intialized dynammic objects by pushing them out
         }
     }
 }

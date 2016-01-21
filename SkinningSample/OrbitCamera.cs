@@ -76,7 +76,9 @@ namespace LoneWolf
             float z = (float)(r * Math.Cos(lat) * Math.Cos(lon));
             float x = (float)(r * Math.Cos(lat) * Math.Sin(lon));
             float y = (float)(r * Math.Sin(lat));
-            base.Position = LookAt + new Vector3(x, y, z);
+            Vector3 newpos = LookAt + new Vector3(x, y, z); ;
+            //if (World.GetInstance() != null && World.GetInstance().GetObjectAt(newpos) == null)
+                base.Position = newpos;
         }
     }
 }

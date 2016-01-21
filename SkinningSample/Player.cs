@@ -24,34 +24,31 @@ namespace LoneWolf
             this.position = position;
             this.rotation = rotation;
         }
+        bool ismoving = false, adjusted = false;
         public override void Update(GameTime time)
         {
-            bool ismoving = false;
             // Vector3 is passed on assignment as a clone not a reference
             Vector3 newpos = position;
             Vector3 newrot = rotation;
-            if (InputManager.IsKeyDown(Keys.A))
-            {
-                ismoving = true;
-                newrot.Y += .05f;
-            }
-            if (InputManager.IsKeyDown(Keys.D))
-            {
-                ismoving = true;
-                newrot.Y -= .05f;
-            }
             if (InputManager.IsKeyDown(Keys.W))
             {
-                ismoving = true;
-                newpos.X += speed * (float)Math.Sin(World.GetInstance().ActiveCam.Rotation.Y);
+                if (InputManager.IsKeyDown(Keys.A))
+                {
+                    newrot.Y += 0.05f;
+                    adjusted = true;
+                }
+                else if (InputManager.IsKeyDown(Keys.D))
+                {
+                    newrot.Y -= 0.05f;
+                    adjusted = true;
+                }
+                else if (!ismoving || !adjusted)
+                    newrot = new Vector3(0, World.GetInstance().ActiveCam.Rotation.Y + (float)Math.PI, 0);
+                newpos.X += speed * (float)Math.Sin(newrot.Y);
                 newpos.Z += speed * (float)Math.Cos(newrot.Y);
-            }
-            if (InputManager.IsKeyDown(Keys.S))
-            {
                 ismoving = true;
-                newpos.X -= speed * (float)Math.Sin(newrot.Y);
-                newpos.Z -= speed * (float)Math.Cos(newrot.Y);
             }
+            else ismoving = adjusted = false;
             var test = new TimeSpan(0, 0, 1);
             if (ismoving)
                 StarWalking();
