@@ -48,11 +48,12 @@ namespace LoneWolf
             float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z; short cellspr = 10;
             world = new World(new OrbitCamera(50), new Floor(cellspr, cellspr));
             world.Add(player);
-            world.Add(new StarBox(new Vector3(50, 0, 100)));
-            //Model testmodel = Manager.Game.Content.Load<Model>("Models\\Test\\model");
-            //Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.001f);
-            //obj.Position = new Vector3(50, 0, 100);
-            //.Add(obj);
+            //world.Add(new StarBox(new Vector3(50, 0, 100)));
+            //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
+            /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\Test\\model");
+            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.1f);
+            obj.Position = new Vector3(50, 0, 100);
+            world.Add(obj);*/
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));            
             byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);

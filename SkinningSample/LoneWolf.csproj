@@ -117,6 +117,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
     <Compile Include="DynamicObject.cs" />
+    <Compile Include="FirstAidBag.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />
