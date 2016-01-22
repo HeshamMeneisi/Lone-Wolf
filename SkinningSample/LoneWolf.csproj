@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkinningSample</RootNamespace>
-    <AssemblyName>SkinningSample</AssemblyName>
+    <RootNamespace>LoneWolf</RootNamespace>
+    <AssemblyName>LoneWolf</AssemblyName>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <ApplicationIcon>Game.ico</ApplicationIcon>
@@ -112,6 +112,7 @@
     <Compile Include="BrickWall.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Collectible.cs" />
     <Compile Include="CollisionHandler.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataHandler.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="SmartContentManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="StageCont.cs" />
+    <Compile Include="StarBox.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="TextureID2D.cs" />
     <Compile Include="Tile.cs" />

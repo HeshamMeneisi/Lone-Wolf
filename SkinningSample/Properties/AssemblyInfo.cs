@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Skinning Sample")]
-[assembly: AssemblyProduct("SkinningSample")]
+[assembly: AssemblyTitle("LoneWolf")]
+[assembly: AssemblyProduct("LoneWolf")]
 [assembly: AssemblyDescription("This sample shows how to process and render a skinned character model using the XNA Framework Content Pipeline.")]
 [assembly: AssemblyCompany("Microsoft")]
 

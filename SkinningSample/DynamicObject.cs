@@ -60,7 +60,7 @@ namespace LoneWolf
             else if (zdif < ydif)
                 position.Z += zdif * lv.Z > 0 ? 1 : -1;
             else
-                position.Y += ydif * lv.Y > 0 ? 1 : -1;
+                position.Y += ydif;/*Should not go underground*/
         }
     }
 }
