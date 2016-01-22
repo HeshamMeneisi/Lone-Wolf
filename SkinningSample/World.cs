@@ -12,8 +12,7 @@ namespace LoneWolf
     {
         static World instance;
         List<Model3D> obs = new List<Model3D>();
-        Floor floor;
-        BasicEffect e;
+        Floor floor;        
         Camera cam;
 
         public Camera ActiveCam
@@ -22,10 +21,9 @@ namespace LoneWolf
             set { cam = value; }
         }
 
-        public World(Camera c, BasicEffect feff, Floor floor)
+        public World(Camera c, Floor floor)
         {
-            cam = c;
-            e = feff;
+            cam = c;            
             this.floor = floor;
             instance = this;
         }
@@ -35,13 +33,13 @@ namespace LoneWolf
         }
 
         public void Draw()
-        {
-            floor.Draw(e, cam);
-            foreach (Model3D m in obs)//.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip)
+        { 
+            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))
                 //.OrderByDescending(obj => obj.DistanceTo(cam.Position)))
             {
                 m.Draw(cam);
             }
+            floor.Draw(cam);
         }
 
         internal void Update(GameTime time)

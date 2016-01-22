@@ -134,11 +134,13 @@
     <Compile Include="SecurityProvider.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SkinnedModel3D.cs" />
+    <Compile Include="Sky.cs" />
     <Compile Include="SmartContentManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="StageCont.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="TextureID2D.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="UIButton.cs" />
     <Compile Include="UICell.cs" />
     <Compile Include="UIGrid.cs" />

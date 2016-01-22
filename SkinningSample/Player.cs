@@ -11,8 +11,8 @@ namespace LoneWolf
     class Player : DynamicObject
     {
         public static Model Model = Manager.Game.Content.Load<Model>("Models\\Player\\model");
-        public static Vector3 ModelLowAnchor = new Vector3(-5, 0, -10);
-        public static Vector3 ModelHighAnchor = new Vector3(5, 25, 10);
+        public static Vector3 ModelLowAnchor = new Vector3(-10, 0, -10);
+        public static Vector3 ModelHighAnchor = new Vector3(10, 25, 10);
         float speed;
 
         float faceheight = 30;

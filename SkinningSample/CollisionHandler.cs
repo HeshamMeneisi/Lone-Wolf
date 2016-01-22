@@ -26,14 +26,11 @@ namespace LoneWolf
                     if ((dobj = obj as DynamicObject) != null)
                     {
                         if (dobj.TimeStamp > target.TimeStamp)
-                        { target.SeparateFrom(obj); break; }
-                        else { dobj.SeparateFrom(target); break; }
+                            target.SeparateFrom(obj);
+                        else dobj.SeparateFrom(target);
                     }
                     else
-                    {
                         target.SeparateFrom(obj);
-                        break;
-                    }
                 }
             }
         }

@@ -19,6 +19,8 @@ namespace LoneWolf
         }
         public void Draw(SpriteBatch batch)
         {
+            //Sky
+            Sky.Draw(batch);
             // 3D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             Manager.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -44,7 +46,7 @@ namespace LoneWolf
         {
             var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);            
             float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z; short cellspr = 10;
-            world = new World(new OrbitCamera(50), new BasicEffect(Manager.Game.GraphicsDevice), new Floor((int)(celld * cellspr), (int)(celld * cellspr)));
+            world = new World(new OrbitCamera(50), new Floor(cellspr, cellspr));
             world.Add(player);
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));            

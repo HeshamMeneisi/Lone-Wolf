@@ -55,9 +55,10 @@ namespace LoneWolf
             r = distance;
             InputManager.MouseMoved += mmoved;
         }
-
+        bool supressmouse = false;
         private void mmoved(Vector2 position, Vector2 offset)
         {
+            if (supressmouse) { supressmouse = false; return; }
             float llat = lat;
             lon += offset.X * mousescale;
             lat += offset.Y * mousescale;
@@ -65,6 +66,10 @@ namespace LoneWolf
             if (lat > MathHelper.PiOver2 - topcone || lat < -MathHelper.PiOver2 + bottomcone)
                 lat = llat;
             UpdatePosToOrbit();
+            supressmouse = true;
+#if !DEBUG
+            InputManager.MoveMouseTo(Screen.Width / 2, Screen.Height / 2);            
+#endif
         }
 
         public override void Update(GameTime time)
@@ -76,9 +81,8 @@ namespace LoneWolf
             float z = (float)(r * Math.Cos(lat) * Math.Cos(lon));
             float x = (float)(r * Math.Cos(lat) * Math.Sin(lon));
             float y = (float)(r * Math.Sin(lat));
-            Vector3 newpos = LookAt + new Vector3(x, y, z); ;
-            //if (World.GetInstance() != null && World.GetInstance().GetObjectAt(newpos) == null)
-                base.Position = newpos;
+            Vector3 newpos = LookAt + new Vector3(x, y, z);
+            base.Position = newpos;
         }
     }
 }

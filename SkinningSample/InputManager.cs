@@ -124,32 +124,32 @@ namespace LoneWolf
             if (ms.LeftButton == ButtonState.Pressed && !mousepressed[0])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.LeftKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseDown(MouseKey.LeftKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.LeftButton == ButtonState.Released && mousepressed[0])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.LeftKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseUp(MouseKey.LeftKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.MiddleButton == ButtonState.Pressed && !mousepressed[1])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.MiddleKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseDown(MouseKey.MiddleKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.MiddleButton == ButtonState.Released && mousepressed[1])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.MiddleKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseUp(MouseKey.MiddleKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.RightButton == ButtonState.Pressed && !mousepressed[2])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.RightKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseDown(MouseKey.RightKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.RightButton == ButtonState.Released && mousepressed[2])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.RightKey, adjust(new Vector2(ms.X,ms.Y)));
+                    MouseUp(MouseKey.RightKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             foreach (Keys k in watchlist)
             {
@@ -211,7 +211,12 @@ namespace LoneWolf
 
         internal static Vector2 getMousePos()
         {
-            return adjust(new Vector2(ms.X,ms.Y));
+            return adjust(new Vector2(ms.X, ms.Y));
+        }
+
+        internal static void MoveMouseTo(float x, float y)
+        {
+            Mouse.SetPosition((int)x, (int)y);
         }
 
     }
