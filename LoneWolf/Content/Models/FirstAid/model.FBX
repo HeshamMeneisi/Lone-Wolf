@@ -5553,7 +5553,7 @@ Objects:  {
 			Property: "LastFrame", "int", "",0
 			Property: "Width", "int", "",0
 			Property: "Height", "int", "",0
-			Property: "Path", "KString", "", "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\Models\Test\diff_.tga"
+			Property: "Path", "KString", "", "diff_.tga"
 			Property: "StartFrame", "int", "",0
 			Property: "StopFrame", "int", "",0
 			Property: "PlaySpeed", "double", "",0
@@ -5565,7 +5565,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\Models\Test\diff_.tga"
-		RelativeFilename: "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\Models\Test\diff_.tga"
+		RelativeFilename: "diff_.tga"
 	}
 	Texture: "Texture::Map #367", "" {
 		Type: "TextureVideoClip"
@@ -5651,7 +5651,7 @@ Objects:  {
 		}
 		Media: "Video::Map #366"
 		FileName: "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\Models\Test\diff_.tga"
-		RelativeFilename: "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\Models\Test\diff_.tga"
+		RelativeFilename: "diff_.tga"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "Alpha_Black"
