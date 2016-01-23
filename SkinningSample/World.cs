@@ -12,7 +12,7 @@ namespace LoneWolf
     {
         static World instance;
         List<Model3D> obs = new List<Model3D>();
-        Floor floor;        
+        Terrain floor;
         Camera cam;
 
         public Camera ActiveCam
@@ -21,21 +21,28 @@ namespace LoneWolf
             set { cam = value; }
         }
 
-        public World(Camera c, Floor floor)
+        public int FloorWidth { get; internal set; }
+        public int FloorHeight { get; internal set; }
+
+        private World()
         {
-            cam = c;            
-            this.floor = floor;
             instance = this;
         }
+
+        public void CreateTerrain()
+        {
+            floor = new Terrain(FloorWidth, FloorHeight);
+        }
+
         public void Add(Model3D model)
         {
             obs.Add(model);
         }
 
         public void Draw()
-        { 
+        {
             foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))
-                //.OrderByDescending(obj => obj.DistanceTo(cam.Position)))
+            //.OrderByDescending(obj => obj.DistanceTo(cam.Position)))
             {
                 m.Draw(cam);
             }
@@ -54,6 +61,8 @@ namespace LoneWolf
 
         public static World GetInstance()
         {
+            if (instance == null)
+                return new World();
             return instance;
         }
 

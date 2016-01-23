@@ -32,7 +32,7 @@ namespace LoneWolf
             set
             {
                 base.Position = value;
-                if (vk) VirtualKeyboard.NotifyPosChanged();
+                //if (vk) VirtualKeyboard.NotifyPosChanged();
             }
         }
         internal Color ForegroundColor { get { return color; } set { color = value; } }
@@ -52,7 +52,7 @@ namespace LoneWolf
             if (SelectedChanged != null) SelectedChanged(this, Selected);
             if (selected)
             {
-                vk = true; VirtualKeyboard.Show(this);
+                vk = true; //VirtualKeyboard.Show(this);
             }
             else vk = false;
         }

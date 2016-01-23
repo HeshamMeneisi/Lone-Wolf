@@ -11,10 +11,13 @@ namespace LoneWolf
     class StageCont : IState
     {
         static StageCont instance = null;
+        static float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z;
 
-        public StageCont()
+        private World world;
+        private StageCont()
         {
             //TODO: init
+            world = World.GetInstance();
             instance = this;
         }
         public void Draw(SpriteBatch batch)
@@ -40,14 +43,20 @@ namespace LoneWolf
             // Send to GUI
             // if not handled send to world
 
-        }
-        World world;
+        }        
         public void OnActivated(params object[] args)
         {
             var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
-            float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z; short cellspr = 30;
-            world = new World(new OrbitCamera(50), new Floor(cellspr, cellspr));
+            // Specifications of the world            
+            short cellspr = 30;
+            short cameradistance = 40;
+            // Create world
+            world.FloorWidth = 30;
+            world.FloorHeight = 30;
+            world.ActiveCam = new OrbitCamera(cameradistance);
+            world.CreateTerrain();
             world.Add(player);
+            #region TestCode
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
             /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\Test\\model");
@@ -55,14 +64,22 @@ namespace LoneWolf
             obj.Position = new Vector3(50, 0, 100);
             world.Add(obj);*/
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
-            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));            
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));    
+            #endregion
             byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
-            for (short x = 0; x <= cellspr; x++)
-                for (short z = 0; z <= cellspr; z++)
+            BuildMaze(walls);
+        }
+
+        private void BuildMaze(byte[,,] walls)
+        {
+            int cellspr = walls.GetLength(1);
+            int cellspc = walls.GetLength(2);
+            for (short x = 0; x < cellspr; x++)
+                for (short z = 0; z < walls.GetLength(2); z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
                         world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.Z, 0, z * celld - Wall.WallLowAnchor.X), 1));
-                    if (z < cellspr && walls[1, x, z] < 0xFF)
+                    if (z < cellspc && walls[1, x, z] < 0xFF)
                         world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.X, 0, z * celld - Wall.WallLowAnchor.Z), 0));
                 }
         }

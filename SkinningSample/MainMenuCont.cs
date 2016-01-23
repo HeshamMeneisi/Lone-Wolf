@@ -16,7 +16,7 @@ namespace LoneWolf
         UIButton playbtn;
         UIButton exitbtn;
 
-        public MainMenuCont()
+        private MainMenuCont()
         {
             menu = new UIMenu();
             menu.Add(playbtn
@@ -43,7 +43,7 @@ namespace LoneWolf
         {
             menu.setAllSizeRelative(0.2f, Orientation.Landscape);
             menu.ArrangeInForm(Orientation.Portrait);
-            menu.Position = new Vector2((Screen.Width - menu.Width) / 2, (Screen.Height - menu.Height) / 2);                        
+            menu.Position = new Vector2((Screen.Width - menu.Width) / 2, (Screen.Height - menu.Height) / 2);
         }
 
         public void Update(GameTime time)

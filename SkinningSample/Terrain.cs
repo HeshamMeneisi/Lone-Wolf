@@ -5,14 +5,14 @@ using System;
 
 namespace LoneWolf
 {
-    class Floor
+    class Terrain
     {
         private int floorWidth;
         private int floorHeight;
         private BasicEffect effect;
 
         //Constructor
-        public Floor(int width, int height)
+        public Terrain(int width, int height)
         {
             floorWidth = width;
             floorHeight = height;
@@ -44,8 +44,5 @@ namespace LoneWolf
                 }
         }
         TimeSpan lgameitme = new TimeSpan(0);
-        public void Update(GameTime time)
-        {
-        }
     }
 }

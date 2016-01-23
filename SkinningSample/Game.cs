@@ -13,6 +13,10 @@ namespace LoneWolf
         SpriteBatch spriteBatch;
         static Game instance = null;
 
+        public delegate void OnDrawEventHandler(OnDrawEventArgs e);
+        public event OnDrawEventHandler OnDraw;
+        public delegate void OnUpdateEventHandler(OnUpdateEventArgs e);
+        public event OnUpdateEventHandler OnUpdate;
         public GraphicsDeviceManager Graphics
         {
             get
@@ -83,9 +87,8 @@ namespace LoneWolf
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            Manager.Update(gameTime);
             // TODO: Add your update logic here
-
+            OnUpdate(new OnUpdateEventArgs(gameTime));
             base.Update(gameTime);
         }
 
@@ -96,7 +99,7 @@ namespace LoneWolf
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            Manager.Draw(spriteBatch);            
+            OnDraw(new OnDrawEventArgs(spriteBatch));          
             base.Draw(gameTime);
         }
     }
