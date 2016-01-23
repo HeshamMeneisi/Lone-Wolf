@@ -8,9 +8,7 @@ using System.IO;
 #if WP81
 
 #else
-using System.IO.IsolatedStorage;
 #endif
-using System.Xml.Serialization;
 #if WINDOWS_UAP || WP81
 using System.Net.Http;
 using Windows.Storage;
@@ -191,8 +189,9 @@ namespace LoneWolf
             if (!Directory.Exists(savedir)) Directory.CreateDirectory(savedir);
             FileStream str = File.Open(path = savedir + file, FileMode.Create);
 #endif
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-            serializer.Serialize(str, data);
+            // TODO: Fix using intermediate serializer
+            //XmlSerializer serializer = new XmlSerializer(typeof(T));
+            //serializer.Serialize(str, data);
 #if WINDOWS_UAP && DEBUG // Causes crashes after release
             path = str.GetType().GetField("m_FullPath", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(str).ToString();
 #endif
@@ -246,11 +245,13 @@ namespace LoneWolf
             using (Stream str = File.Open(savedir + file, FileMode.Open))
 #endif
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                //TODO: int ser
+                //XmlSerializer serializer = new XmlSerializer(typeof(T));
 
                 try
                 {
-                    return (T)serializer.Deserialize(str);
+                    //return (T)serializer.Deserialize(str);
+                    return default(T);
                 }
                 catch (Exception ex)
                 {

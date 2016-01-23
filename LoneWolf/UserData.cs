@@ -1,9 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace LoneWolf
 {
@@ -38,7 +34,6 @@ namespace LoneWolf
             string[] data = SData.Split('|');
             // TODO: Implement data parsing
         }        
-        [XmlIgnore]
         public bool Encrypted { get; private set; }
         internal void EncryptStrings()
         {

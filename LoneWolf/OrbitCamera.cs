@@ -61,8 +61,7 @@ namespace LoneWolf
             if (supressmouse) { supressmouse = false; return; }
             float llat = lat;
             lon += offset.X * mousescale;
-            lat += offset.Y * mousescale;
-            Debug.WriteLine(lon + "," + lat);
+            lat += offset.Y * mousescale;            
             if (lat > MathHelper.PiOver2 - topcone || lat < -MathHelper.PiOver2 + bottomcone)
                 lat = llat;
             UpdatePosToOrbit();

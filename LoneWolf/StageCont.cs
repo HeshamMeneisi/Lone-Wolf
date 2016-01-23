@@ -11,16 +11,31 @@ namespace LoneWolf
     class StageCont : IState
     {
         static StageCont instance = null;
+        static float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z;
 
-        public StageCont()
+        private World world;
+        private StageCont()
         {
             //TODO: init
+            world = World.GetInstance();
             instance = this;
         }
         public void Draw(SpriteBatch batch)
         {
+            //Sky
+            Sky.Draw(batch);
+            // 3D Rendering
+            Manager.Game.GraphicsDevice.BlendState = BlendState.Opaque;
+            Manager.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            Manager.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+
             world.Draw();
+
+            // 2D Rendering
+            Manager.Game.GraphicsDevice.BlendState = BlendState.AlphaBlend;
+            //batch.begin
             // Draw overlay GUI            
+            //bath.end
         }
 
         public void HandleEvent(WorldEvent e, bool forcehandle = false)
@@ -28,25 +43,45 @@ namespace LoneWolf
             // Send to GUI
             // if not handled send to world
 
-        }
-        World world;
+        }        
         public void OnActivated(params object[] args)
         {
-            var model = Manager.Game.Content.Load<Model>("Models\\beanbag\\model");
-            var player = new Player(model, Vector3.Zero, new Vector3(20, 0, 20), Vector3.Zero, 20);
-            var cam = new OrbitCamera(80);
-            float celld = 80, wallw = 16; short cellspr = 10;
-            world = new World(cam, new BasicEffect(Manager.Game.GraphicsDevice), new Floor(Manager.Game.GraphicsDevice, (int)(celld * cellspr), (int)(celld * cellspr)));
+            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
+            // Specifications of the world            
+            short cellspr = 30;
+            short cameradistance = 40;
+            // Create world
+            world.FloorWidth = 30;
+            world.FloorHeight = 30;
+            world.ActiveCam = new OrbitCamera(cameradistance);
+            world.CreateTerrain();
             world.Add(player);
-            //world.Add(new Model3D(wall,new Vector3(celld/2,0,wallw/2)));            
+            #region TestCode
+            //world.Add(new StarBox(new Vector3(50, 0, 100)));
+            //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
+            /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\Test\\model");
+            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.1f);
+            obj.Position = new Vector3(50, 0, 100);
+            world.Add(obj);*/
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));    
+            #endregion
             byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
-            for (short x = 0; x <= cellspr; x++)
-                for (short z = 0; z <= cellspr; z++)
+            BuildMaze(walls);
+            BuildGUI();
+        }        
+
+        private void BuildMaze(byte[,,] walls)
+        {
+            int cellspr = walls.GetLength(1);
+            int cellspc = walls.GetLength(2);
+            for (short x = 0; x < cellspr; x++)
+                for (short z = 0; z < walls.GetLength(2); z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld + celld / 2, 0, z * celld + wallw / 2), 1));
-                    if (z < cellspr && walls[1, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld + wallw / 2, 0, z * celld + celld / 2), 0));
+                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.Z, 0, z * celld - Wall.WallLowAnchor.X), 1));
+                    if (z < cellspc && walls[1, x, z] < 0xFF)
+                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.X, 0, z * celld - Wall.WallLowAnchor.Z), 0));
                 }
         }
 
@@ -60,5 +95,14 @@ namespace LoneWolf
             if (instance != null) return instance;
             return new StageCont();
         }
+        #region GUI
+        UITextField scoretext;
+        Texture2D healthbar;
+        private void BuildGUI()
+        {
+
+        }
+        #endregion
+
     }
 }

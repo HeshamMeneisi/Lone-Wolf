@@ -56,7 +56,7 @@ namespace LoneWolf
         {
             if (playing)
                 animationPlayer.Update(time.ElapsedGameTime, true, Matrix.Identity);
-            Debug.WriteLine(time.TotalGameTime.Ticks);
+            //Debug.WriteLine(time.TotalGameTime.Ticks);
             base.Update(time);
         }
         public override void Draw(Camera cam)

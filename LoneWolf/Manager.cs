@@ -77,6 +77,8 @@ namespace LoneWolf
 
             stateManager.SwitchTo(GameState.MainMenu);
 
+            Game.OnUpdate += Update;
+            Game.OnDraw += Draw;
             initd = true;
         }
 
@@ -90,24 +92,20 @@ namespace LoneWolf
                 {
                     // Could open a console here later
                 }
-            }
-            VirtualKeyboard.HandleEvent(e);
+            }            
             stateManager.CurrentGameState.HandleEvent(e);
         }
-        internal static void Draw(SpriteBatch spriteBatch)
+        internal static void Draw(OnDrawEventArgs e)
         {
             if (!initd) return;
-            stateManager.Draw(spriteBatch);
-            // Should stay last (Topmost)
-            VirtualKeyboard.Draw(spriteBatch);
+            stateManager.Draw(e.Spritebatch);            
         }
-        internal static void Update(GameTime time)
+        internal static void Update(OnUpdateEventArgs e)
         {
             if (!initd) return;
-            stateManager.Update(time);
-            SoundManager.Update(time);
-            VirtualKeyboard.Update(time);
-            InputManager.Update(time);
+            stateManager.Update(e.Gametime);
+            SoundManager.Update(e.Gametime);            
+            InputManager.Update(e.Gametime);
         }
 
         private static void initInput()

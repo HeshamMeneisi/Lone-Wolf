@@ -56,7 +56,7 @@ namespace LoneWolf
             lmx = ms.X;
             lmy = ms.Y;
             lwv = ms.ScrollWheelValue;
-            WatchKeys(Keys.GetValues(typeof(Keys)).Cast<Keys>().ToArray());
+            //WatchKeys(Keys.GetValues(typeof(Keys)).Cast<Keys>().ToArray());
 #endif
         }
 
@@ -114,7 +114,7 @@ namespace LoneWolf
             if (ms.X != lmx || ms.Y != lmy)
             {
                 if (MouseMoved != null)
-                    MouseMoved(adjust(ms.Position.ToVector2()), new Vector2(lmx - ms.X, lmy - ms.Y));
+                    MouseMoved(adjust(new Vector2(ms.X, ms.Y)), new Vector2(lmx - ms.X, lmy - ms.Y));
             }
             if (ms.ScrollWheelValue != lwv)
             {
@@ -124,32 +124,32 @@ namespace LoneWolf
             if (ms.LeftButton == ButtonState.Pressed && !mousepressed[0])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.LeftKey, adjust(ms.Position.ToVector2()));
+                    MouseDown(MouseKey.LeftKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.LeftButton == ButtonState.Released && mousepressed[0])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.LeftKey, adjust(ms.Position.ToVector2()));
+                    MouseUp(MouseKey.LeftKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.MiddleButton == ButtonState.Pressed && !mousepressed[1])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.MiddleKey, adjust(ms.Position.ToVector2()));
+                    MouseDown(MouseKey.MiddleKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.MiddleButton == ButtonState.Released && mousepressed[1])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.MiddleKey, adjust(ms.Position.ToVector2()));
+                    MouseUp(MouseKey.MiddleKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.RightButton == ButtonState.Pressed && !mousepressed[2])
             {
                 if (MouseDown != null)
-                    MouseDown(MouseKey.RightKey, adjust(ms.Position.ToVector2()));
+                    MouseDown(MouseKey.RightKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             if (ms.RightButton == ButtonState.Released && mousepressed[2])
             {
                 if (MouseUp != null)
-                    MouseUp(MouseKey.RightKey, adjust(ms.Position.ToVector2()));
+                    MouseUp(MouseKey.RightKey, adjust(new Vector2(ms.X, ms.Y)));
             }
             foreach (Keys k in watchlist)
             {
@@ -189,7 +189,7 @@ namespace LoneWolf
             if (watchlist.Contains(key)) watchlist.Remove(key);
         }
 
-        static internal bool isKeyDown(Keys k)
+        static internal bool IsKeyDown(Keys k)
         {
             return ks.IsKeyDown(k);
         }
@@ -211,7 +211,12 @@ namespace LoneWolf
 
         internal static Vector2 getMousePos()
         {
-            return adjust(ms.Position.ToVector2());
+            return adjust(new Vector2(ms.X, ms.Y));
+        }
+
+        internal static void MoveMouseTo(float x, float y)
+        {
+            Mouse.SetPosition((int)x, (int)y);
         }
 
     }

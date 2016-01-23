@@ -17,6 +17,7 @@ namespace LoneWolf
         private Color color;
         private Color background;
         private bool selected = false;
+        private bool selectable;
         internal string Padding = "";
         internal char HashChar = '#';
         internal bool IsPassword = false;
@@ -32,7 +33,7 @@ namespace LoneWolf
             set
             {
                 base.Position = value;
-                if (vk) VirtualKeyboard.NotifyPosChanged();
+                //if (vk) VirtualKeyboard.NotifyPosChanged();
             }
         }
         internal Color ForegroundColor { get { return color; } set { color = value; } }
@@ -52,7 +53,7 @@ namespace LoneWolf
             if (SelectedChanged != null) SelectedChanged(this, Selected);
             if (selected)
             {
-                vk = true; VirtualKeyboard.Show(this);
+                vk = true; //VirtualKeyboard.Show(this);
             }
             else vk = false;
         }
@@ -62,8 +63,22 @@ namespace LoneWolf
         internal string Text
         {
             get { return text; }
-            set { if (value != null) text = value.Substring(0, MathHelper.Min(value.Length, maxl)); }
+            set { if (value != null) text = value.Substring(0, Math.Min(value.Length, maxl)); }
         }
+
+        public bool Selectable
+        {
+            get
+            {
+                return selectable;
+            }
+
+            set
+            {
+                selectable = value;
+            }
+        }
+
         internal UITextField(int maxl, Color col, Color background, string defaulttext = "", int layer = 0, string id = "", ButtonPressedEventHandler pressed = null) : base(null, pressed, layer, id)
         {
             this.maxl = maxl;
@@ -76,7 +91,8 @@ namespace LoneWolf
         }
         protected override void OnPressed()
         {
-            UnselectAll(); Selected = true;
+            if (selectable)
+                UnselectAll(); Selected = true;
             base.OnPressed();
         }
 
@@ -122,6 +138,7 @@ namespace LoneWolf
             else return text;
         }
         Texture2D rect = null;
+
         private void UpdateBackground()
         {
             int w = (int)Width, h = (int)Height;
@@ -171,7 +188,7 @@ namespace LoneWolf
                 if (k == Keys.Back || k == Keys.Delete)
                     Input((char)8);
                 else if (CommonData.KeyCharMap.Keys.Contains(k))
-                    Input(CommonData.KeyCharMap[k][InputManager.isKeyDown(Keys.LeftShift) || InputManager.isKeyDown(Keys.RightShift) ? 1 : 0]);
+                    Input(CommonData.KeyCharMap[k][InputManager.IsKeyDown(Keys.LeftShift) || InputManager.IsKeyDown(Keys.RightShift) ? 1 : 0]);
             }
         }
         internal void NotifyVKExit()
@@ -182,7 +199,7 @@ namespace LoneWolf
         internal void Input(char c)
         {
             if (c == 8 || c == 127)
-                text = text.Substring(0, MathHelper.Max(0, text.Length - 1));
+                text = text.Substring(0, Math.Max(0, text.Length - 1));
             else if (
                (c >= 65 && c <= 90 && (AllowedCharTypes & CharType.Upper) > 0)
             || (c >= 97 && c <= 122 && (AllowedCharTypes & CharType.Lower) > 0)

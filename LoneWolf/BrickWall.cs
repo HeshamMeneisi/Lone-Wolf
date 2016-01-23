@@ -10,7 +10,8 @@ namespace LoneWolf
 {
     class BrickWall : Wall
     {
-        public BrickWall(Vector3 position, float orientation) : base(Manager.Game.Content.Load<Model>("Models\\wall\\model"), new Vector3(0, 40, 0), position, 80, orientation)
+        public static Model Model = Manager.Game.Content.Load<Model>("Models\\Wall\\model");
+        public BrickWall(Vector3 position, float orientation) : base(Model, new Vector3(0, -50, 0), position, 1, orientation)
         { }
     }
 }

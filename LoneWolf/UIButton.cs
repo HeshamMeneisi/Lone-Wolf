@@ -38,8 +38,7 @@ namespace LoneWolf
                 pos = (e as TouchTapEvent).Position;
             else return;
             UIGrid p = parent as UIGrid;
-            if (p != null) pos = p.Camera.DeTransform(pos);
-            Debug.WriteLine(pos.ToString());
+            if (p != null) pos = p.Camera.DeTransform(pos);            
             if (BoundingBox.ContainsPoint(pos))
             {
                 e.Handled = true;

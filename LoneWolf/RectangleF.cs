@@ -13,12 +13,12 @@ namespace LoneWolf
         float width;
         float height;
 
-        internal RectangleF(float x, float y, float width, float height)
+        internal RectangleF(float x, float y, float width, float height, bool treatsizeaseanchor = false)
         {
-            this._x = x;
-            this._y = y;
-            this.width = width;
-            this.height = height;
+            _x = treatsizeaseanchor ? Math.Min(x, width) : x;
+            _y = treatsizeaseanchor ? Math.Min(y, height) : y;
+            this.width = treatsizeaseanchor ? Math.Abs(x - width) : width;
+            this.height = treatsizeaseanchor ? Math.Abs(y - height) : height;
         }
 
         internal RectangleF(Vector2 location, Vector2 size)
@@ -66,7 +66,7 @@ namespace LoneWolf
 
         internal bool ContainsPoint(Vector2 postion)
         {
-            return postion.X >= Left && postion.Y >= Top && postion.X <= Right && postion.Y <= Bottom;
+            return ContainsPoint(postion.X, postion.Y);
         }
 
         internal RectangleF Inflate(float x, float y)
@@ -99,6 +99,12 @@ namespace LoneWolf
                 Math.Min(Right, r.Right) - x,
                 Math.Min(Bottom, r.Bottom) - y);
         }
+
+        internal bool ContainsPoint(float x, float y)
+        {
+            return x >= Left && y >= Top && x <= Right && y <= Bottom;
+        }
+
         public static implicit operator RectangleF(Rectangle r)
         {
             return new RectangleF(r.X, r.Y, r.Width, r.Height);
