@@ -11,8 +11,8 @@ namespace LoneWolf
     class StageCont : IState
     {
         static StageCont instance = null;
-        static float celld = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z;
 
+        private Map currentmap;
         private World world;
         private StageCont()
         {
@@ -46,22 +46,23 @@ namespace LoneWolf
             // if not handled send to world
 
         }
+        Random ran = new Random();
         public void OnActivated(params object[] args)
         {
-            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
+            var player = new Player(new Vector3(50, 300, 50), Vector3.Zero, 0.5f);
             // Specifications of the world            
-            short cellspr = 30;
+            short cellspr = 5;
             short cameradistance = 40;
             // Create world
-            world.FloorWidth = 30;
-            world.FloorHeight = 30;
+            world.FloorWidth = 5;
+            world.FloorHeight = 5;
             world.ActiveCam = new OrbitCamera(cameradistance);
             world.CreateTerrain();
             world.Add(player);
             #region TestCode
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
-            world.Add(new LandMine(new Vector3(50, 0, 100)));
+            //world.Add(new LandMine(new Vector3(50, 0, 100)));            
             /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\test");
             Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 1f);
             obj.Position = new Vector3(50, 0, 100);
@@ -69,23 +70,15 @@ namespace LoneWolf
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));    
             #endregion
-            byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
-            BuildMaze(walls);
+            currentmap = new Map(cellspr, cellspr);
+            currentmap.BuildMaze();
+            new EnemyCoordinator(currentmap);
+            var coord = EnemyCoordinator.GetInstance();
+            Drone temp;
+            world.Add(temp = new Drone(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
+            coord.Register(temp);
+            player.Position = temp.Position;
             BuildGUI();
-        }
-
-        private void BuildMaze(byte[,,] walls)
-        {
-            int cellspr = walls.GetLength(1);
-            int cellspc = walls.GetLength(2);
-            for (short x = 0; x < cellspr; x++)
-                for (short z = 0; z < walls.GetLength(2); z++)
-                {
-                    if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.Z, 0, z * celld - Wall.WallLowAnchor.X), 1));
-                    if (z < cellspc && walls[1, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * celld - Wall.WallLowAnchor.X, 0, z * celld - Wall.WallLowAnchor.Z), 0));
-                }
         }
 
         public void Update(GameTime time)
@@ -94,6 +87,7 @@ namespace LoneWolf
             scoretext.Text = Manager.UserData.GameState.Score.ToString();
             healthbar.Progress = (float)Manager.UserData.GameState.Health / Player.MaxHealth;
             scoretext.Position = new Vector2(Screen.Width - scoretext.Width, 0);
+            EnemyCoordinator.GetInstance().UpdateEnemies();
         }
 
         internal static IState GetInstance()

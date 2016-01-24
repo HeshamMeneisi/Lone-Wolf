@@ -48,8 +48,8 @@ namespace LoneWolf
 
         public void Draw()
         {
-            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))
-            //.OrderByDescending(obj => obj.DistanceTo(cam.Position)))
+            //BoundingFrustum frustum = new BoundingFrustum()
+            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))            
             {
                 m.Draw(cam);
             }

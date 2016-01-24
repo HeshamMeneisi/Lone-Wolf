@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LoneWolf;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -20,31 +21,37 @@ namespace HelperClasses
         /// <returns>Returns a wall matrix of dimensions 2*(width+1)*(height+1) where layer 0 represents horizontal walls and layer 1 represents vertical walls.
         ///          0xFF means no wall and 0x0 means a regular wall.
         ///          The extra unused row/column of vertical/horizontal walls is left 0.</returns>
-        public static byte[,,] GenerateMaze(short width, short height, short startx = -1, short starty = -1, Rectangle[] ignore = null)
+        public static byte[,,] GenerateMaze(short width, short height, ref Node pathroot, Rectangle[] ignore = null, short startx = -1, short starty = -1)
         {
             ran = new Random();
             if (startx < 0) startx = (short)ran.Next(0, width);
             if (starty < 0) starty = (short)ran.Next(0, height);
             walls = new byte[2, width + 1 /*for extra vertical wall column*/, height + 1 /*for extra horizontal wall row*/];
             visited = new bool[width, height];
-            DFSDestroyWS(startx, starty, ignore);
+            DFSDestroyWS(startx, starty, ref pathroot, ignore);
             return walls;
         }
-        private static void DFSDestroyWS(short x, short y, Rectangle[] ignore = null)
+        private static void DFSDestroyWS(short x, short z, ref Node pathroot, Rectangle[] ignore = null)
         {
-            Stack<short[]> stack = new Stack<short[]>();
-            stack.Push(new short[] { x, y, -1, -1 });
+            Stack<Node[]> stack = new Stack<Node[]>();
+            stack.Push(new Node[] { pathroot = new Node(new Vector3(x, 0, z)), null });
             while (stack.Count > 0)
             {
-                short[] data = stack.Pop();
+                Node[] data = stack.Pop();
                 // data contains x1,y1,x2,y2 of cell1 (the current target) and cell2 (the parent).
-                x = data[0]; y = data[1];
-                if (visited[x, y]) continue; // Redundant (Precautionary to edits to bellow code)
-                visited[x, y] = true;
-                if (x == data[2]) // Vertically aligned cells
-                    walls[0, x, Math.Max(y, data[3])] = 0xFF; // Remove horizontal wall between them
-                else if (y == data[3]) // Horizontally aligend cells
-                    walls[1, Math.Max(x, data[2]), y] = 0xFF; // Remove vertical wall between them
+                x = (short)data[0].Value.X; z = (short)data[0].Value.Z;
+                if (visited[x, z])
+                    continue;
+                visited[x, z] = true;
+                if (data[1] != null) // For first time
+                {
+                    data[0].Neighbours.Add(data[1]);
+                    data[1].Neighbours.Add(data[0]);
+                    if (x == data[1].Value.X) // Vertically aligned cells
+                        walls[0, x, Math.Max(z, (short)data[1].Value.Z)] = 0xFF; // Remove horizontal wall between them
+                    else if (z == data[1].Value.Z) // Horizontally aligend cells
+                        walls[1, Math.Max(x, (short)data[1].Value.X), z] = 0xFF; // Remove vertical wall between them                
+                }
                 short startdir = (short)ran.Next(0, 3);
                 short sign = (short)(ran.Next(99) > 49 ? 1 : -1);
                 for (short i = 0; i < 4; i++)
@@ -52,14 +59,14 @@ namespace HelperClasses
                     // +4 to compensate for counter clock wise rotation. %4 to stay in range
                     short dir = (short)((4 + startdir + sign * i) % 4);
                     short tx = (short)(x + (dir == 1 ? 1 : dir == 3 ? -1 : 0));
-                    short ty = (short)(y + (dir == 2 ? 1 : dir == 0 ? -1 : 0));
+                    short tz = (short)(z + (dir == 2 ? 1 : dir == 0 ? -1 : 0));
                     // More overhead checking here means less memory usage
-                    if (tx >= 0 && ty >= 0 && tx < visited.GetLength(0) && ty < visited.GetLength(1) // Check whether target is inside workarea                        
-                        && !visited[tx, ty] // Check if already visited
-                        && (ignore == null || Array.TrueForAll(ignore, r => !r.Contains(tx, ty)))) // Finally, make sure it's not in an ignored area
-                        stack.Push(new short[] { tx, ty, x, y });
-                }
+                    if (tx >= 0 && tz >= 0 && tx < visited.GetLength(0) && tz < visited.GetLength(1) // Check whether target is inside workarea                        
+                        && !visited[tx, tz] // Check if already visited
+                        && (ignore == null || Array.TrueForAll(ignore, r => !r.Contains(tx, tz)))) // Finally, make sure it's not in an ignored area
+                        stack.Push(new Node[] { new Node(new Vector3(tx, 0, tz)), data[0] });
             }
         }
     }
+}
 }
