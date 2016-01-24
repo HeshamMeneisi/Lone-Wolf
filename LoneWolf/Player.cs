@@ -24,7 +24,30 @@ namespace LoneWolf
             this.position = position;
             this.rotation = rotation;
         }
+
+        internal void TakeDamage(int damage)
+        {
+            int health = Manager.UserData.GameState.Health;
+            health -= damage;
+            if (health <= 0) Death();
+            else
+                Manager.UserData.GameState.Health = health;
+        }
+
+        private void Death()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Heal(int healamout)
+        {
+            throw new NotImplementedException();
+        }
+
         bool ismoving = false, adjusted = false;
+
+        public static int MaxHealth = 100;
+
         public override void Update(GameTime time)
         {
             // Vector3 is passed on assignment as a clone not a reference
@@ -69,6 +92,15 @@ namespace LoneWolf
         {
             if (!PlayingAnimation)
                 StartAnimation("Take 001");
+        }
+
+        public override void SeparateFrom(Model3D stc)
+        {
+            base.SeparateFrom(stc);
+            if (stc is IInteractiveObject && InputManager.IsKeyDown(Keys.E))
+                ((IInteractiveObject)stc).Interact(this);
+            if (stc is IObstacle)
+                ((IObstacle)stc).Collide(this);
         }
     }
 }

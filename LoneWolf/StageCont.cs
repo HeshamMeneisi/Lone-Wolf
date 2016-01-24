@@ -33,9 +33,11 @@ namespace LoneWolf
 
             // 2D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.AlphaBlend;
-            //batch.begin
+            batch.Begin();
             // Draw overlay GUI            
-            //bath.end
+            scoretext.Draw(batch);
+            healthbar.Draw(batch);
+            batch.End();
         }
 
         public void HandleEvent(WorldEvent e, bool forcehandle = false)
@@ -43,7 +45,7 @@ namespace LoneWolf
             // Send to GUI
             // if not handled send to world
 
-        }        
+        }
         public void OnActivated(params object[] args)
         {
             var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
@@ -59,8 +61,9 @@ namespace LoneWolf
             #region TestCode
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
-            /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\Test\\model");
-            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.1f);
+            world.Add(new LandMine(new Vector3(50, 0, 100)));
+            /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\test");
+            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 1f);
             obj.Position = new Vector3(50, 0, 100);
             world.Add(obj);*/
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
@@ -69,7 +72,7 @@ namespace LoneWolf
             byte[,,] walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr);
             BuildMaze(walls);
             BuildGUI();
-        }        
+        }
 
         private void BuildMaze(byte[,,] walls)
         {
@@ -88,6 +91,9 @@ namespace LoneWolf
         public void Update(GameTime time)
         {
             world.Update(time);
+            scoretext.Text = Manager.UserData.GameState.Score.ToString();
+            healthbar.Progress = (float)Manager.UserData.GameState.Health / Player.MaxHealth;
+            scoretext.Position = new Vector2(Screen.Width - scoretext.Width, 0);
         }
 
         internal static IState GetInstance()
@@ -97,10 +103,16 @@ namespace LoneWolf
         }
         #region GUI
         UITextField scoretext;
-        Texture2D healthbar;
+        UIBar healthbar;
+        Texture2D hbbg = Manager.Game.Content.Load<Texture2D>("Textures\\Ancient\\HBBG");
+        Texture2D hb = Manager.Game.Content.Load<Texture2D>("Textures\\Ancient\\HB");
         private void BuildGUI()
         {
-
+            scoretext = new UITextField(16, Color.White, Color.Black);
+            scoretext.Selectable = false;
+            scoretext.Text = Manager.UserData.GameState.Score.ToString();
+            scoretext.Size = new Vector2(200, 50);
+            healthbar = new UIBar(200, 50, hbbg, hb);
         }
         #endregion
 

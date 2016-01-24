@@ -43,7 +43,7 @@ namespace LoneWolf
             }
         }
         public DateTime TimeStamp { get; private set; }
-        public void SeparateFrom(Model3D stc)
+        public virtual void SeparateFrom(Model3D stc)
         {
             Vector3 ta1 = stc.AbsoluteLowAnchor;
             Vector3 ta2 = stc.AbsoluteHighAnchor;

@@ -10,7 +10,7 @@ namespace LoneWolf
     static class Tile
     {
         static Texture2D tex = Manager.Game.Content.Load<Texture2D>("Textures\\Floor");
-        static Texture2D bumptex = Manager.Game.Content.Load<Texture2D>("Textures\\FloorBump");        
+        static Texture2D bumptex = Manager.Game.Content.Load<Texture2D>("Textures\\FloorBump");
         static public float CellDim = Wall.WallHighAnchor.Z - Wall.WallLowAnchor.Z;
         static float bumpfactor = 0.005f;
         static Color[] tcolors;
@@ -42,7 +42,7 @@ namespace LoneWolf
                     var temp = tcolors[i + j * tex.Width];
                     bumpmap[i, j] = bumpfactor * (0.299f * temp.R + 0.587f * temp.G + 0.114f * temp.B);
                 }
-            tex.GetData(tcolors);            
+            tex.GetData(tcolors);
             List<VertexPositionColor> vertexList = new List<VertexPositionColor>();
             float tw = tex.Width, th = tex.Height;
             //Loop through to create one tile
@@ -62,7 +62,7 @@ namespace LoneWolf
                 var floorBuffer = new VertexBuffer(Manager.Game.GraphicsDevice, VertexPositionColor.VertexDeclaration, count, BufferUsage.None);
                 floorBuffer.SetData<VertexPositionColor>(vertexList.GetRange(start, count).ToArray());
                 start += count;
-                tilebuffers.Add(floorBuffer);
+                tilebuffers.Add(floorBuffer);                
             }
             built = true;
         }

@@ -29,6 +29,20 @@ namespace LoneWolf
 
         internal float X { get { return _x; } set { _x = value; } }
         internal float Y { get { return _y; } set { _y = value; } }
+
+        internal RectangleF ScaleWidth(float scale)
+        {
+            return new RectangleF(X, Y, width * scale, height);
+        }
+        internal RectangleF ScaleHeight(float scale)
+        {
+            return new RectangleF(X, Y, width, height * scale);
+        }
+        internal RectangleF ScaleTopLeft(float scale)
+        {
+            return new RectangleF(X, Y, width * scale, height * scale);
+        }
+
         internal float Width { get { return width; } set { width = value; } }
         internal float Height { get { return height; } set { height = value; } }
 

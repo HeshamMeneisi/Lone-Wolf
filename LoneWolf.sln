@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoneWolfRun", "SkinnedModel\LoneWolfRun.csproj", "{0D41E29B-829F-4255-BCA5-64DC2677DA6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoneWolfContent", "D:\Tech\WorkArea\Lone-Wolf\LoneWolf\Content\LoneWolfContent.contentproj", "{9B5D0224-74D6-48D6-8733-3B70EF38956C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoneWolfContent", "LoneWolf\Content\LoneWolfContent.contentproj", "{9B5D0224-74D6-48D6-8733-3B70EF38956C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelPipeline", "SkinnedModelPipeline\SkinnedModelPipeline.csproj", "{4636C7E1-B845-4B83-B96D-64A11B8A4515}"
 EndProject

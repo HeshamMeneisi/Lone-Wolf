@@ -109,7 +109,8 @@ namespace LoneWolf
             if (!visible) return;
             // background
             UpdateBackground();
-            batch.Draw(rect, BoundingBox.ToRectangle(), Color.White);
+            if (rect != null)
+                batch.Draw(rect, BoundingBox.ToRectangle(), Color.White);
             //
             string t = Padding + GetTextToDraw();
 

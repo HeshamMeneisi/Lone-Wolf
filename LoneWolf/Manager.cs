@@ -18,7 +18,8 @@ namespace LoneWolf
 
         internal static void StartNewGame()
         {
-            // TODO: build a map first
+            userdata.GameState = new GameStateHolder();
+            Manager.UserData.GameState.Health = Player.MaxHealth;
             stateManager.SwitchTo(GameState.OnStage);
         }
 

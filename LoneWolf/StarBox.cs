@@ -17,5 +17,10 @@ namespace LoneWolf
             // Randomize rotation
             rotation = new Vector3(0, (float)((new Random()).NextDouble() * Math.PI), 0);
         }
+
+        public override void Interact(Player player)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

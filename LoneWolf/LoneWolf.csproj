@@ -119,6 +119,10 @@
     <Compile Include="DataHandler.cs" />
     <Compile Include="DynamicObject.cs" />
     <Compile Include="FirstAidBag.cs" />
+    <Compile Include="GameStateHolder.cs" />
+    <Compile Include="IInteractiveObject.cs" />
+    <Compile Include="IObstacle.cs" />
+    <Compile Include="LandMine.cs" />
     <Compile Include="OnDrawEventArgs.cs" />
     <Compile Include="OnUpdateEventArgs.cs" />
     <Compile Include="Terrain.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="StateManager.cs" />
     <Compile Include="TextureID2D.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="UIBar.cs" />
     <Compile Include="UIButton.cs" />
     <Compile Include="UICell.cs" />
     <Compile Include="UIGrid.cs" />

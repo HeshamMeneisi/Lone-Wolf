@@ -11,7 +11,8 @@ namespace LoneWolf
     class World
     {
         static World instance;
-        List<Model3D> obs = new List<Model3D>();
+        LinkedList<Model3D> obs = new LinkedList<Model3D>();
+        LinkedList<Model3D> todestroy = new LinkedList<Model3D>();
         Terrain floor;
         Camera cam;
 
@@ -36,7 +37,13 @@ namespace LoneWolf
 
         public void Add(Model3D model)
         {
-            obs.Add(model);
+            obs.AddFirst(model);
+        }
+
+        internal void Destroy(Model3D target)
+        {
+            target.Destroyed = true;
+            todestroy.AddFirst(target);
         }
 
         public void Draw()
@@ -51,6 +58,9 @@ namespace LoneWolf
 
         internal void Update(GameTime time)
         {
+            foreach (Model3D tdm in todestroy)
+                obs.Remove(tdm);
+            todestroy.Clear();
             foreach (Model3D m in obs)
             {
                 m.Update(time);

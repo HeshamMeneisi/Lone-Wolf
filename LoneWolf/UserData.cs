@@ -35,6 +35,8 @@ namespace LoneWolf
             // TODO: Implement data parsing
         }        
         public bool Encrypted { get; private set; }
+        internal GameStateHolder GameState { get; set; }
+
         internal void EncryptStrings()
         {
             if (Encrypted) return;

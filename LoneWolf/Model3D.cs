@@ -16,6 +16,7 @@ namespace LoneWolf
         protected float scale = 1f;
         protected Matrix trans;
 
+        public bool Destroyed { get; set; }
         public Vector3 AbsoluteLowAnchor
         {
             get { return LowAnchor + position; }
@@ -83,6 +84,7 @@ namespace LoneWolf
 
         public Model3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1)
         {
+            Destroyed = false;
             model = m;
             this.origin = origin;
             modelbaserot = baserot;
@@ -120,8 +122,8 @@ namespace LoneWolf
         }
         public virtual void Draw(Camera cam)
         {
-            model.Draw(trans, cam.View, cam.Projection);
-            /*
+            //model.Draw(trans, cam.View, cam.Projection);
+            #region AdvancedDraw 
             if (model != null)
             {
                 Matrix[] transform = new Matrix[model.Bones.Count];
@@ -130,17 +132,16 @@ namespace LoneWolf
                 {
                     foreach (BasicEffect effect in m.Effects)
                     {
-                        //effect.VertexColorEnabled = true;
-                        //effect.TextureEnabled = true;
+                        effect.TextureEnabled = true;
                         effect.EnableDefaultLighting();
-                        //effect.PreferPerPixelLighting = true;
                         effect.World = transform[m.ParentBone.Index] * trans;
                         effect.View = cam.View;
                         effect.Projection = cam.Projection;
                     }
                     m.Draw();
                 }
-            }*/
+            }
+            #endregion
         }
     }
 }
