@@ -167,6 +167,8 @@
     <Compile Include="UIVisibleObject.cs" />
     <Compile Include="UserData.cs" />
     <Compile Include="Wall.cs" />
+    <Compile Include="WallFactory.cs" />
+    <Compile Include="WallWithPlants.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldEvent.cs" />
   </ItemGroup>

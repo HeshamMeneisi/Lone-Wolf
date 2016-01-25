@@ -48,11 +48,17 @@ namespace HelperClasses
                     data[0].Neighbours.Add(data[1]);
                     data[1].Neighbours.Add(data[0]);
                     if (x == data[1].Value.X) // Vertically aligned cells
+                    {
                         walls[0, x, Math.Max(z, (short)data[1].Value.Z)] = 0xFF; // Remove horizontal wall between them
+                        walls[1, x, z] = (byte)ran.Next(1, WallFactory.AvailableTypes); // Randomize left wall type
+                    }
                     else if (z == data[1].Value.Z) // Horizontally aligend cells
+                    {
                         walls[1, Math.Max(x, (short)data[1].Value.X), z] = 0xFF; // Remove vertical wall between them                
+                        walls[0, x, z] = (byte)ran.Next(1, WallFactory.AvailableTypes); // Randomize top wall type
+                    }
                 }
-                short startdir = (short)ran.Next(0, 3);
+                short startdir = (short)ran.Next(0, 4);
                 short sign = (short)(ran.Next(99) > 49 ? 1 : -1);
                 for (short i = 0; i < 4; i++)
                 {
@@ -65,8 +71,8 @@ namespace HelperClasses
                         && !visited[tx, tz] // Check if already visited
                         && (ignore == null || Array.TrueForAll(ignore, r => !r.Contains(tx, tz)))) // Finally, make sure it's not in an ignored area
                         stack.Push(new Node[] { new Node(new Vector3(tx, 0, tz)), data[0] });
+                }
             }
         }
     }
-}
 }

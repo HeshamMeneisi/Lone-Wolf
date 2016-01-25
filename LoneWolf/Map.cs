@@ -11,7 +11,7 @@ namespace LoneWolf
         Node pathroot;
         public Map(short cellspr, short cellspc)
         {
-            walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr, ref pathroot);         
+            walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr, ref pathroot);
         }
 
         public byte[,,] Walls
@@ -39,9 +39,9 @@ namespace LoneWolf
                 for (short z = 0; z < walls.GetLength(2); z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * Celld - Wall.WallLowAnchor.Z, 0, z * Celld - Wall.WallLowAnchor.X), 1));
+                        world.Add(WallFactory.CreateNew(walls[0, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.Z, 0, z * Celld - Wall.WallLowAnchor.X), 1));
                     if (z < cellspc && walls[1, x, z] < 0xFF)
-                        world.Add(new BrickWall(new Vector3(x * Celld - Wall.WallLowAnchor.X, 0, z * Celld - Wall.WallLowAnchor.Z), 0));
+                        world.Add(WallFactory.CreateNew(walls[1, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.X, 0, z * Celld - Wall.WallLowAnchor.Z), 0));
                 }
         }
     }

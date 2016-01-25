@@ -9,6 +9,8 @@ Content\Models\StarBox\model.xnb
 Content\Models\FirstAid\model.xnb
 Content\Models\Player\model.xnb
 Content\Models\LandMine\model.xnb
+Content\Models\Drone\model.xnb
+Content\Models\testmodel\model.xnb
 Content\Fonts\Ancient\MainFont.xnb
 Content\Models\Wall\BrickColor_0.xnb
 Content\Models\StarBox\91c11b198daa4e5ee6292c053b7c6dc6\cmn_woodbox01_dfsp_a_0.xnb
@@ -18,9 +20,11 @@ Content\Models\Player\jacket_0.xnb
 Content\Models\Player\pants_0.xnb
 Content\Models\Player\upBodyC_0.xnb
 Content\Models\LandMine\old-iron_0.xnb
-Content\Models\testmodel\model.xnb
-Content\Models\testmodel\TX_Robot_DroneMedium_D_0.xnb
-Content\Models\testmodel\TX_Robot_DroneMediumDirt_Glass_D_0.xnb
-Content\Models\Drone\model.xnb
-Content\Models\Drone\TX_Robot_DroneMedium_D_0.xnb
-Content\Models\Drone\TX_Robot_DroneMediumDirt_Glass_D_0.xnb
+Content\Models\Drone\Drone_D_0.xnb
+Content\Models\Wall\brickcolorsides_0.xnb
+Content\Models\WallWithPlants\model.xnb
+Content\Models\WallWithPlants\BrickColor_0.xnb
+Content\Models\WallWithPlants\brickcolorsides_0.xnb
+Content\Mutant_diffuse_0.xnb
+Content\Models\testmodel\modelwf.fbm\Mutant_diffuse_0.xnb
+Content\Models\testmodel\test.xnb

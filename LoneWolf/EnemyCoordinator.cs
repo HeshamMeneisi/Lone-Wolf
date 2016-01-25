@@ -43,7 +43,7 @@ namespace LoneWolf
                     r = 0;
                 else
                 {
-                    r = ran.Next(current.Neighbours.Count - 1);
+                    r = ran.Next(current.Neighbours.Count);
                     if (current.Neighbours[r] == last)
                         r = r > 0 ? r - 1 : r + 1;
                 }
