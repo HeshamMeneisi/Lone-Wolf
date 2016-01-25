@@ -21,8 +21,8 @@ namespace LoneWolf
         {
             speed = 1f;
             camoffset = new Vector3(0, faceheight, 0);
-            this.position = position;
-            this.rotation = rotation;
+            Position = position;
+            Rotation = rotation;
         }
 
         internal void TakeDamage(int damage)
@@ -51,8 +51,8 @@ namespace LoneWolf
         public override void Update(GameTime time)
         {
             // Vector3 is passed on assignment as a clone not a reference
-            Vector3 newpos = position;
-            Vector3 newrot = rotation;
+            Vector3 newpos = Position;
+            Vector3 newrot = Rotation;
             if (InputManager.IsKeyDown(Keys.W))
             {
                 if (InputManager.IsKeyDown(Keys.A))

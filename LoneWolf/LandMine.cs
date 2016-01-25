@@ -16,7 +16,7 @@ namespace LoneWolf
         static uint DefuseScore = 50;
         public LandMine(Vector3 position) : base(Model, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 1)
         {
-            this.position = position;
+            Position = position;
         }
         public void Collide(Player player)
         {

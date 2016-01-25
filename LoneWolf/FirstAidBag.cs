@@ -16,7 +16,7 @@ namespace LoneWolf
         public FirstAidBag(Vector3 position) : base(Model, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 0.1f, position)
         {
             // Randomize rotation
-            rotation = new Vector3(0, (float)((new Random()).NextDouble() * Math.PI), 0);
+            Rotation = new Vector3(0, (float)((new Random()).NextDouble() * Math.PI), 0);
         }
 
         public override void Interact(Player player)

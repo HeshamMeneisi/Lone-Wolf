@@ -50,6 +50,7 @@ namespace LoneWolf
             Screen.SetUp(Window, Graphics);
 #if !DEBUG
             Screen.SetFullScreen(true);
+            IsMouseVisible = false;
 #endif
 #if WINDOWS || WINDOWS_UAP
             IsMouseVisible = true;

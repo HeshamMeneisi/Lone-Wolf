@@ -55,12 +55,14 @@ namespace LoneWolf
             float xdif = xzinter.Width;
             float zdif = xzinter.Height;
             float ydif = zyinter.Height;
+            Vector3 position = Position;
             if (xdif < zdif && xdif < ydif)
                 position.X += xdif * lv.X > 0 ? 1 : -1;
             else if (zdif < ydif)
                 position.Z += zdif * lv.Z > 0 ? 1 : -1;
             else
                 position.Y += ydif;/*Should not go underground*/
+            Position = position;
         }
     }
 }

@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using SkinnedModel;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace LoneWolf
 {
@@ -61,6 +57,8 @@ namespace LoneWolf
         }
         public override void Draw(Camera cam)
         {
+            if (changed)
+                UpdateTransformation();
             Matrix[] bones = animationPlayer.GetSkinTransforms();
             foreach (ModelMesh mesh in model.Meshes)
             {

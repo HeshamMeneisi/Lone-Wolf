@@ -21,6 +21,9 @@ namespace LoneWolf
             userdata.GameState = new GameStateHolder();
             Manager.UserData.GameState.Health = Player.MaxHealth;
             stateManager.SwitchTo(GameState.OnStage);
+#if !DEBUG
+            Game.IsMouseVisible = false;
+#endif
         }
 
         static bool initd = false;

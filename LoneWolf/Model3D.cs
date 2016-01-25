@@ -11,12 +11,13 @@ namespace LoneWolf
         protected Vector3 modelbaserot;
         protected Vector3 lowanchor;
         protected Vector3 highanchor;
-        protected Vector3 position;
-        protected Vector3 rotation;
-        protected float scale = 1f;
+        private Vector3 position;
+        private Vector3 rotation;
+        private float scale = 1f;
         protected Matrix trans;
 
         public bool Destroyed { get; set; }
+        protected bool changed = false;
         public Vector3 AbsoluteLowAnchor
         {
             get { return LowAnchor + position; }
@@ -35,6 +36,7 @@ namespace LoneWolf
             set
             {
                 position = value;
+                changed = true;
             }
         }
         public virtual Vector3 Rotation
@@ -47,6 +49,7 @@ namespace LoneWolf
             set
             {
                 rotation = value;
+                changed = true;
             }
         }
         public float Scale
@@ -59,6 +62,7 @@ namespace LoneWolf
             set
             {
                 scale = value;
+                changed = true;
             }
         }
 
@@ -129,17 +133,19 @@ namespace LoneWolf
             return xzinter && xyinter && zyinter;
         }
         public virtual void Update(GameTime time)
-        {
-            UpdateTransformation();
+        {         
         }
 
         internal void UpdateTransformation()
         {
             trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y + modelbaserot.Y, rotation.X + modelbaserot.X, rotation.Z + modelbaserot.Z) * Matrix.CreateTranslation(position - origin);
+            changed = false;
         }
 
         public virtual void Draw(Camera cam)
         {
+            if(changed)            
+                UpdateTransformation();            
             //model.Draw(trans, cam.View, cam.Projection);
             #region AdvancedDraw 
             if (model != null)
