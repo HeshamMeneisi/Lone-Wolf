@@ -63,10 +63,10 @@ namespace LoneWolf
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
             //world.Add(new LandMine(new Vector3(50, 0, 100)));            
-            /*Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\test");
-            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 1f);
+            Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\draw");
+            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.2f);
             obj.Position = new Vector3(50, 0, 100);
-            world.Add(obj);*/
+            world.Add(obj);
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
@@ -79,7 +79,7 @@ namespace LoneWolf
             coord.Register(temp);
             world.Add(temp = new Mutant(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
             coord.Register(temp);
-            player.Position = temp.Position;                     
+            //player.Position = temp.Position;                     
             BuildGUI();
         }
 
