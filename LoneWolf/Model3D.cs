@@ -49,7 +49,6 @@ namespace LoneWolf
                 rotation = value;
             }
         }
-
         public float Scale
         {
             get
@@ -79,6 +78,19 @@ namespace LoneWolf
                 return new Vector3(highanchor.X * (float)Math.Cos(Rotation.Y) + highanchor.Z * (float)Math.Sin(Rotation.Y),
                 highanchor.Y,
                 highanchor.Z * (float)Math.Cos(Rotation.Y) + highanchor.X * (float)Math.Sin(Rotation.Y));
+            }
+        }
+
+        public Model Model
+        {
+            get
+            {
+                return model;
+            }
+
+            set
+            {
+                model = value;
             }
         }
 
@@ -118,8 +130,14 @@ namespace LoneWolf
         }
         public virtual void Update(GameTime time)
         {
+            UpdateTransformation();
+        }
+
+        internal void UpdateTransformation()
+        {
             trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y + modelbaserot.Y, rotation.X + modelbaserot.X, rotation.Z + modelbaserot.Z) * Matrix.CreateTranslation(position - origin);
         }
+
         public virtual void Draw(Camera cam)
         {
             //model.Draw(trans, cam.View, cam.Projection);

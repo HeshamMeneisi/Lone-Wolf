@@ -49,7 +49,7 @@ namespace LoneWolf
         Random ran = new Random();
         public void OnActivated(params object[] args)
         {
-            var player = new Player(new Vector3(50, 300, 50), Vector3.Zero, 0.5f);
+            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
             // Specifications of the world            
             short cellspr = 5;
             short cameradistance = 40;
@@ -68,7 +68,7 @@ namespace LoneWolf
             obj.Position = new Vector3(50, 0, 100);
             world.Add(obj);*/
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
-            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));    
+            //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
             currentmap = new Map(cellspr, cellspr);
             currentmap.BuildMaze();
@@ -77,7 +77,7 @@ namespace LoneWolf
             Drone temp;
             world.Add(temp = new Drone(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
             coord.Register(temp);
-            player.Position = temp.Position;
+            //player.Position = temp.Position;
             BuildGUI();
         }
 

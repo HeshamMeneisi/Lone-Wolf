@@ -1,6 +1,4 @@
 Content\Textures\Ancient\_UI.xnb
-Content\Textures\Floor.xnb
-Content\Textures\FloorBump.xnb
 Content\Textures\Sky.xnb
 Content\Textures\Ancient\HB.xnb
 Content\Textures\Ancient\HBBG.xnb
@@ -11,8 +9,12 @@ Content\Models\Player\model.xnb
 Content\Models\LandMine\model.xnb
 Content\Models\Drone\model.xnb
 Content\Models\testmodel\model.xnb
+Content\Models\WallWithPlants\model.xnb
+Content\Models\testmodel\test.xnb
+Content\Models\Plate\model.xnb
 Content\Fonts\Ancient\MainFont.xnb
 Content\Models\Wall\BrickColor_0.xnb
+Content\Models\Wall\brickcolorsides_0.xnb
 Content\Models\StarBox\91c11b198daa4e5ee6292c053b7c6dc6\cmn_woodbox01_dfsp_a_0.xnb
 Content\Models\FirstAid\diff__0.xnb
 Content\Models\Player\head_0.xnb
@@ -21,10 +23,8 @@ Content\Models\Player\pants_0.xnb
 Content\Models\Player\upBodyC_0.xnb
 Content\Models\LandMine\old-iron_0.xnb
 Content\Models\Drone\Drone_D_0.xnb
-Content\Models\Wall\brickcolorsides_0.xnb
-Content\Models\WallWithPlants\model.xnb
+Content\Mutant_diffuse_0.xnb
 Content\Models\WallWithPlants\BrickColor_0.xnb
 Content\Models\WallWithPlants\brickcolorsides_0.xnb
-Content\Mutant_diffuse_0.xnb
 Content\Models\testmodel\modelwf.fbm\Mutant_diffuse_0.xnb
-Content\Models\testmodel\test.xnb
+Content\Models\Plate\tex_0.xnb
