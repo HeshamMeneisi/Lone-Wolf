@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LoneWolf
 {
-    class Model3D
+    class Model3D : WorldElement
     {
         protected Model model;
         protected Vector3 origin;
@@ -108,11 +108,11 @@ namespace LoneWolf
             this.lowanchor = lowanchor;
             this.highanchor = highanchor;
         }
-        internal float DistanceTo(Vector3 position)
+        public float DistanceTo(Vector3 position)
         {
             return (position - Position).Length();
         }
-        internal bool Intersects(Model3D target)
+        public bool Intersects(Model3D target)
         {
             Vector3 ta1 = target.AbsoluteLowAnchor;
             Vector3 ta2 = target.AbsoluteHighAnchor;
@@ -123,7 +123,7 @@ namespace LoneWolf
             bool zyinter = new RectangleF(ta1.Z, ta1.Y, ta2.Z, ta2.Y, true).Intersects(new RectangleF(a1.Z, a1.Y, a2.Z, a2.Y, true));
             return xzinter && xyinter && zyinter;
         }
-        internal bool Contains(Vector3 point)
+        public bool Contains(Vector3 point)
         {
             Vector3 a1 = AbsoluteLowAnchor;
             Vector3 a2 = AbsoluteHighAnchor;
@@ -133,10 +133,10 @@ namespace LoneWolf
             return xzinter && xyinter && zyinter;
         }
         public virtual void Update(GameTime time)
-        {         
+        {
         }
 
-        internal void UpdateTransformation()
+        public void UpdateTransformation()
         {
             trans = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y + modelbaserot.Y, rotation.X + modelbaserot.X, rotation.Z + modelbaserot.Z) * Matrix.CreateTranslation(position - origin);
             changed = false;
@@ -144,8 +144,8 @@ namespace LoneWolf
 
         public virtual void Draw(Camera cam)
         {
-            if(changed)            
-                UpdateTransformation();            
+            if (changed)
+                UpdateTransformation();
             //model.Draw(trans, cam.View, cam.Projection);
             #region AdvancedDraw 
             if (model != null)

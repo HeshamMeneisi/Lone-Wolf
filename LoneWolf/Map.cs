@@ -35,13 +35,14 @@ namespace LoneWolf
             World world = World.GetInstance();
             int cellspr = walls.GetLength(1) - 1;
             int cellspc = walls.GetLength(2) - 1;
+            WallFactory wallfactory = (WallFactory)SuperFactory.GetFactory<Wall>();
             for (short x = 0; x < Walls.GetLength(1); x++)
                 for (short z = 0; z < walls.GetLength(2); z++)
                 {
                     if (x < cellspr && walls[0, x, z] < 0xFF)
-                        world.Add(WallFactory.CreateNew(walls[0, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.Z, 0, z * Celld - Wall.WallLowAnchor.X), 1));
+                        world.Add(wallfactory.CreateNew(walls[0, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.Z, 0, z * Celld - Wall.WallLowAnchor.X), 1));
                     if (z < cellspc && walls[1, x, z] < 0xFF)
-                        world.Add(WallFactory.CreateNew(walls[1, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.X, 0, z * Celld - Wall.WallLowAnchor.Z), 0));
+                        world.Add(wallfactory.CreateNew(walls[1, x, z], new Vector3(x * Celld - Wall.WallLowAnchor.X, 0, z * Celld - Wall.WallLowAnchor.Z), 0));
                 }
         }
     }

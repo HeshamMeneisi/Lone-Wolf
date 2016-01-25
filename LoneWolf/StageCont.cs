@@ -77,7 +77,7 @@ namespace LoneWolf
             Drone temp;
             world.Add(temp = new Drone(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
             coord.Register(temp);
-            //player.Position = temp.Position;
+            player.Position = temp.Position;
             BuildGUI();
         }
 

@@ -7,7 +7,7 @@ namespace LoneWolf
 {
     internal class CollisionHandler
     {
-        internal static void Handle(IEnumerable<Model3D> obs)
+        internal static void Handle(IEnumerable<WorldElement> obs)
         {
             foreach (Model3D obj in obs)
             {
@@ -16,7 +16,7 @@ namespace LoneWolf
             }
         }
 
-        private static void CheckDynamiObject(DynamicObject target, IEnumerable<Model3D> obs)
+        private static void CheckDynamiObject(DynamicObject target, IEnumerable<WorldElement> obs)
         {
             DynamicObject dobj;
             foreach (Model3D obj in obs)

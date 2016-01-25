@@ -11,8 +11,8 @@ namespace LoneWolf
     class World
     {
         static World instance;
-        LinkedList<Model3D> obs = new LinkedList<Model3D>();
-        LinkedList<Model3D> todestroy = new LinkedList<Model3D>();
+        LinkedList<WorldElement> obs = new LinkedList<WorldElement>();
+        LinkedList<WorldElement> todestroy = new LinkedList<WorldElement>();
         Terrain floor;
         Camera cam;
 
@@ -35,12 +35,12 @@ namespace LoneWolf
             floor = new Terrain(FloorWidth, FloorHeight);
         }
 
-        public void Add(Model3D model)
+        public void Add(WorldElement model)
         {
             obs.AddFirst(model);
         }
 
-        internal void Destroy(Model3D target)
+        internal void Destroy(WorldElement target)
         {
             target.Destroyed = true;
             todestroy.AddFirst(target);
@@ -49,7 +49,7 @@ namespace LoneWolf
         public void Draw()
         {
             //BoundingFrustum frustum = new BoundingFrustum()
-            foreach (Model3D m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))            
+            foreach (WorldElement m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))            
             {
                 m.Draw(cam);
             }
@@ -58,10 +58,10 @@ namespace LoneWolf
 
         internal void Update(GameTime time)
         {
-            foreach (Model3D tdm in todestroy)
+            foreach (WorldElement tdm in todestroy)
                 obs.Remove(tdm);
             todestroy.Clear();
-            foreach (Model3D m in obs)
+            foreach (WorldElement m in obs)
             {
                 m.Update(time);
             }
@@ -78,7 +78,7 @@ namespace LoneWolf
 
         internal object GetObjectAt(Vector3 pos)
         {
-            foreach (Model3D obj in obs)
+            foreach (WorldElement obj in obs)
                 if (obj.Contains(pos))
                     return obj;
             return null;

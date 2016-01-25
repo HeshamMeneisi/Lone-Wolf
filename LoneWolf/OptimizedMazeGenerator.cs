@@ -38,7 +38,7 @@ namespace HelperClasses
             while (stack.Count > 0)
             {
                 Node[] data = stack.Pop();
-                // data contains x1,y1,x2,y2 of cell1 (the current target) and cell2 (the parent).
+                int validwallcodes = SuperFactory.GetFactory<Wall>().AvailableTypes;                
                 x = (short)data[0].Value.X; z = (short)data[0].Value.Z;
                 if (visited[x, z])
                     continue;
@@ -50,12 +50,12 @@ namespace HelperClasses
                     if (x == data[1].Value.X) // Vertically aligned cells
                     {
                         walls[0, x, Math.Max(z, (short)data[1].Value.Z)] = 0xFF; // Remove horizontal wall between them
-                        walls[1, x, z] = (byte)ran.Next(1, WallFactory.AvailableTypes); // Randomize left wall type
+                        walls[1, x, z] = (byte)ran.Next(1, validwallcodes); // Randomize left wall type
                     }
                     else if (z == data[1].Value.Z) // Horizontally aligend cells
                     {
                         walls[1, Math.Max(x, (short)data[1].Value.X), z] = 0xFF; // Remove vertical wall between them                
-                        walls[0, x, z] = (byte)ran.Next(1, WallFactory.AvailableTypes); // Randomize top wall type
+                        walls[0, x, z] = (byte)ran.Next(1, validwallcodes); // Randomize top wall type
                     }
                 }
                 short startdir = (short)ran.Next(0, 4);

@@ -113,6 +113,7 @@
     <Compile Include="BrickWall.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Collectible.cs" />
     <Compile Include="CollisionHandler.cs" />
     <Compile Include="Common.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="OnDrawEventArgs.cs" />
     <Compile Include="OnUpdateEventArgs.cs" />
     <Compile Include="NodedPath.cs" />
+    <Compile Include="SuperFactory.cs" />
     <Compile Include="Terrain.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="WallFactory.cs" />
     <Compile Include="WallWithPlants.cs" />
     <Compile Include="World.cs" />
+    <Compile Include="WorldElement.cs" />
     <Compile Include="WorldEvent.cs" />
   </ItemGroup>
   <ItemGroup>

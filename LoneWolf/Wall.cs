@@ -12,7 +12,7 @@ namespace LoneWolf
     {
         public static Vector3 WallLowAnchor = new Vector3(-10, 0, -50);
         public static Vector3 WallHighAnchor = new Vector3(10, 100, 50);
-        public static float Tolerance = 4;
+        public static float Tolerance = 5;
         public Wall(Model model, Vector3 origin, Vector3 position, float scale, float orientation = 0) : base(model, origin, Vector3.Zero, WallLowAnchor - new Vector3(Tolerance, 0, Tolerance), WallHighAnchor + new Vector3(Tolerance, 0, Tolerance), scale - (orientation == 0 ? 0.0005f : 0))
         {
             Position = position;
