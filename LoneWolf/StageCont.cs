@@ -74,10 +74,12 @@ namespace LoneWolf
             currentmap.BuildMaze();
             new EnemyCoordinator(currentmap);
             var coord = EnemyCoordinator.GetInstance();
-            Drone temp;
+            Enemy temp;
             world.Add(temp = new Drone(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
             coord.Register(temp);
-            player.Position = temp.Position;
+            world.Add(temp = new Mutant(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
+            coord.Register(temp);
+            player.Position = temp.Position;                     
             BuildGUI();
         }
 
@@ -87,7 +89,7 @@ namespace LoneWolf
             scoretext.Text = Manager.UserData.GameState.Score.ToString();
             healthbar.Progress = (float)Manager.UserData.GameState.Health / Player.MaxHealth;
             scoretext.Position = new Vector2(Screen.Width - scoretext.Width, 0);
-            EnemyCoordinator.GetInstance().UpdateEnemies();
+            EnemyCoordinator.GetInstance().UpdateEnemies(time);
         }
 
         internal static IState GetInstance()

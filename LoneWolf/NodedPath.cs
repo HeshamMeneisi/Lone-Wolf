@@ -17,7 +17,7 @@ namespace LoneWolf
             {
                 foreach (Vector3 v in path)
                     this.path.Push(v);
-                current = this.path.Peek();
+                current = this.path.Pop();
             }
         }
         Vector3 current;

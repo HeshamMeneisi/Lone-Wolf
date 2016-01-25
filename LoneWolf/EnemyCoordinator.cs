@@ -25,6 +25,8 @@ namespace LoneWolf
         }
         Random ran = new Random();
 
+        public TimeSpan IdlingTime { get { return new TimeSpan(0, 0, 1); } }
+
         public NodedPath GenerateRandomPath(int length)
         {
             List<Vector3> path = new List<Vector3>();
@@ -56,11 +58,20 @@ namespace LoneWolf
         {
             enemies.AddFirst(enemy);
             enemy.Position = enemy.Path.Current;
+            enemy.StopWalking(Manager.Game.GameTime);
         }
-        public void UpdateEnemies()
+        public void UpdateEnemies(GameTime time)
         {
             foreach (Enemy e in enemies)
             {
+                if (e.IsIdle)
+                {
+                    var idletime = e.GetIdleTime(time);
+                    var waittime = idletime.Subtract(IdlingTime);
+                    if (waittime.TotalSeconds >= 0)
+                        e.StartWalking();
+                    continue;
+                }
                 Vector3 velvec = e.Path.Current - e.Position;
                 if (velvec.Length() > 0)
                     velvec.Normalize();
@@ -68,14 +79,27 @@ namespace LoneWolf
                 e.Position += velvec;
                 if ((e.Position - e.Path.Current).Length() < e.Velocity)
                 {
-                    Vector3 v1 = e.Path.Current;
-                    e.Path.NextNode();
-                    Vector3 v2 = e.Path.Current;
-                    Vector3 v = (v2 - v1);
-                    v.Normalize();
-                    e.Rotation = new Vector3(0, (float)Math.Atan(v.X / v.Z), 0);
+                    Advance(e, time);
                 }
             }
+        }
+
+        private static void Advance(Enemy e, GameTime time)
+        {
+            Again:
+            Vector3 v1 = e.Path.Current;
+            e.Path.NextNode();
+            Vector3 v2 = e.Path.Current;
+            Vector3 v = (v2 - v1);
+            if (v.Length() == 0)
+                goto Again;//Duplicate, should not exist                
+            v.Normalize();
+            float angle = (float)Math.Atan(v.X / v.Z);
+            if (v.X == 0 && v.Z < 0) angle += MathHelper.Pi;
+            Vector3 newrot = new Vector3(0, angle, 0);
+            if (!newrot.Equals(e.Rotation))
+                e.StopWalking(time);
+            e.Rotation = newrot;
         }
     }
 }

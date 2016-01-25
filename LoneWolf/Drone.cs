@@ -15,6 +15,7 @@ namespace LoneWolf
         static float DefaultVelocity = 0.2f;
         private float velocity;
         private NodedPath path;
+        private TimeSpan stoppedtime;
 
         public float Velocity
         {
@@ -42,11 +43,32 @@ namespace LoneWolf
             }
         }
 
+        public bool IsIdle
+        {
+            get; set;
+        }
+
         public Drone(Vector3 position, NodedPath path) : base(DroneModel, new Vector3(0, -40, 0), Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 1)
         {
             Position = position;
             Path = path;
             Velocity = DefaultVelocity;
+        }
+        
+        public void StopWalking(GameTime time)
+        {
+            stoppedtime = time.TotalGameTime;
+            IsIdle = true;
+        }
+
+        public void StartWalking()
+        {
+            IsIdle = false;
+        }
+
+        public TimeSpan GetIdleTime(GameTime time)
+        {
+            return time.TotalGameTime.Subtract(stoppedtime);
         }
     }
 }

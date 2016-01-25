@@ -10,6 +10,7 @@ namespace LoneWolf
         AnimationPlayer animationPlayer;
         SkinningData skinningData;
         bool playing = false;
+        private string defaultclip;
 
         public bool PlayingAnimation
         {
@@ -18,17 +19,34 @@ namespace LoneWolf
                 return playing;
             }
         }
+        public override Model Model
+        {
+            get
+            {
+                return base.Model;
+            }
 
+            set
+            {
+                base.Model = value;
+                SetupAnimationData();
+            }
+        }
         public SkinnedModel3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null) : base(m, origin, baserot, lowanchor, highanchor, scale)
+        {
+            this.defaultclip = defaultclip;
+            SetupAnimationData();
+        }
+
+        private void SetupAnimationData()
         {
             skinningData = model.Tag as SkinningData;
             if (skinningData == null)
                 throw new InvalidOperationException
-                    ("This model does not contain a SkinningData tag.");
+                    ("This model does not contain a SkinningData tag. Check if the model has the right processor.");
 
             // Create an animation player, and start decoding an animation clip.
             animationPlayer = new AnimationPlayer(skinningData);
-
             if (defaultclip != null)
             {
                 AnimationClip clip = skinningData.AnimationClips[defaultclip];
@@ -36,6 +54,7 @@ namespace LoneWolf
                 playing = true;
             }
         }
+
         public void StartAnimation(string name)
         {
             AnimationClip clip = skinningData.AnimationClips[name];

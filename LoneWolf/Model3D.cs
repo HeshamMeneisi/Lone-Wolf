@@ -52,7 +52,7 @@ namespace LoneWolf
                 changed = true;
             }
         }
-        public float Scale
+        public virtual float Scale
         {
             get
             {
@@ -85,7 +85,7 @@ namespace LoneWolf
             }
         }
 
-        public Model Model
+        public virtual Model Model
         {
             get
             {

@@ -26,6 +26,9 @@ namespace LoneWolf
             private set { graphics = value; }
         }
 
+        GameTime time;
+        public GameTime GameTime { get { return time; } }
+
         public Game()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -86,6 +89,7 @@ namespace LoneWolf
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            time = gameTime;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             // TODO: Add your update logic here
