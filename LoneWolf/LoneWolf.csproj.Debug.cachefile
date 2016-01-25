@@ -10,6 +10,8 @@ Content\Models\LandMine\model.xnb
 Content\Models\Drone\model.xnb
 Content\Models\WallWithPlants\model.xnb
 Content\Models\Plate\model.xnb
+Content\Models\Mutant\idle.xnb
+Content\Models\Mutant\walking.xnb
 Content\Fonts\Ancient\MainFont.xnb
 Content\Models\Wall\BrickColor_0.xnb
 Content\Models\Wall\brickcolorsides_0.xnb
@@ -25,6 +27,5 @@ Content\Models\WallWithPlants\BrickColor_0.xnb
 Content\Models\WallWithPlants\brickcolorsides_0.xnb
 Content\Models\Plate\tex_0.xnb
 Content\Models\Mutant\Mutant_diffuse_0.xnb
-Content\Models\Mutant\idle.xnb
-Content\Models\Mutant\walking.xnb
-Content\Models\testmodel\draw.xnb
+Content\Models\testmodel\test.xnb
+Content\Models\testmodel\akai_diffuse_0.xnb

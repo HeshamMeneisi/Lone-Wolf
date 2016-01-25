@@ -49,7 +49,7 @@ namespace LoneWolf
         Random ran = new Random();
         public void OnActivated(params object[] args)
         {
-            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.5f);
+            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.2f);
             // Specifications of the world            
             short cellspr = 5;
             short cameradistance = 40;
@@ -63,10 +63,10 @@ namespace LoneWolf
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
             //world.Add(new LandMine(new Vector3(50, 0, 100)));            
-            Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\draw");
-            Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.2f);
-            obj.Position = new Vector3(50, 0, 100);
-            world.Add(obj);
+           // Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\draw");
+            //Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.2f);
+           // obj.Position = new Vector3(50, 0, 100);
+           // world.Add(obj);
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
