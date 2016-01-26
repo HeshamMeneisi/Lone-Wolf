@@ -113,6 +113,10 @@
     <Compile Include="BrickWall.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="EnemyFactory.cs" />
+    <Compile Include="CollectilbeFactory.cs" />
+    <Compile Include="Mutant.cs" />
+    <Compile Include="Dagger.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Collectible.cs" />
     <Compile Include="CollisionHandler.cs" />
@@ -129,11 +133,12 @@
     <Compile Include="LandMine.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Model3DPool.cs" />
-    <Compile Include="Mutant.cs" />
+    <Compile Include="GroundMonster.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="OnDrawEventArgs.cs" />
     <Compile Include="OnUpdateEventArgs.cs" />
     <Compile Include="NodedPath.cs" />
+    <Compile Include="Projectile.cs" />
     <Compile Include="SuperFactory.cs" />
     <Compile Include="Terrain.cs" />
     <Compile Include="Game.cs" />
@@ -239,6 +244,10 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />

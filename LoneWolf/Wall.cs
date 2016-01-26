@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LoneWolf
 {
-    class Wall : Model3D
+    class Wall : Object3D
     {
         public static Vector3 WallLowAnchor = new Vector3(-10, 0, -50);
         public static Vector3 WallHighAnchor = new Vector3(10, 100, 50);

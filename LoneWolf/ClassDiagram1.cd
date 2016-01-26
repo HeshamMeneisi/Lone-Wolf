@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LoneWolf.BrickWall" Collapsed="true">
+    <Position X="22.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>BrickWall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Camera" Collapsed="true">
+    <Position X="3.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAIEACIAgCAAoACCAIgAJAAAAAAACAAAQAgM=</HashCode>
+      <FileName>Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Camera2D" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAQLQAC1AoAAAgAAEBDQAAUgSAAAABCAAAAAkAAAEAA=</HashCode>
+      <FileName>Camera2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Collectible" Collapsed="true">
+    <Position X="17" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collectible.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoneWolf.CollisionHandler" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>CollisionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Common" Collapsed="true">
+    <Position X="34.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAUBEAAAAAAIAAACAIABEABAAAA=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.CommonData" Collapsed="true">
+    <Position X="36.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.DataHandler" Collapsed="true">
+    <Position X="38.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEgAQAAAAQGhRACAEAAAQUAAAAAABEBoAAAQQAAAg=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Drone" Collapsed="true">
+    <Position X="9.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAABAAACEAIAAAACAAQBggAABAAAAAQABAAEAAA=</HashCode>
+      <FileName>Drone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoneWolf.DynamicObject" Collapsed="true">
+    <Position X="11.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAIAgAAAAAAAAACAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>DynamicObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.EnemyCoordinator" Collapsed="true">
+    <Position X="40" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIAAAAAAAAAAAAAAAABBBBAAABAAAEAAABAAA=</HashCode>
+      <FileName>EnemyCoordinator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.FirstAidBag" Collapsed="true">
+    <Position X="16" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABIAAAQAAAAAwAAAAAAAA=</HashCode>
+      <FileName>FirstAidBag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Game" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBEEAAAAAAAwAAAABIAAAADABAAAgAAAAAAAEAAAQ=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.GameStateHolder" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>GameStateHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.InputManager" Collapsed="true">
+    <Position X="34.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCQAIAQgAQAAgEQGAAxgQAAQAEQMEAIAEAwEQCggAAA=</HashCode>
+      <FileName>InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.LandMine" Collapsed="true">
+    <Position X="20.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAgAAAAAAAQBIAAAAAAABAwAAAAAAAA=</HashCode>
+      <FileName>LandMine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoneWolf.MainMenuCont" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAQAgAAAAgQAAgABABAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>MainMenuCont.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LoneWolf.Manager" Collapsed="true">
+    <Position X="38.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgQAgARFBAAi5oIgAgwQRAAAACiADAIEAAACQGQIAgA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Map" Collapsed="true">
+    <Position X="40" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAIAAAAAAAQAAAAAAAAAAIABAACAAAA=</HashCode>
+      <FileName>Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Model3D" Collapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCQAAABAAAAAAoCgAAKIIAQCAAABAIAAgAgAAIAYiIA=</HashCode>
+      <FileName>Model3D.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoneWolf.Model3DPool" Collapsed="true">
+    <Position X="31.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAkAAAAAABABAAAAAAAAABJACAAA=</HashCode>
+      <FileName>Model3DPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Mutant" Collapsed="true">
+    <Position X="13.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAQAABAAACEAYAAAADAAQBggAABAAAAAQAAEAkIAA=</HashCode>
+      <FileName>Mutant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoneWolf.Node" Collapsed="true">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAwAAAAAAAACAAAAAgAAAAAAA=</HashCode>
+      <FileName>Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.NodedPath" Collapsed="true">
+    <Position X="34.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACGAAAAgAAAAAAAQBAAAAAAAAA=</HashCode>
+      <FileName>NodedPath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.OnDrawEventArgs" Collapsed="true">
+    <Position X="36.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>OnDrawEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.OnUpdateEventArgs" Collapsed="true">
+    <Position X="38.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OnUpdateEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.OrbitCamera" Collapsed="true">
+    <Position X="3.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAIgAAAEAIAIBgAAAJCAAAAAAAAABAAAABAAAAAAI=</HashCode>
+      <FileName>OrbitCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Padding" Collapsed="true">
+    <Position X="31.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIQAAAAAAAIAAAACACAAAAAABA=</HashCode>
+      <FileName>Padding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Player" Collapsed="true">
+    <Position X="11.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAACASAAAAQAAAAAAAIQQQgCCIBgEAgAEA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Program" Collapsed="true">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.RectangleF" Collapsed="true">
+    <Position X="34.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGAAQAAIBAQAgAQEQAIQAEBAAAAIAAAgCACQAYAI4JA=</HashCode>
+      <FileName>RectangleF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Screen" Collapsed="true">
+    <Position X="36.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAACBIAAAAgAAAAAAECCQAAAQwAIAQABAAAAAAA=</HashCode>
+      <FileName>Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SecurityProvider" Collapsed="true">
+    <Position X="38.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAQAAAAIAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SecurityProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Settings" Collapsed="true">
+    <Position X="40" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABCAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SkinnedModel3D" Collapsed="true">
+    <Position X="12.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAADgAAAAgEACCIAACgAAAAAAgAAAAAIAg=</HashCode>
+      <FileName>SkinnedModel3D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Sky" Collapsed="true">
+    <Position X="33" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sky.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SmartContentManager" Collapsed="true">
+    <Position X="34.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAAAAAAAAAACAAAAAAAACAAAAAAEAAAAAAA=</HashCode>
+      <FileName>SmartContentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SoundManager" Collapsed="true">
+    <Position X="36.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SFXData" Collapsed="true">
+    <Position X="31.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABiAAAAAAAAAAAAAAAAAAAAJAAAAAAAA=</HashCode>
+      <FileName>SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.StageCont" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQEAAIAAAQAwMAAAAQAAAhBABAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>StageCont.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LoneWolf.StarBox" Collapsed="true">
+    <Position X="18.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAABIAAAAABAAAQAAAAAAAA=</HashCode>
+      <FileName>StarBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.StateManager" Collapsed="true">
+    <Position X="40" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAARAAEAgAAAAwEAAIUAAAAAAAQAAAADAAAECA=</HashCode>
+      <FileName>StateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.SuperFactory" Collapsed="true">
+    <Position X="31.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SuperFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Terrain" Collapsed="true">
+    <Position X="33" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgQAAAAAAAgAABAAAAAAAAAAAAAAACAAAAAAAAEA=</HashCode>
+      <FileName>Terrain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TextureID2D" Collapsed="true">
+    <Position X="34.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAAAAAgAIAAAAAAAAAAAAACAAEAEAAAAIAAA=</HashCode>
+      <FileName>TextureID2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIBar" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAIgAAACAIAA=</HashCode>
+      <FileName>UIBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIButton" Collapsed="true">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAEAAAAAAAAIAAABEAAA=</HashCode>
+      <FileName>UIButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UICell" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAgAAAAAAABBAAAAAAACIAAAAAAAAAAA=</HashCode>
+      <FileName>UICell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIGrid" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKQKBAABDgAAggCICAIxAGAHAAAACIAAEAAQAEABEBA=</HashCode>
+      <FileName>UIGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIMenu" Collapsed="true">
+    <Position X="9.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAABAAYggQAAAAQBEAAAAAIAAEAAAAABABAAAA=</HashCode>
+      <FileName>UIMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIObject" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAACIgCRgAACQYAAAACAIACAMAAAgDABAAgA=</HashCode>
+      <FileName>UIObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UITextField" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAcAAAAAABAgYgA8AUAQIIAIGMACIACIAAIBKpAAIAM=</HashCode>
+      <FileName>UITextField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UIVisibleObject" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CABIACBABAAggkAEAoAQAEAAALQAAAAEABAABAgAAAA=</HashCode>
+      <FileName>UIVisibleObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.UserData" Collapsed="true">
+    <Position X="36.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAQAAAAAAABAAAAAAgAIAIAAAAAAAAAAAIAAIAQ=</HashCode>
+      <FileName>UserData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.Wall" Collapsed="true">
+    <Position X="23.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAKAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.WallFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>WallFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LoneWolf.WallWithPlants" Collapsed="true">
+    <Position X="25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>WallWithPlants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.World" Collapsed="true">
+    <Position X="40" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYABAgABAEAIgAAAAAYAAAABABAAAAAAAAEAAAAAIA=</HashCode>
+      <FileName>World.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.WorldEvent" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.MouseDownEvent" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQgAAAAAIAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.MouseUpEvent" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQgAAAAAIAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.MouseMovedEvent" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.MouseScrollEvent" Collapsed="true">
+    <Position X="17.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.KeyDownEvent" Collapsed="true">
+    <Position X="19.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.KeyUpEvent" Collapsed="true">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TouchTapEvent" Collapsed="true">
+    <Position X="24.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TouchFreeDragEvent" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TouchDragCompleteEvent" Collapsed="true">
+    <Position X="28.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TouchPinchEvent" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.DisplaySizeChangedEvent" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.TouchAllFingersOffEvent" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoneWolf.OrientationChangedEvent" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>WorldEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HelperClasses.OptimizedMazeGenerator" Collapsed="true">
+    <Position X="40" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAIIAAAAACAA=</HashCode>
+      <FileName>OptimizedMazeGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="LoneWolf.Enemy" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAEIIgAAAAAAAAAgAABAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.Factory" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.Factory&lt;T&gt;" Collapsed="true">
+    <Position X="6.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.IInteractiveObject" Collapsed="true">
+    <Position X="31.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IInteractiveObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.IObstacle" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.IState" Collapsed="true">
+    <Position X="33" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAQAgAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LoneWolf.WorldElement" Collapsed="true">
+    <Position X="12.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAQAIA=</HashCode>
+      <FileName>WorldElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="LoneWolf.PackageType" Collapsed="true">
+    <Position X="40" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAEQAAA=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoneWolf.SoundType" Collapsed="true">
+    <Position X="34.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAAAAAAAAAAAAAAgAAAAAAAAAAAAIgAAAAAAA=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoneWolf.SoundCategory" Collapsed="true">
+    <Position X="33" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoneWolf.GameState" Collapsed="true">
+    <Position X="36.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StateManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoneWolf.CharType" Collapsed="true">
+    <Position X="31.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAABAAAAAAAQAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>UITextField.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Direction" Collapsed="true">
+    <Position X="33" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAQ=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThemeType" Collapsed="true">
+    <Position X="36.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FontType" Collapsed="true">
+    <Position X="34.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PrimaryTexture" Collapsed="true">
+    <Position X="31.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Orientation" Collapsed="true">
+    <Position X="38.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgA=</HashCode>
+      <FileName>UIGrid.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UIObjectType" Collapsed="true">
+    <Position X="38.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAIAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIObject.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

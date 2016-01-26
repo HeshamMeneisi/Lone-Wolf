@@ -9,8 +9,8 @@ namespace LoneWolf
     class Model3DPool
     {
         static Model3DPool instance;
-        Stack<Model3D> available = new Stack<Model3D>();
-        HashSet<Model3D> taken = new HashSet<Model3D>();
+        Stack<Object3D> available = new Stack<Object3D>();
+        HashSet<Object3D> taken = new HashSet<Object3D>();
         int maxcapacity = 100;
         bool hardlimit = false;
         public int MaxCapacity
@@ -49,22 +49,22 @@ namespace LoneWolf
         {
             instance = this;
         }
-        public Model3D Acquire()
+        public Object3D Acquire()
         {
             if (available.Count > 0)
             {
-                Model3D ret;
+                Object3D ret;
                 taken.Add(ret = available.Pop());
                 return ret;
             }
             else
             {
                 if (available.Count + taken.Count < maxcapacity || !hardlimit)
-                    return new Model3D(null, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero);
+                    return new Object3D(null, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero);
             }
             throw new Exception("Model3DPool out of objects. Please raise the capcity or turn off hard limit mode.");
         }
-        public void Release(Model3D model)
+        public void Release(Object3D model)
         {
             taken.Remove(model);
             if (taken.Count + available.Count < maxcapacity)

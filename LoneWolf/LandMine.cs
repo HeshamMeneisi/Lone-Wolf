@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LoneWolf
 {
-    class LandMine : Model3D, IInteractiveObject, IObstacle
+    class LandMine : Object3D, IInteractiveObject, IObstacle
     {
         static Model Model = Manager.Game.Content.Load<Model>("Models\\LandMine\\model");
         static Vector3 BoxLowAnchor = new Vector3(-5, 0, -5);
@@ -18,16 +18,17 @@ namespace LoneWolf
         {
             Position = position;
         }
-        public void Collide(Player player)
+        public void Collide(Object3D player)
         {
             if (Destroyed) return;
             World.GetInstance().Destroy(this);
-            Triggered(player);
+            Triggered(player as Player);
         }
 
         private void Triggered(Player player)
         {
-            player.TakeDamage(damage);
+            if (player != null)
+                player.TakeDamage(damage);
         }
 
         public void Interact(Player player)

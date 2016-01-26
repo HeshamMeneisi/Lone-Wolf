@@ -60,10 +60,15 @@ namespace LoneWolf
             enemy.Position = enemy.Path.Current;
             enemy.StopWalking(Manager.Game.GameTime);
         }
+        public void UnRegister(Enemy enemy)
+        {
+            enemies.Remove(enemy);
+        }
         public void UpdateEnemies(GameTime time)
         {
             foreach (Enemy e in enemies)
             {
+                if (e.Attacking || e.Dying) continue;
                 if (e.IsIdle)
                 {
                     var idletime = e.GetIdleTime(time);

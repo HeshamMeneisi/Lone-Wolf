@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LoneWolf
 {
-    class Model3D : WorldElement
+    class Object3D : WorldElement
     {
         protected Model model;
         protected Vector3 origin;
@@ -98,7 +98,7 @@ namespace LoneWolf
             }
         }
 
-        public Model3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1)
+        public Object3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1)
         {
             Destroyed = false;
             model = m;
@@ -112,7 +112,7 @@ namespace LoneWolf
         {
             return (position - Position).Length();
         }
-        public bool Intersects(Model3D target)
+        public bool Intersects(Object3D target)
         {
             Vector3 ta1 = target.AbsoluteLowAnchor;
             Vector3 ta2 = target.AbsoluteHighAnchor;

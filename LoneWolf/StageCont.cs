@@ -47,15 +47,15 @@ namespace LoneWolf
 
         }
         Random ran = new Random();
+        const short cellspr = 30;
         public void OnActivated(params object[] args)
         {
             var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.02f);
-            // Specifications of the world            
-            short cellspr = 5;
+            // Specifications of the world                        ;
             short cameradistance = 40;
             // Create world
-            world.FloorWidth = 5;
-            world.FloorHeight = 5;
+            world.FloorWidth = cellspr;
+            world.FloorHeight = cellspr;
             world.ActiveCam = new OrbitCamera(cameradistance);
             world.CreateTerrain();
             world.Add(player);
@@ -63,10 +63,10 @@ namespace LoneWolf
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
             //world.Add(new LandMine(new Vector3(50, 0, 100)));            
-           // Model testmodel = Manager.Game.Content.Load<Model>("Models\\testmodel\\draw");
+            //world.Add(new Dagger(player.Position, player.Rotation));            
             //Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.2f);
-           // obj.Position = new Vector3(50, 0, 100);
-           // world.Add(obj);
+            //obj.Position = new Vector3(50, 0, 80);
+            // world.Add(obj);
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
@@ -74,13 +74,32 @@ namespace LoneWolf
             currentmap.BuildMaze();
             new EnemyCoordinator(currentmap);
             var coord = EnemyCoordinator.GetInstance();
-            Enemy temp;
-            world.Add(temp = new Drone(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
-            coord.Register(temp);
-            world.Add(temp = new Mutant(new Vector3(50, 0, 80), coord.GenerateRandomPath(5)));
-            coord.Register(temp);
-            //player.Position = temp.Position;                     
+            PopulateMap();
             BuildGUI();
+        }
+        const int noenemies = 50;
+        const int nocol = 200;
+
+        private void PopulateMap()
+        {
+            int minp = 10, maxp = 20;
+            Factory<Enemy> enfac = SuperFactory.GetFactory<Enemy>();
+            Factory<Collectible> clfac = SuperFactory.GetFactory<Collectible>();
+            var coord = EnemyCoordinator.GetInstance();
+            for (int i = 0; i < noenemies; i++)
+            {
+                var e = enfac.CreateNew((byte)ran.Next(0, enfac.AvailableTypes), Vector3.Zero, coord.GenerateRandomPath(ran.Next(minp, maxp)));
+                coord.Register(e);
+                world.Add(e);
+            }
+            float offset = Map.Celld / 2;
+            for (int i = 0; i < nocol; i++)
+            {
+                float x = ran.Next(0, cellspr) * Map.Celld + offset;
+                float z = ran.Next(0, cellspr) * Map.Celld + offset;
+                var c = clfac.CreateNew((byte)ran.Next(0, clfac.AvailableTypes), new Vector3(x, 0, z));
+                world.Add(c);
+            }
         }
 
         internal void ShowGameOver()

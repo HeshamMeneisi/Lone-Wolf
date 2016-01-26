@@ -22,6 +22,7 @@ namespace LoneWolf
         public override void Interact(Player player)
         {
             Manager.UserData.GameState.Score += scoreincrement;
+            World.GetInstance().Destroy(this);
         }
     }
 }

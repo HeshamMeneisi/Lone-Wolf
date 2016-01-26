@@ -9,23 +9,37 @@ namespace LoneWolf
     {
         internal static void Handle(IEnumerable<WorldElement> obs)
         {
-            foreach (Model3D obj in obs)
+            foreach (Object3D obj in obs)
             {
                 if (obj is DynamicObject)
                     CheckDynamiObject(obj as DynamicObject, obs);
+                else if (obj is Projectile)
+                    CheckProjectile(obj as Projectile, obs);
+            }
+        }
+
+        private static void CheckProjectile(Projectile target, IEnumerable<WorldElement> obs)
+        {
+            foreach (Object3D obj in obs)
+            {
+                if (obj != target && obj.Intersects(target))
+                {
+                    target.Collide(obj);
+                    break;
+                }
             }
         }
 
         private static void CheckDynamiObject(DynamicObject target, IEnumerable<WorldElement> obs)
         {
             DynamicObject dobj;
-            foreach (Model3D obj in obs)
+            foreach (Object3D obj in obs)
             {
                 if (obj != target && obj.Intersects(target))
                 {
                     if ((dobj = obj as DynamicObject) != null)
                     {
-                        if (dobj.TimeStamp > target.TimeStamp)
+                        if (dobj is Player || dobj.TimeStamp > target.TimeStamp)
                             target.SeparateFrom(obj);
                         else dobj.SeparateFrom(target);
                     }

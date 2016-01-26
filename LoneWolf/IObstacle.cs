@@ -7,6 +7,6 @@ namespace LoneWolf
 {
     interface IObstacle
     {
-        void Collide(Player player);
+        void Collide(Object3D player);
     }
 }

@@ -5,7 +5,7 @@ using System;
 
 namespace LoneWolf
 {
-    class SkinnedModel3D : Model3D
+    class SkinnedModel3D : Object3D
     {
         AnimationPlayer animationPlayer;
         SkinningData skinningData;
@@ -47,10 +47,11 @@ namespace LoneWolf
             }
         }
 
-        public SkinnedModel3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null) : base(m, origin, baserot, lowanchor, highanchor, scale)
+        public SkinnedModel3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null, bool setup = true) : base(m, origin, baserot, lowanchor, highanchor, scale)
         {
             this.defaultclip = defaultclip;
-            SetupAnimationData();
+            if (setup)
+                SetupAnimationData();
         }
 
         private void SetupAnimationData()
@@ -92,7 +93,7 @@ namespace LoneWolf
             base.Update(time);
         }
 
-        protected virtual void OnFinishedPlayingAnimation()
+        public virtual void OnFinishedPlayingAnimation()
         {
             var frames = animationPlayer.CurrentClip.Keyframes;
             StopAnimation(frames[frames.Count - 1].Time);

@@ -27,7 +27,7 @@ namespace LoneWolf
             for (int x = Math.Max(0, ccx - ctd); x < Math.Min(floorWidth, ccx + ctd); x++)
                 for (int z = Math.Max(0, ccz - ctd); z < Math.Min(floorHeight, ccz + ctd); z++)
                 {
-                    Model3D model = pool.Acquire();
+                    Object3D model = pool.Acquire();
                     model.Model = plate; model.Position = new Vector3(x * celld, 0, z * celld);                    
                     model.Draw(cam);
                     pool.Release(model);

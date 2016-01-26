@@ -50,12 +50,12 @@ namespace HelperClasses
                     if (x == data[1].Value.X) // Vertically aligned cells
                     {
                         walls[0, x, Math.Max(z, (short)data[1].Value.Z)] = 0xFF; // Remove horizontal wall between them
-                        walls[1, x, z] = (byte)ran.Next(1, validwallcodes); // Randomize left wall type
+                        walls[1, x, z] = (byte)ran.Next(0, validwallcodes); // Randomize left wall type
                     }
                     else if (z == data[1].Value.Z) // Horizontally aligend cells
                     {
                         walls[1, Math.Max(x, (short)data[1].Value.X), z] = 0xFF; // Remove vertical wall between them                
-                        walls[0, x, z] = (byte)ran.Next(1, validwallcodes); // Randomize top wall type
+                        walls[0, x, z] = (byte)ran.Next(0, validwallcodes); // Randomize top wall type
                     }
                 }
                 short startdir = (short)ran.Next(0, 4);
