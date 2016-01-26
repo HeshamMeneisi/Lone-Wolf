@@ -62,24 +62,28 @@ namespace LoneWolf
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
             //world.Add(new LandMine(new Vector3(50, 0, 100)));            
             //world.Add(new Dagger(player.Position, player.Rotation));            
-            //Model3D obj = new Model3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 0.2f);
-            //obj.Position = new Vector3(50, 0, 80);
-            // world.Add(obj);
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
             int d = 6;
             currentmap = new Map(cellspr, cellspr, new Rectangle(cellspr / 2 - d / 2, cellspr / 2 - d / 2, d, d));
             currentmap.BuildMaze();
-            Player player = new Player(new Vector3(cellspr / 2 * Map.Celld, 0, cellspr / 2 * Map.Celld), Vector3.Zero, 0.02f);
+            Player player = new Player(new Vector3((cellspr / 2 + d / 4) * Map.Celld, 0, cellspr / 2 * Map.Celld), Vector3.Zero, 0.02f);
+            player.Rotation = new Vector3(0, -MathHelper.PiOver2, 0);
             world.Add(player);
+            /*
+            Model testmodel = Manager.Game.Content.Load<Model>("Models\\Fence\\model");
+            Object3D obj = new Object3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 2);
+            obj.Position = player.Position + new Vector3(50,0,50);
+            world.Add(obj);
+            */
             new EnemyCoordinator(currentmap);
             var coord = EnemyCoordinator.GetInstance();
             PopulateMap();
             BuildGUI();
         }
-        const int noenemies = 50;
-        const int nocol = 200;
+        const int noenemies = 100;
+        const int nocol = 75;
 
         private void PopulateMap()
         {
@@ -93,13 +97,28 @@ namespace LoneWolf
                 coord.Register(e);
                 world.Add(e);
             }
-            float offset = Map.Celld / 2;
+            float offset = -Map.Celld / 4;
+            byte[,] used = new byte[cellspr, cellspr];
             for (int i = 0; i < nocol; i++)
             {
-                float x = ran.Next(0, cellspr) * Map.Celld + offset;
-                float z = ran.Next(0, cellspr) * Map.Celld + offset;
-                var c = clfac.CreateNew((byte)ran.Next(0, clfac.AvailableTypes), new Vector3(x, 0, z));
+                int x = ran.Next(0, cellspr);
+                int z = ran.Next(0, cellspr);
+                int yoff = used[x, z];
+                float fx = x * Map.Celld + offset;
+                float fz = z * Map.Celld + offset;
+                var c = clfac.CreateNew((byte)ran.Next(0, clfac.AvailableTypes), new Vector3(fx, yoff, fz));
+                used[x, z] += (byte)(c.HighAnchor.Y - c.LowAnchor.Y);
                 world.Add(c);
+                // Place mine
+                x = ran.Next(0, cellspr);
+                z = ran.Next(0, cellspr);
+                yoff = used[x, z];
+                if (yoff == 0)
+                {
+                    fx = x * Map.Celld + offset;
+                    fz = z * Map.Celld + offset;
+                    world.Add(new LandMine(new Vector3(fx, 0, fz)));
+                }
             }
         }
 

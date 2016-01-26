@@ -30,11 +30,11 @@ namespace LoneWolf
         public NodedPath GenerateRandomPath(int length)
         {
             List<Vector3> path = new List<Vector3>();
-            int rantrav = ran.Next(0, length * length);
+            int rantrav = ran.Next(0, (int)(Map.Celld * Map.Celld));
             Node current = map.Path;
             Node last = null;
             Vector3 scale = new Vector3(Map.Celld, 0, Map.Celld);
-            Vector3 shift = scale / 2;
+            Vector3 shift = scale / 3;
             for (int i = 0; i <= length + rantrav; i++)
             {
                 if (i > rantrav)

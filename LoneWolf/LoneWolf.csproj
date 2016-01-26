@@ -115,6 +115,7 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="EnemyFactory.cs" />
     <Compile Include="CollectilbeFactory.cs" />
+    <Compile Include="Fence.cs" />
     <Compile Include="Mutant.cs" />
     <Compile Include="Dagger.cs" />
     <Compile Include="Factory.cs" />

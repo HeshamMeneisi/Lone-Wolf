@@ -11,7 +11,7 @@ namespace LoneWolf
     {
         static Model BoxModel = Manager.Game.Content.Load<Model>("Models\\StarBox\\model");
         static Vector3 BoxLowAnchor = new Vector3(-10, 0, -10);
-        static Vector3 BoxHighAnchor = new Vector3(10, 10, 10);
+        static Vector3 BoxHighAnchor = new Vector3(10, 20, 10);
         static uint scoreincrement = 100;
         public StarBox(Vector3 position) : base(BoxModel, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 0.001f, position)
         {

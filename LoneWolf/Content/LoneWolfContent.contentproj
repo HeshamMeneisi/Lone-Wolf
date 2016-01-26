@@ -222,6 +222,13 @@
   <ItemGroup>
     <Folder Include="Models\testmodel\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Fence\model.fbx">
+      <Name>model</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

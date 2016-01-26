@@ -10,6 +10,7 @@ namespace LoneWolf
     class WallWithPlants:Wall
     {
         public static Model Model = Manager.Game.Content.Load<Model>("Models\\WallWithPlants\\model");
+        public static byte Code = 0x1;
         public WallWithPlants(Vector3 position, float orientation) : base(Model, new Vector3(0, -50, 0), position, 1, orientation)
         { }
     }

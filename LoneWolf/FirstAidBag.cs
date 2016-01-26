@@ -11,7 +11,7 @@ namespace LoneWolf
     {
         static Model Model = Manager.Game.Content.Load<Model>("Models\\FirstAid\\model");
         static Vector3 BoxLowAnchor = new Vector3(-10, 0, -8);
-        static Vector3 BoxHighAnchor = new Vector3(10, 8, 8);
+        static Vector3 BoxHighAnchor = new Vector3(10, 12, 8);
         static int healamout = 25;
         public FirstAidBag(Vector3 position) : base(Model, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 0.1f, position)
         {

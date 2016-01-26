@@ -11,14 +11,20 @@ namespace LoneWolf
         Node pathroot;
         public Map(short cellspr, short cellspc, Rectangle rect)
         {
+            int x, z;
             walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr, ref pathroot, new Rectangle[] { rect });
-            for (int x = rect.X; x < rect.X + rect.Width; x++)
-                for (int z = rect.Y + 1; z < rect.Y + rect.Height; z++)
+            for (x = rect.X; x < rect.X + rect.Width; x++)
+                for (z = rect.Y + 1; z < rect.Y + rect.Height; z++)
                     walls[0, x, z] = 0xFF;
-            for (int x = rect.X + 1; x < rect.X + rect.Width; x++)
-                for (int z = rect.Y; z < rect.Y + rect.Height; z++)
+            for (x = rect.X + 1; x < rect.X + rect.Width; x++)
+                for (z = rect.Y; z < rect.Y + rect.Height; z++)
                     walls[1, x, z] = 0xFF;
-            walls[0, rect.X + (new Random()).Next(0, rect.Width - 1), rect.Y] = 0xFF;
+            x = rect.X + rect.Height / 2;
+            for (z = rect.Y; z < rect.Y + rect.Height; z++)
+                walls[1, x, z] = Fence.Code;
+            var ran = new Random();
+            walls[1, rect.X, rect.Y + ran.Next(0, rect.Width - 1)] = 0xFF;
+            walls[1, rect.X + rect.Width, rect.Y + ran.Next(0, rect.Width - 1)] = 0xFF;
         }
 
         public byte[,,] Walls

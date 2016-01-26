@@ -24,8 +24,11 @@ namespace HelperClasses
         public static byte[,,] GenerateMaze(short width, short height, ref Node pathroot, Rectangle[] ignore = null, short startx = -1, short starty = -1)
         {
             ran = new Random();
+            ReRandomize:
             if (startx < 0) startx = (short)ran.Next(0, width);
             if (starty < 0) starty = (short)ran.Next(0, height);
+            if (Array.FindIndex(ignore, r => r.Contains(startx, starty)) > -1)
+                goto ReRandomize;
             walls = new byte[2, width + 1 /*for extra vertical wall column*/, height + 1 /*for extra horizontal wall row*/];
             visited = new bool[width, height];
             DFSDestroyWS(startx, starty, ref pathroot, ignore);
@@ -38,7 +41,7 @@ namespace HelperClasses
             while (stack.Count > 0)
             {
                 Node[] data = stack.Pop();
-                int validwallcodes = SuperFactory.GetFactory<Wall>().AvailableTypes;                
+                int validwallcodes = SuperFactory.GetFactory<Wall>().AvailableTypes-1;                
                 x = (short)data[0].Value.X; z = (short)data[0].Value.Z;
                 if (visited[x, z])
                     continue;

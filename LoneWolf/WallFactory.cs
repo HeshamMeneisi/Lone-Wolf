@@ -10,7 +10,8 @@ namespace LoneWolf
         static Dictionary<byte, Type> WallTypes = new Dictionary<byte, Type>
         {
             {0,typeof(BrickWall)},
-            {1,typeof(WallWithPlants) }
+            {1,typeof(WallWithPlants) },
+            {2,typeof(Fence) }
         };
         public int AvailableTypes { get { return WallTypes.Count; } }
         public Wall CreateNew(object keyname, params Object[] arguments)
