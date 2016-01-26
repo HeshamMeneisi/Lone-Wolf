@@ -10,6 +10,7 @@ namespace LoneWolf
         AnimationPlayer animationPlayer;
         SkinningData skinningData;
         bool playing = false;
+        bool loop = true;
         private string defaultclip;
 
         public bool PlayingAnimation
@@ -32,6 +33,20 @@ namespace LoneWolf
                 SetupAnimationData();
             }
         }
+
+        public string DefaultClip
+        {
+            get
+            {
+                return defaultclip;
+            }
+
+            set
+            {
+                defaultclip = value;
+            }
+        }
+
         public SkinnedModel3D(Model m, Vector3 origin, Vector3 baserot, Vector3 lowanchor, Vector3 highanchor, float scale = 1, string defaultclip = null) : base(m, origin, baserot, lowanchor, highanchor, scale)
         {
             this.defaultclip = defaultclip;
@@ -55,8 +70,9 @@ namespace LoneWolf
             }
         }
 
-        public void StartAnimation(string name)
+        public void StartAnimation(string name, bool loop = true)
         {
+            this.loop = loop;
             AnimationClip clip = skinningData.AnimationClips[name];
             animationPlayer.StartClip(clip);
             playing = true;
@@ -70,10 +86,18 @@ namespace LoneWolf
         public override void Update(GameTime time)
         {
             if (playing)
-                animationPlayer.Update(time.ElapsedGameTime, true, Matrix.Identity);
-            //Debug.WriteLine(time.TotalGameTime.Ticks);
+                if (!animationPlayer.EndReached || loop)
+                    animationPlayer.Update(time.ElapsedGameTime, true, Matrix.Identity);
+                else OnFinishedPlayingAnimation();
             base.Update(time);
         }
+
+        protected virtual void OnFinishedPlayingAnimation()
+        {
+            var frames = animationPlayer.CurrentClip.Keyframes;
+            StopAnimation(frames[frames.Count - 1].Time);
+        }
+
         public override void Draw(Camera cam)
         {
             if (changed)

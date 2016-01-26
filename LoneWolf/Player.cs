@@ -10,8 +10,9 @@ namespace LoneWolf
 {
     class Player : DynamicObject
     {
-        public static Model IdleModel = Manager.Game.Content.Load<Model>("Models\\Player\\fire");
+        public static Model IdleModel = Manager.Game.Content.Load<Model>("Models\\Player\\idle");
         public static Model WalkingModel = Manager.Game.Content.Load<Model>("Models\\Player\\walking");
+        public static Model DeathModel = Manager.Game.Content.Load<Model>("Models\\Player\\death");
         public static Vector3 ModelLowAnchor = new Vector3(-10, 0, -10);
         public static Vector3 ModelHighAnchor = new Vector3(10, 25, 10);
         float speed;
@@ -24,20 +25,30 @@ namespace LoneWolf
             camoffset = new Vector3(0, faceheight, 0);
             Position = position;
             Rotation = rotation;
+            Alive = true;
         }
 
         internal void TakeDamage(int damage)
         {
-            int health = Manager.UserData.GameState.Health;
-            health -= damage;
-            if (health <= 0) Death();
-            else
-                Manager.UserData.GameState.Health = health;
+            if (Alive)
+            {
+                int health = Manager.UserData.GameState.Health;
+                health -= damage;
+                if (health <= 0) Death();
+                else
+                    Manager.UserData.GameState.Health = health;
+            }
         }
 
         private void Death()
         {
-            Manager.GameOver();
+            if (Alive)
+            {
+                Alive = false;
+                Model = DeathModel;
+                StartAnimation(DefaultClip, false);
+                //Manager.GameOver();
+            }
         }
 
         internal void Heal(int healamout)
@@ -49,6 +60,8 @@ namespace LoneWolf
         bool ismoving = false, adjusted = false;
 
         public static int MaxHealth = 100;
+
+        public bool Alive { get; private set; }
 
         public override void Update(GameTime time)
         {
@@ -87,18 +100,19 @@ namespace LoneWolf
 
         private void StandStill()
         {
-            if (Model != IdleModel)
+            if (Alive && Model != IdleModel)
                 Model = IdleModel;
         }
 
         private void StarWalking()
         {
-            if (Model != WalkingModel)
+            if (Alive && Model != WalkingModel)
                 Model = WalkingModel;
         }
 
         public override void SeparateFrom(Model3D stc)
         {
+            if (!Alive) return;
             base.SeparateFrom(stc);
             if (stc is IInteractiveObject && InputManager.IsKeyDown(Keys.E))
                 ((IInteractiveObject)stc).Interact(this);

@@ -11,12 +11,15 @@ namespace LoneWolf
     {
         public static Model WalkingModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\walking");
         public static Model IdleModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\idle");
+        public static Model AttackModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\attack");
+        public static Model DeathModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\death");
         public static Vector3 BoxLowAnchor = new Vector3(-15, 0, -15);
         public static Vector3 BoxHighAnchor = new Vector3(15, 60, 15);
-        static float DefaultVelocity = 0.3f;
+        static float DefaultVelocity = 0.4f;
         private float velocity;
         private NodedPath path;
         private TimeSpan stoppedtime;
+        private bool attacking;
 
         public float Velocity
         {
@@ -73,10 +76,31 @@ namespace LoneWolf
         {
             return time.TotalGameTime.Subtract(stoppedtime);
         }
-
+        Vector3 lrot;
         public void Collide(Player player)
         {
-            player.TakeDamage(100);
+            if (!attacking)
+            {
+                lrot = Rotation;
+                Vector3 v = player.Position - Position;
+                v.Normalize();
+                float angle = (float)Math.Atan(v.X / v.Z);
+                if (v.X == 0 && v.Z < 0) angle += MathHelper.Pi;
+                Rotation = new Vector3(0, angle, 0);                
+                Rotation = new Vector3(0, angle, 0);
+                attacking = true;
+                Model = AttackModel;
+                StartAnimation(DefaultClip, false);
+                player.TakeDamage(100);
+            }
+        }
+        protected override void OnFinishedPlayingAnimation()
+        {
+            base.OnFinishedPlayingAnimation();
+            if (IsIdle) Model = IdleModel;
+            else Model = WalkingModel;
+            Rotation = lrot;
+            StartAnimation(DefaultClip);
         }
     }
 }

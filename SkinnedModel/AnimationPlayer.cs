@@ -66,7 +66,7 @@ namespace SkinnedModel
         {
             if (clip == null)
                 throw new ArgumentNullException("clip");
-
+            EndReached = false;
             currentClipValue = clip;
             currentTimeValue = TimeSpan.Zero;
             currentKeyframe = 0;
@@ -104,7 +104,10 @@ namespace SkinnedModel
 
                 // If we reached the end, loop back to the start.
                 while (time >= currentClipValue.Duration)
+                {
                     time -= currentClipValue.Duration;
+                    EndReached = true;
+                }
             }
 
             if ((time < TimeSpan.Zero) || (time >= currentClipValue.Duration))
@@ -213,6 +216,13 @@ namespace SkinnedModel
         public TimeSpan CurrentTime
         {
             get { return currentTimeValue; }
+        }
+
+        public bool EndReached { get; private set; }
+
+        public int CurrentKeyframe
+        {
+            get { return currentKeyframe; }
         }
     }
 }
