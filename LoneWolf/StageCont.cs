@@ -49,7 +49,7 @@ namespace LoneWolf
         Random ran = new Random();
         public void OnActivated(params object[] args)
         {
-            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.2f);
+            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.02f);
             // Specifications of the world            
             short cellspr = 5;
             short cameradistance = 40;
@@ -81,6 +81,11 @@ namespace LoneWolf
             coord.Register(temp);
             //player.Position = temp.Position;                     
             BuildGUI();
+        }
+
+        internal void ShowGameOver()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(GameTime time)

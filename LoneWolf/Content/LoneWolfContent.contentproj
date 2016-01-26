@@ -110,8 +110,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Player\model.fbx">
-      <Name>model</Name>
+    <Compile Include="Models\Player\walking.fbx">
+      <Name>walking</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
     </Compile>
@@ -178,8 +178,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\testmodel\test.FBX">
-      <Name>test</Name>
+    <Compile Include="Models\Player\idle.fbx">
+      <Name>idle</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\testmodel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Player\fire.fbx">
+      <Name>fire</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
     </Compile>

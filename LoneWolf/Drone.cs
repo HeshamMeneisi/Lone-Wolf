@@ -70,5 +70,10 @@ namespace LoneWolf
         {
             return time.TotalGameTime.Subtract(stoppedtime);
         }
+
+        public void Collide(Player player)
+        {
+            Manager.GameOver();
+        }
     }
 }

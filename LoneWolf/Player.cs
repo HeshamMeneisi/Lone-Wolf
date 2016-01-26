@@ -10,14 +10,15 @@ namespace LoneWolf
 {
     class Player : DynamicObject
     {
-        public static Model Model = Manager.Game.Content.Load<Model>("Models\\Player\\model");
+        public static Model IdleModel = Manager.Game.Content.Load<Model>("Models\\Player\\fire");
+        public static Model WalkingModel = Manager.Game.Content.Load<Model>("Models\\Player\\walking");
         public static Vector3 ModelLowAnchor = new Vector3(-10, 0, -10);
         public static Vector3 ModelHighAnchor = new Vector3(10, 25, 10);
         float speed;
 
         float faceheight = 30;
         Vector3 camoffset;
-        public Player(Vector3 position, Vector3 rotation, float scale = 1) : base(Model, Vector3.Zero, new Vector3(0, MathHelper.Pi, 0), ModelLowAnchor, ModelHighAnchor, scale, "Take 001", true)
+        public Player(Vector3 position, Vector3 rotation, float scale = 1) : base(IdleModel, Vector3.Zero, new Vector3(0, 0, 0), ModelLowAnchor, ModelHighAnchor, scale, "Take 001", true)
         {
             speed = 1f;
             camoffset = new Vector3(0, faceheight, 0);
@@ -36,12 +37,13 @@ namespace LoneWolf
 
         private void Death()
         {
-            throw new NotImplementedException();
+            Manager.GameOver();
         }
 
         internal void Heal(int healamout)
         {
-            throw new NotImplementedException();
+            Manager.UserData.GameState.Health += healamout;
+            Manager.UserData.GameState.Health %= MaxHealth + 1;
         }
 
         bool ismoving = false, adjusted = false;
@@ -85,13 +87,14 @@ namespace LoneWolf
 
         private void StandStill()
         {
-            StopAnimation(new TimeSpan(2800000));
+            if (Model != IdleModel)
+                Model = IdleModel;
         }
 
         private void StarWalking()
         {
-            if (!PlayingAnimation)
-                StartAnimation("Take 001");
+            if (Model != WalkingModel)
+                Model = WalkingModel;
         }
 
         public override void SeparateFrom(Model3D stc)

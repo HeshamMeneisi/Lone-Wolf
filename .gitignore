@@ -12,3 +12,5 @@
 /SkinningSample/obj
 /LoneWolf/Content/bin
 /LoneWolf/Content/obj
+*.rar
+/LoneWolf/Content/Models/testmodel

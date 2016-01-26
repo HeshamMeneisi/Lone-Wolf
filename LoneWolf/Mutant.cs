@@ -11,8 +11,8 @@ namespace LoneWolf
     {
         public static Model WalkingModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\walking");
         public static Model IdleModel = Manager.Game.Content.Load<Model>("Models\\Mutant\\idle");
-        public static Vector3 BoxLowAnchor = new Vector3(-20, 40, -20);
-        public static Vector3 BoxHighAnchor = new Vector3(20, 60, 20);
+        public static Vector3 BoxLowAnchor = new Vector3(-15, 0, -15);
+        public static Vector3 BoxHighAnchor = new Vector3(15, 60, 15);
         static float DefaultVelocity = 0.3f;
         private float velocity;
         private NodedPath path;
@@ -72,6 +72,11 @@ namespace LoneWolf
         public TimeSpan GetIdleTime(GameTime time)
         {
             return time.TotalGameTime.Subtract(stoppedtime);
+        }
+
+        public void Collide(Player player)
+        {
+            player.TakeDamage(100);
         }
     }
 }

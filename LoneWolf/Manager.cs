@@ -59,6 +59,11 @@ namespace LoneWolf
             return null;
         }
 
+        internal static void GameOver()
+        {
+            ((StageCont)StageCont.GetInstance()).ShowGameOver();
+        }
+
         internal static StateManager StateManager { get { return stateManager; } }
         internal static SmartContentManager RandomAccessContentManager { get { return contentManager; } }
         internal static Settings GameSettings { get { return settings; } set { settings = value; } }
