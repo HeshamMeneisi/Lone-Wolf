@@ -50,7 +50,6 @@ namespace LoneWolf
         const short cellspr = 30;
         public void OnActivated(params object[] args)
         {
-            var player = new Player(new Vector3(50, 0, 50), Vector3.Zero, 0.02f);
             // Specifications of the world                        ;
             short cameradistance = 40;
             // Create world
@@ -58,7 +57,6 @@ namespace LoneWolf
             world.FloorHeight = cellspr;
             world.ActiveCam = new OrbitCamera(cameradistance);
             world.CreateTerrain();
-            world.Add(player);
             #region TestCode
             //world.Add(new StarBox(new Vector3(50, 0, 100)));
             //world.Add(new FirstAidBag(new Vector3(50, 0, 100)));
@@ -70,8 +68,11 @@ namespace LoneWolf
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.X, 0, -Wall.WallLowAnchor.Z), 0));
             //world.Add(new BrickWall(new Vector3(-Wall.WallLowAnchor.Z, 0, -Wall.WallLowAnchor.X), 1));                
             #endregion
-            currentmap = new Map(cellspr, cellspr);
+            int d = 6;
+            currentmap = new Map(cellspr, cellspr, new Rectangle(cellspr / 2 - d / 2, cellspr / 2 - d / 2, d, d));
             currentmap.BuildMaze();
+            Player player = new Player(new Vector3(cellspr / 2 * Map.Celld, 0, cellspr / 2 * Map.Celld), Vector3.Zero, 0.02f);
+            world.Add(player);
             new EnemyCoordinator(currentmap);
             var coord = EnemyCoordinator.GetInstance();
             PopulateMap();
