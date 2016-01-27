@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LoneWolf
 {
-    class EnemyFactory : Factory<Enemy>
+    class EnemyFactory : Factory<INPC>
     {
         static Dictionary<byte, Type> EnemyTypes = new Dictionary<byte, Type>
         {
@@ -13,14 +13,14 @@ namespace LoneWolf
             {1,typeof(Mutant) }
         };
         public int AvailableTypes { get { return EnemyTypes.Count; } }
-        public Enemy CreateNew(object keyname, params Object[] arguments)
+        public INPC CreateNew(object keyname, params Object[] arguments)
         {
             if (EnemyTypes.ContainsKey((byte)keyname))
             {
                 var constructor = EnemyTypes[(byte)keyname].GetConstructor(arguments.Select(arg => arg.GetType()).ToArray());
                 if (constructor == null)
                     throw new Exception("Could not find an appropriate constructor.");
-                return (Enemy)constructor.Invoke(arguments);
+                return (INPC)constructor.Invoke(arguments);
             }
             throw new Exception("Undefined type.");
         }

@@ -17,10 +17,10 @@ namespace LoneWolf
         }
         public override void Collide(Object3D obj)
         {
-            if (obj is Enemy)
+            if (obj is INPC)
             {
-                ((Enemy)obj).Kill();
-                Manager.UserData.GameState.Score += ((Enemy)obj).ScoreIncrement;
+                ((INPC)obj).Kill();
+                Manager.UserData.GameState.Score += ((INPC)obj).ScoreIncrement;
             }
             if (!(obj is Player))
                 base.Collide(obj);

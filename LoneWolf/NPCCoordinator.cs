@@ -7,18 +7,18 @@ using System.Text;
 
 namespace LoneWolf
 {
-    class EnemyCoordinator
+    class NPCCoordinator
     {
-        static EnemyCoordinator instance;
+        static NPCCoordinator instance;
         private Map map;
-        private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+        private LinkedList<INPC> enemies = new LinkedList<INPC>();
 
-        public static EnemyCoordinator GetInstance()
+        public static NPCCoordinator GetInstance()
         {
             if (instance != null) return instance;
             throw new Exception("EnemyCoordinator must be initially instantiated using the public constructor.");
         }
-        public EnemyCoordinator(Map map)
+        public NPCCoordinator(Map map)
         {
             this.map = map;
             instance = this;
@@ -54,19 +54,19 @@ namespace LoneWolf
             }
             return new NodedPath(path);
         }
-        public void Register(Enemy enemy)
+        public void Register(INPC enemy)
         {
             enemies.AddFirst(enemy);
             enemy.Position = enemy.Path.Current;
             enemy.StopWalking(Manager.Game.GameTime);
         }
-        public void UnRegister(Enemy enemy)
+        public void UnRegister(INPC enemy)
         {
             enemies.Remove(enemy);
         }
         public void UpdateEnemies(GameTime time)
         {
-            foreach (Enemy e in enemies)
+            foreach (INPC e in enemies)
             {
                 if (e.Attacking || e.Dying) continue;
                 if (e.IsIdle)
@@ -89,7 +89,7 @@ namespace LoneWolf
             }
         }
 
-        private static void Advance(Enemy e, GameTime time)
+        private static void Advance(INPC e, GameTime time)
         {
             Again:
             Vector3 v1 = e.Path.Current;
@@ -99,12 +99,20 @@ namespace LoneWolf
             if (v.Length() == 0)
                 goto Again;//Duplicate, should not exist                
             v.Normalize();
-            float angle = (float)Math.Atan(v.X / v.Z);
-            if (v.X == 0 && v.Z < 0) angle += MathHelper.Pi;
-            Vector3 newrot = new Vector3(0, angle, 0);
-            if (!newrot.Equals(e.Rotation))
-                e.StopWalking(time);
-            e.Rotation = newrot;
+            if (v.X != 0 || v.Z != 0)
+            {
+                float angle = (float)Math.Atan(v.X / v.Z);
+                if (v.X == 0 && v.Z < 0) angle += MathHelper.Pi;
+                Vector3 newrot = new Vector3(0, angle, 0);
+                if (!newrot.Equals(e.Rotation))
+                    e.StopWalking(time);
+                e.Rotation = newrot;
+            }
+        }
+
+        internal void Reset()
+        {
+            enemies.Clear();
         }
     }
 }

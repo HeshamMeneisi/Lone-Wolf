@@ -115,6 +115,7 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="EnemyFactory.cs" />
     <Compile Include="CollectilbeFactory.cs" />
+    <Compile Include="EscapeDrone.cs" />
     <Compile Include="Fence.cs" />
     <Compile Include="Mutant.cs" />
     <Compile Include="Dagger.cs" />
@@ -125,8 +126,8 @@
     <Compile Include="DataHandler.cs" />
     <Compile Include="Drone.cs" />
     <Compile Include="DynamicObject.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="EnemyCoordinator.cs" />
+    <Compile Include="NPC.cs" />
+    <Compile Include="NPCCoordinator.cs" />
     <Compile Include="FirstAidBag.cs" />
     <Compile Include="GameStateHolder.cs" />
     <Compile Include="IInteractiveObject.cs" />

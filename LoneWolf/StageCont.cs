@@ -37,6 +37,11 @@ namespace LoneWolf
             // Draw overlay GUI            
             scoretext.Draw(batch);
             healthbar.Draw(batch);
+            if (gameover || won)
+            {
+                main.Draw(batch);
+                sign.Draw(batch);
+            }
             batch.End();
         }
 
@@ -44,17 +49,21 @@ namespace LoneWolf
         {
             // Send to GUI
             // if not handled send to world
-
+            main.HandleEvent(e);
         }
         Random ran = new Random();
         const short cellspr = 30;
+        Player player;
+        EscapeDrone esc;
         public void OnActivated(params object[] args)
         {
-            // Specifications of the world                        ;
+            gameover = won = false;
+            // Specifications of the world
             short cameradistance = 40;
             // Create world
             world.FloorWidth = cellspr;
             world.FloorHeight = cellspr;
+            world.Clear();
             world.ActiveCam = new OrbitCamera(cameradistance);
             world.CreateTerrain();
             #region TestCode
@@ -68,17 +77,21 @@ namespace LoneWolf
             int d = 6;
             currentmap = new Map(cellspr, cellspr, new Rectangle(cellspr / 2 - d / 2, cellspr / 2 - d / 2, d, d));
             currentmap.BuildMaze();
-            Player player = new Player(new Vector3((cellspr / 2 + d / 4) * Map.Celld, 0, cellspr / 2 * Map.Celld), Vector3.Zero, 0.02f);
+            player = new Player(new Vector3((cellspr / 2 + d / 4) * Map.Celld, 0, cellspr / 2 * Map.Celld), Vector3.Zero, 0.02f);
             player.Rotation = new Vector3(0, -MathHelper.PiOver2, 0);
+            esc = new EscapeDrone(new Vector3((cellspr / 2 - d / 4) * Map.Celld, 0, cellspr / 2 * Map.Celld));
             world.Add(player);
+            world.Add(esc);
+            //player.Position += new Vector3(-300, 0, 0);
+            //player.Position = esc.Position;
             /*
             Model testmodel = Manager.Game.Content.Load<Model>("Models\\Fence\\model");
             Object3D obj = new Object3D(testmodel, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector3.Zero, 2);
             obj.Position = player.Position + new Vector3(50,0,50);
             world.Add(obj);
             */
-            new EnemyCoordinator(currentmap);
-            var coord = EnemyCoordinator.GetInstance();
+            new NPCCoordinator(currentmap);
+            var coord = NPCCoordinator.GetInstance();
             PopulateMap();
             BuildGUI();
         }
@@ -88,9 +101,10 @@ namespace LoneWolf
         private void PopulateMap()
         {
             int minp = 10, maxp = 20;
-            Factory<Enemy> enfac = SuperFactory.GetFactory<Enemy>();
+            Factory<INPC> enfac = SuperFactory.GetFactory<INPC>();
             Factory<Collectible> clfac = SuperFactory.GetFactory<Collectible>();
-            var coord = EnemyCoordinator.GetInstance();
+            var coord = NPCCoordinator.GetInstance();
+            coord.Reset();
             for (int i = 0; i < noenemies; i++)
             {
                 var e = enfac.CreateNew((byte)ran.Next(0, enfac.AvailableTypes), Vector3.Zero, coord.GenerateRandomPath(ran.Next(minp, maxp)));
@@ -121,19 +135,41 @@ namespace LoneWolf
                 }
             }
         }
-
-        internal void ShowGameOver()
+        bool gameover = false;
+        public void ShowGameOver()
         {
-            throw new NotImplementedException();
+            sign = new UICell(DataHandler.UIObjectsTextureMap[UIObjectType.GameOver], "");
+            sign.setSizeRelative(0.4f, Orientation.Portrait);
+            sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
+            gameover = true;
         }
-
+        public void ShowYouWon()
+        {
+            sign = new UICell(DataHandler.UIObjectsTextureMap[UIObjectType.YouWon], "");
+            sign.setSizeRelative(0.4f, Orientation.Portrait);
+            sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
+            won = true;
+            world.Destroy(player);
+            esc.Path = new NodedPath(new Vector3[]
+            {
+                esc.Position+ new Vector3(10000,200,10000),
+                esc.Position + new Vector3(0,200,0),
+                esc.Position
+            });
+            NPCCoordinator.GetInstance().Register(esc);
+        }
         public void Update(GameTime time)
         {
             world.Update(time);
             scoretext.Text = Manager.UserData.GameState.Score.ToString();
             healthbar.Progress = (float)Manager.UserData.GameState.Health / Player.MaxHealth;
             scoretext.Position = new Vector2(Screen.Width - scoretext.Width, 0);
-            EnemyCoordinator.GetInstance().UpdateEnemies(time);
+            NPCCoordinator.GetInstance().UpdateEnemies(time);
+            main.Update(time);
+#if !DEBUG
+            if(!gameover)
+            InputManager.MoveMouseTo(Screen.Width / 2, Screen.Height / 2);            
+#endif
         }
 
         internal static IState GetInstance()
@@ -144,8 +180,12 @@ namespace LoneWolf
         #region GUI
         UITextField scoretext;
         UIBar healthbar;
+        UIButton main;
+        UICell sign;
         Texture2D hbbg = Manager.Game.Content.Load<Texture2D>("Textures\\Ancient\\HBBG");
         Texture2D hb = Manager.Game.Content.Load<Texture2D>("Textures\\Ancient\\HB");
+        private bool won;
+
         private void BuildGUI()
         {
             scoretext = new UITextField(16, Color.White, Color.Black);
@@ -153,6 +193,9 @@ namespace LoneWolf
             scoretext.Text = Manager.UserData.GameState.Score.ToString();
             scoretext.Size = new Vector2(200, 50);
             healthbar = new UIBar(200, 50, hbbg, hb);
+            main = new UIButton(DataHandler.UIObjectsTextureMap[UIObjectType.Main], (s) => Manager.StateManager.SwitchTo(GameState.MainMenu));
+            main.setSizeRelative(0.2f, Orientation.Portrait);
+            main.Position = new Vector2((Screen.Width - main.Width) / 2, Screen.Height / 2 + Screen.Height / 4);
         }
         #endregion
 

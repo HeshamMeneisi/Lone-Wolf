@@ -28,7 +28,10 @@ namespace HelperClasses
             if (startx < 0) startx = (short)ran.Next(0, width);
             if (starty < 0) starty = (short)ran.Next(0, height);
             if (Array.FindIndex(ignore, r => r.Contains(startx, starty)) > -1)
+            {
+                startx = starty = -1;
                 goto ReRandomize;
+            }
             walls = new byte[2, width + 1 /*for extra vertical wall column*/, height + 1 /*for extra horizontal wall row*/];
             visited = new bool[width, height];
             DFSDestroyWS(startx, starty, ref pathroot, ignore);

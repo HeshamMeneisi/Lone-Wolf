@@ -66,6 +66,12 @@ namespace LoneWolf
 
         internal static StateManager StateManager { get { return stateManager; } }
         internal static SmartContentManager RandomAccessContentManager { get { return contentManager; } }
+
+        internal static void PlayerWon()
+        {
+            ((StageCont)StageCont.GetInstance()).ShowYouWon();
+        }
+
         internal static Settings GameSettings { get { return settings; } set { settings = value; } }
         //internal static EncryptionProvider Cipher { get { return crypto; } set { crypto = value; } }
         internal static Game Game { get { return Game.GetInstance(); } }

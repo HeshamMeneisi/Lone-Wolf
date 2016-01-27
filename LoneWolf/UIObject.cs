@@ -137,5 +137,8 @@ enum UIObjectType
 {
     PlayBtn,
     ExitBtn,
-    Cell
+    Cell,
+    Main,
+    GameOver,
+    YouWon
 }

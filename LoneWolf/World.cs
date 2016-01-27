@@ -69,6 +69,11 @@ namespace LoneWolf
             CollisionHandler.Handle(obs);
         }
 
+        internal void Clear()
+        {
+            obs.Clear();
+        }
+
         public static World GetInstance()
         {
             if (instance == null)

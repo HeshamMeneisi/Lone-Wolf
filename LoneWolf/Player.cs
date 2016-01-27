@@ -96,7 +96,7 @@ namespace LoneWolf
         {
             Vector3 newpos = Position;
             Vector3 newrot = Rotation;
-            if (!Attacking)
+            if (!Attacking && Alive)
             {
                 // Vector3 is passed on assignment as a clone not a reference
                 if (InputManager.IsKeyDown(Keys.W))

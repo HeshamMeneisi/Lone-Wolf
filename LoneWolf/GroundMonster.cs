@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LoneWolf
 {
-    abstract class GroundMonster : SkinnedModel3D, Enemy
+    abstract class GroundMonster : SkinnedModel3D, INPC
     {
         public abstract Model WalkingModel { get; }
         public abstract Model IdleModel { get; }
@@ -106,7 +106,7 @@ namespace LoneWolf
         {
             if (Dying)
             {
-                EnemyCoordinator.GetInstance().UnRegister(this);
+                NPCCoordinator.GetInstance().UnRegister(this);
                 World.GetInstance().Destroy(this);
                 return;
             }

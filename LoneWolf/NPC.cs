@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LoneWolf
 {
-    interface Enemy : WorldElement, IObstacle
+    interface INPC : WorldElement, IObstacle
     {
         float Velocity { get; set; }
         Vector3 Position { get; set; }

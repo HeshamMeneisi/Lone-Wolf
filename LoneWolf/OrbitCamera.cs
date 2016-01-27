@@ -66,9 +66,6 @@ namespace LoneWolf
                 lat = llat;
             UpdatePosToOrbit();
             supressmouse = true;
-#if !DEBUG
-            InputManager.MoveMouseTo(Screen.Width / 2, Screen.Height / 2);            
-#endif
         }
 
         public override void Update(GameTime time)

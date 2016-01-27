@@ -97,7 +97,10 @@ namespace LoneWolf
         internal static Dictionary<UIObjectType, TextureID2D[]> UIObjectsTextureMap = new Dictionary<UIObjectType, TextureID2D[]>()
         {
             {UIObjectType.PlayBtn, new TextureID2D[] {new TextureID2D(UIKey,0, 2) } },
-            {UIObjectType.ExitBtn, new TextureID2D[] {new TextureID2D(UIKey,2, 2) } }
+            {UIObjectType.ExitBtn, new TextureID2D[] {new TextureID2D(UIKey,2, 2) } },
+            {UIObjectType.Main, new TextureID2D[] {new TextureID2D(UIKey,4, 2) } },
+            {UIObjectType.GameOver, new TextureID2D[] {new TextureID2D(UIKey,6, 2) } },
+            {UIObjectType.YouWon, new TextureID2D[] {new TextureID2D(UIKey,8, 2) } }
         };
 
 

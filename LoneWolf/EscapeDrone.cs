@@ -7,29 +7,26 @@ using System.Text;
 
 namespace LoneWolf
 {
-    class Drone : Object3D, INPC
+    class EscapeDrone : Object3D,INPC
     {
         public static Model DroneModel = Manager.Game.Content.Load<Model>("Models\\Drone\\model");
-        public static Vector3 BoxLowAnchor = new Vector3(-20, 40, -20);
-        public static Vector3 BoxHighAnchor = new Vector3(20, 60, 20);
-        static float DefaultVelocity = 0.2f;
-        private float velocity;
-        private NodedPath path;
-        private TimeSpan stoppedtime;
+        public static Vector3 BoxLowAnchor = new Vector3(-50, 0, -50);
+        public static Vector3 BoxHighAnchor = new Vector3(50, 60, 50);
+        private float vel;
 
         public float Velocity
         {
             get
             {
-                return velocity;
+                return vel;
             }
 
             set
             {
-                velocity = value;
+                vel = value;
             }
         }
-
+        NodedPath path;
         public NodedPath Path
         {
             get
@@ -43,16 +40,11 @@ namespace LoneWolf
             }
         }
 
-        public bool IsIdle
-        {
-            get; set;
-        }
-        bool attacking = false;
         public bool Attacking
         {
             get
             {
-                return attacking;
+                return false;
             }
         }
 
@@ -60,7 +52,20 @@ namespace LoneWolf
         {
             get
             {
-                return false;                
+                return false;
+            }
+        }
+        bool isidle = true;
+        public bool IsIdle
+        {
+            get
+            {
+                return isidle;
+            }
+
+            set
+            {
+                isidle = value;
             }
         }
 
@@ -68,39 +73,39 @@ namespace LoneWolf
         {
             get
             {
-                return 1000;
+                return 0;
             }
         }
 
-        public Drone(Vector3 position, NodedPath path) : base(DroneModel, new Vector3(0, -60, 0), Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 1.5f)
+        public EscapeDrone(Vector3 position): base(DroneModel, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 9)
         {
             Position = position;
-            Path = path;
-            Velocity = DefaultVelocity;
-        }
-        
-        public void StopWalking(GameTime time)
-        {
-            stoppedtime = time.TotalGameTime;
-            IsIdle = true;
+            Velocity = 1f;
         }
 
+        public void StopWalking(GameTime time)
+        {
+            isidle = true;
+            lm = time.TotalGameTime;        
+        }
+        TimeSpan lm = new TimeSpan();
         public void StartWalking()
         {
-            IsIdle = false;
+            isidle = false;
         }
 
         public TimeSpan GetIdleTime(GameTime time)
         {
-            return time.TotalGameTime.Subtract(stoppedtime);
-        }
-
-        public void Collide(Object3D player)
-        {            
+            return time.TotalGameTime.Subtract(lm);
         }
 
         public void Kill()
         {            
+        }
+
+        public void Collide(Object3D player)
+        {
+            Manager.PlayerWon();            
         }
     }
 }
