@@ -13,6 +13,8 @@ namespace LoneWolf
         {
             int x, z;
             walls = HelperClasses.OptimizedMazeGenerator.GenerateMaze(cellspr, cellspr, ref pathroot, new Rectangle[] { rect });
+            Width = walls.GetLength(0) - 1;
+            Height = walls.GetLength(1) - 1;
             for (x = rect.X; x < rect.X + rect.Width; x++)
                 for (z = rect.Y + 1; z < rect.Y + rect.Height; z++)
                     walls[0, x, z] = 0xFF;
@@ -42,6 +44,9 @@ namespace LoneWolf
                 return pathroot;
             }
         }
+
+        public static int Width { get; private set; }
+        public static int Height { get; private set; }
 
         public void BuildMaze()
         {

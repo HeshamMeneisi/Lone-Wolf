@@ -86,7 +86,7 @@ namespace LoneWolf
             esc = new EscapeDrone(new Vector3((cellspr / 2 - d / 4) * Map.Celld, 0, cellspr / 2 * Map.Celld));
             world.Add(player);
             world.Add(esc);
-            player.Position += new Vector3(-300, 0, 0);
+            //player.Position += new Vector3(-300, 0, 0);
             //player.Position = esc.Position;
             /*
             Model testmodel = Manager.Game.Content.Load<Model>("Models\\Fence\\model");

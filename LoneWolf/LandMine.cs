@@ -11,7 +11,7 @@ namespace LoneWolf
     {
         static Model Model = Manager.Game.Content.Load<Model>("Models\\LandMine\\model");
         static Vector3 BoxLowAnchor = new Vector3(-5, 0, -5);
-        static Vector3 BoxHighAnchor = new Vector3(5, 4, 5);
+        static Vector3 BoxHighAnchor = new Vector3(5, 10, 5);
         static int damage = 25;
         static uint DefuseScore = 50;
         public LandMine(Vector3 position) : base(Model, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 1)
