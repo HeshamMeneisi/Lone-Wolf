@@ -35,7 +35,7 @@ namespace LoneWolf
 
         private void mousedonw(InputManager.MouseKey k, Vector2 position)
         {
-            if (Alive && !Attacking && k == InputManager.MouseKey.LeftKey)
+            if (!Destroyed && Alive && !Attacking && k == InputManager.MouseKey.LeftKey)
             {
                 Attacking = true;
                 SoundManager.PlaySound(DataHandler.Sounds[SoundType.Throw], SoundCategory.SFX);

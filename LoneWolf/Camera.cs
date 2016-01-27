@@ -108,6 +108,8 @@ namespace LoneWolf
             }
         }
 
+        public bool LockMouse { get; internal set; }
+
         //Constructor
         public Camera(Vector3 position = default(Vector3), Vector3 rotation = default(Vector3))
         {

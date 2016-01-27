@@ -288,7 +288,8 @@ namespace LoneWolf
         }
     }
     internal enum SoundType { Loop, Mine, Throw, Kill, Gameover, Playerdeath, Monsterdeath, Mutantattack, Step, Step2, Step3, Step4,Score,Health,
-        Beep
+        Beep,
+        Flyaway
     }
 }
 public enum ThemeType { Ancient = 0 }

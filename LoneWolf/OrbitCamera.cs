@@ -65,7 +65,11 @@ namespace LoneWolf
             if (lat > MathHelper.PiOver2 - topcone || lat < -MathHelper.PiOver2 + bottomcone)
                 lat = llat;
             UpdatePosToOrbit();
-            supressmouse = true;
+            if (LockMouse)
+            {
+                supressmouse = true;
+                InputManager.MoveMouseTo(Screen.Width / 2, Screen.Height / 2);
+            }
         }
 
         public override void Update(GameTime time)
