@@ -23,7 +23,7 @@ namespace LoneWolf
         public void Draw(SpriteBatch batch)
         {
             //Sky
-            Sky.Draw(batch);
+            Sky.Draw(batch);            
             // 3D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             Manager.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -42,6 +42,7 @@ namespace LoneWolf
                 main.Draw(batch);
                 sign.Draw(batch);
             }
+            Compass.Draw(batch, world.ActiveCam.Rotation.Y);
             batch.End();
         }
 
@@ -142,6 +143,7 @@ namespace LoneWolf
             sign.setSizeRelative(0.4f, Orientation.Portrait);
             sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
             gameover = true;
+            Manager.Game.IsMouseVisible = true;
         }
         public void ShowYouWon()
         {
@@ -149,6 +151,7 @@ namespace LoneWolf
             sign.setSizeRelative(0.4f, Orientation.Portrait);
             sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
             won = true;
+            Manager.Game.IsMouseVisible = true;
             world.Destroy(player);
             esc.Path = new NodedPath(new Vector3[]
             {

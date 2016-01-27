@@ -65,7 +65,7 @@ namespace LoneWolf
                 Alive = false;
                 Model = DeathModel;
                 StartAnimation(DefaultClip, false);
-                //Manager.GameOver();
+                Manager.GameOver();
             }
         }
 

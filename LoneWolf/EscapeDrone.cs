@@ -77,7 +77,7 @@ namespace LoneWolf
             }
         }
 
-        public EscapeDrone(Vector3 position): base(DroneModel, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 9)
+        public EscapeDrone(Vector3 position): base(DroneModel, Vector3.Zero, Vector3.Zero, BoxLowAnchor, BoxHighAnchor, 16)
         {
             Position = position;
             Velocity = 1f;

@@ -113,6 +113,7 @@
     <Compile Include="BrickWall.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Compass.cs" />
     <Compile Include="EnemyFactory.cs" />
     <Compile Include="CollectilbeFactory.cs" />
     <Compile Include="EscapeDrone.cs" />
