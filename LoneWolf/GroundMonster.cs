@@ -99,9 +99,12 @@ namespace LoneWolf
                 attacking = true;
                 Model = AttackModel;
                 StartAnimation(DefaultClip, false);
-                ((Player)player).TakeDamage(100);
+                DamagePlayer(((Player)player));
             }
         }
+
+        abstract protected void DamagePlayer(Player player);
+
         public override void OnFinishedPlayingAnimation()
         {
             if (Dying)
@@ -120,9 +123,12 @@ namespace LoneWolf
 
         public void Kill()
         {
+            Manager.IncrementScore(ScoreIncrement);
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Kill], SoundCategory.SFX);
             Dying = true;
             Model = DeathModel;
             StartAnimation(DefaultClip, false);
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Monsterdeath], SoundCategory.SFX);
         }
     }
 }

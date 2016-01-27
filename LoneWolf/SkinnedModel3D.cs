@@ -12,7 +12,7 @@ namespace LoneWolf
         bool playing = false;
         bool loop = true;
         private string defaultclip;
-
+        public float AnimationProgress { get { return (float)animationPlayer.CurrentKeyframe / animationPlayer.CurrentClip.Keyframes.Count; } }
         public bool PlayingAnimation
         {
             get

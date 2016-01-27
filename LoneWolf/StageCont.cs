@@ -58,6 +58,9 @@ namespace LoneWolf
         EscapeDrone esc;
         public void OnActivated(params object[] args)
         {
+            Manager.GameSettings.MusicVolume = 0.05f;
+            SoundManager.StopAllLoops();
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Loop], SoundCategory.Music, true);            
             gameover = won = false;
             // Specifications of the world
             short cameradistance = 40;
@@ -96,7 +99,7 @@ namespace LoneWolf
             PopulateMap();
             BuildGUI();
         }
-        const int noenemies = 100;
+        const int noenemies = 150;
         const int nocol = 75;
 
         private void PopulateMap()

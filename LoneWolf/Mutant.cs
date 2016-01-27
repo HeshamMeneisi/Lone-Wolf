@@ -29,5 +29,11 @@ namespace LoneWolf
         {
 
         }
+        int offence = 50;
+        protected override void DamagePlayer(Player player)
+        {
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Mutantattack], SoundCategory.SFX);
+            player.TakeDamage(offence);
+        }
     }
 }

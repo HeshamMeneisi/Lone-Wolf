@@ -21,8 +21,13 @@ namespace LoneWolf
 
         public override void Interact(Player player)
         {
-            player.Heal(healamout);
-            World.GetInstance().Destroy(this);
+            if (Manager.UserData.GameState.Health >= Player.MaxHealth)
+                SoundManager.PlaySound(DataHandler.Sounds[SoundType.Beep], SoundCategory.SFX);
+            else
+            {
+                player.Heal(healamout);
+                World.GetInstance().Destroy(this);
+            }
         }
     }
 }

@@ -114,7 +114,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Compass.cs" />
-    <Compile Include="EnemyFactory.cs" />
+    <Compile Include="NPCFactory.cs" />
     <Compile Include="CollectilbeFactory.cs" />
     <Compile Include="EscapeDrone.cs" />
     <Compile Include="Fence.cs" />
@@ -149,7 +149,7 @@
     <Compile Include="IState.cs" />
     <Compile Include="MainMenuCont.cs" />
     <Compile Include="Manager.cs" />
-    <Compile Include="Model3D.cs" />
+    <Compile Include="Object3D.cs" />
     <Compile Include="OptimizedMazeGenerator.cs" />
     <Compile Include="OrbitCamera.cs" />
     <Compile Include="Padding.cs" />

@@ -26,6 +26,12 @@ namespace LoneWolf
 #endif
         }
 
+        internal static void IncrementScore(uint scoreIncrement)
+        {
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Score], SoundCategory.SFX);
+            UserData.GameState.Score += scoreIncrement;
+        }
+
         static bool initd = false;
         const string settingsfile = "GameSettings.xml";
         const string datafile = "UserData.xml";
@@ -61,6 +67,7 @@ namespace LoneWolf
 
         internal static void GameOver()
         {
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Gameover], SoundCategory.SFX);
             ((StageCont)StageCont.GetInstance()).ShowGameOver();
         }
 

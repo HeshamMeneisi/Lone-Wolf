@@ -62,7 +62,7 @@ namespace LoneWolf
             LoadFonts();
             loadedtheme = Manager.GameSettings.CurrentTheme;
             SoundManager.StopAllLoops();
-            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Background], SoundCategory.Music, true);
+            //SoundManager.PlaySound(DataHandler.Sounds[SoundType.Background], SoundCategory.Music, true);
             Manager.SaveUserDataLocal();
 
             GC.Collect();
@@ -287,7 +287,9 @@ namespace LoneWolf
             return tid != default(TextureID2D) && Textures.ContainsKey(tid.RefKey);
         }
     }
-    internal enum SoundType { TapSound = 0, RotateSound = 1, CrystalLit = 2, AllCrystalsLit = 3, Background = 4 }
+    internal enum SoundType { Loop, Mine, Throw, Kill, Gameover, Playerdeath, Monsterdeath, Mutantattack, Step, Step2, Step3, Step4,Score,Health,
+        Beep
+    }
 }
 public enum ThemeType { Ancient = 0 }
 public enum FontType { MainFont = 0 }

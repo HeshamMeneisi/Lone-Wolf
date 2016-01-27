@@ -20,7 +20,7 @@ namespace LoneWolf
             if (obj is INPC)
             {
                 ((INPC)obj).Kill();
-                Manager.UserData.GameState.Score += ((INPC)obj).ScoreIncrement;
+                Manager.IncrementScore(((INPC)obj).ScoreIncrement);
             }
             if (!(obj is Player))
                 base.Collide(obj);

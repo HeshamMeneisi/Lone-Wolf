@@ -5,12 +5,12 @@ using System.Text;
 
 namespace LoneWolf
 {
-    class EnemyFactory : Factory<INPC>
+    class NPCFactory : Factory<INPC>
     {
         static Dictionary<byte, Type> EnemyTypes = new Dictionary<byte, Type>
         {
             {0,typeof(Drone)},
-            {1,typeof(Mutant) }
+            {1,typeof(Mutant)}            
         };
         public int AvailableTypes { get { return EnemyTypes.Count; } }
         public INPC CreateNew(object keyname, params Object[] arguments)

@@ -29,6 +29,7 @@ namespace LoneWolf
         {
             if (player != null)
                 player.TakeDamage(damage);
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Mine], SoundCategory.SFX);
         }
 
         public void Interact(Player player)
@@ -40,7 +41,7 @@ namespace LoneWolf
 
         private void Defused(Player player)
         {
-            Manager.UserData.GameState.Score += DefuseScore;
+            Manager.IncrementScore(DefuseScore);
         }
     }
 }

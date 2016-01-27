@@ -10,7 +10,7 @@ namespace LoneWolf
         static Dictionary<Type, Factory> Factories = new Dictionary<Type, Factory>
         {
             {typeof(Wall),new WallFactory() },
-            {typeof(INPC),new EnemyFactory() },
+            {typeof(INPC),new NPCFactory() },
             {typeof(Collectible),new CollectibleFactory() }
         };
         public static Factory<T> GetFactory<T>()

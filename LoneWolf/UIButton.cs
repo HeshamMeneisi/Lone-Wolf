@@ -43,7 +43,7 @@ namespace LoneWolf
             {
                 e.Handled = true;
                 OnPressed();
-                SoundManager.PlaySound(DataHandler.Sounds[SoundType.TapSound], SoundCategory.SFX); ;
+                //SoundManager.PlaySound(DataHandler.Sounds[SoundType.TapSound], SoundCategory.SFX); ;
             }
 
             base.HandleEvent(e);

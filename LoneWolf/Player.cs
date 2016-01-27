@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+
 namespace LoneWolf
 {
     class Player : DynamicObject
@@ -16,6 +18,7 @@ namespace LoneWolf
         public static Model FireModel = Manager.Game.Content.Load<Model>("Models\\Player\\fire");
         public static Vector3 ModelLowAnchor = new Vector3(-10, 0, -10);
         public static Vector3 ModelHighAnchor = new Vector3(10, 25, 10);
+        static SoundEffect[] StepSounds = new SoundEffect[] { DataHandler.Sounds[SoundType.Step], DataHandler.Sounds[SoundType.Step2], DataHandler.Sounds[SoundType.Step3], DataHandler.Sounds[SoundType.Step4] };
         float speed;
 
         float faceheight = 30;
@@ -35,6 +38,7 @@ namespace LoneWolf
             if (Alive && !Attacking && k == InputManager.MouseKey.LeftKey)
             {
                 Attacking = true;
+                SoundManager.PlaySound(DataHandler.Sounds[SoundType.Throw], SoundCategory.SFX);
                 Model = FireModel;
                 StartAnimation(DefaultClip, false);
                 float dist = 10;
@@ -52,9 +56,12 @@ namespace LoneWolf
             {
                 int health = Manager.UserData.GameState.Health;
                 health -= damage;
-                if (health <= 0) Death();
-                else
-                    Manager.UserData.GameState.Health = health;
+                if (health <= 0)
+                {
+                    health = 0;
+                    Death();
+                }
+                Manager.UserData.GameState.Health = health;
             }
         }
 
@@ -62,6 +69,7 @@ namespace LoneWolf
         {
             if (Alive)
             {
+                SoundManager.PlaySound(DataHandler.Sounds[SoundType.Playerdeath], SoundCategory.SFX);
                 Alive = false;
                 Model = DeathModel;
                 StartAnimation(DefaultClip, false);
@@ -71,6 +79,7 @@ namespace LoneWolf
 
         internal void Heal(int healamout)
         {
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Score], SoundCategory.SFX);
             if (Manager.UserData.GameState.Health + healamout > MaxHealth)
                 Manager.UserData.GameState.Health = MaxHealth;
             else Manager.UserData.GameState.Health += healamout;
@@ -92,12 +101,16 @@ namespace LoneWolf
                 StartAnimation(DefaultClip);
             }
         }
+        static Random ran = new Random();
         public override void Update(GameTime time)
         {
             Vector3 newpos = Position;
             Vector3 newrot = Rotation;
             if (!Attacking && Alive)
             {
+                float prog = AnimationProgress;
+                if ((int)(prog * 100) % 50 == 0)
+                    SoundManager.PlaySound(StepSounds[ran.Next(StepSounds.Length)], SoundCategory.SFX);
                 // Vector3 is passed on assignment as a clone not a reference
                 if (InputManager.IsKeyDown(Keys.W))
                 {
