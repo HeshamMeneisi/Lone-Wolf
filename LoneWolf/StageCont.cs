@@ -51,7 +51,8 @@ namespace LoneWolf
         {
             // Send to GUI
             // if not handled send to world
-            main.HandleEvent(e);
+            if (gameover || won)
+                main.HandleEvent(e);
         }
         Random ran = new Random();
         const short cellspr = 30;

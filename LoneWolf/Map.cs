@@ -79,18 +79,16 @@ namespace LoneWolf
                 line.SetData<Color>(colors);
                 RenderTarget2D target = new RenderTarget2D(dev, Width * 10 + 4, Height * 10 + 4);
                 dev.SetRenderTarget(target);
-                dev.Clear(Color.LightGreen);
+                dev.Clear(Color.LightGoldenrodYellow);
                 int cellspr = walls.GetLength(1) - 1;
                 int cellspc = walls.GetLength(2) - 1;
-                spriteBatch.Draw(line, new Rectangle(0, 0, 4, 10), Color.White);
-                spriteBatch.Draw(line, new Rectangle(0, 0, 10, 4), Color.White);
                 for (short x = 0; x < Walls.GetLength(1); x++)
                     for (short z = 0; z < walls.GetLength(2); z++)
                     {
                         if (x < cellspr && walls[0, x, z] < 0xFF)
-                            spriteBatch.Draw(line, new Rectangle(x * 10, z * 10, 10, 2), Color.White);
+                            spriteBatch.Draw(line, new Rectangle(x * 10, z * 10, 10, 3), Color.White);
                         if (z < cellspc && walls[1, x, z] < 0xFF)
-                            spriteBatch.Draw(line, new Rectangle(x * 10, z * 10, 2, 10), Color.White);
+                            spriteBatch.Draw(line, new Rectangle(x * 10, z * 10, 3, 10), Color.White);
                     }
                 spriteBatch.End();
                 dev.SetRenderTarget(null);
