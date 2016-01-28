@@ -114,6 +114,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Compass.cs" />
+    <Compile Include="MiniMap.cs" />
     <Compile Include="NPCFactory.cs" />
     <Compile Include="CollectilbeFactory.cs" />
     <Compile Include="EscapeDrone.cs" />

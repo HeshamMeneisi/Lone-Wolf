@@ -38,6 +38,7 @@ namespace LoneWolf
             if (!Destroyed && Alive && !Attacking && k == InputManager.MouseKey.LeftKey)
             {
                 Attacking = true;
+                Rotation = new Vector3(0, World.GetInstance().ActiveCam.Rotation.Y + (float)Math.PI, 0);
                 SoundManager.PlaySound(DataHandler.Sounds[SoundType.Throw], SoundCategory.SFX);
                 Model = FireModel;
                 StartAnimation(DefaultClip, false);

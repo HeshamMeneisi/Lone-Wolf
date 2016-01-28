@@ -34,7 +34,9 @@ namespace LoneWolf
             // 2D Rendering
             Manager.Game.GraphicsDevice.BlendState = BlendState.AlphaBlend;
             batch.Begin();
-            // Draw overlay GUI            
+            // Draw overlay GUI         
+            Compass.Draw(batch, world.ActiveCam.Rotation.Y);
+            MiniMap.Draw(batch, currentmap, world.ActiveCam.Rotation.Y);
             scoretext.Draw(batch);
             healthbar.Draw(batch);
             if (gameover || won)
@@ -42,7 +44,6 @@ namespace LoneWolf
                 main.Draw(batch);
                 sign.Draw(batch);
             }
-            Compass.Draw(batch, world.ActiveCam.Rotation.Y);
             batch.End();
         }
 

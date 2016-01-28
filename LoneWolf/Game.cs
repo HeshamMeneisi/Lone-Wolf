@@ -30,6 +30,14 @@ namespace LoneWolf
         GameTime time;
         public GameTime GameTime { get { return time; } }
 
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return spriteBatch;
+            }
+        }
+
         public Game()
         {
             Graphics = new GraphicsDeviceManager(this);
