@@ -52,8 +52,8 @@ namespace LoneWolf
             smoothness = smoothfactor;
         }
         internal bool FitToScreen = true;
-        private float xScale { get { return FitToScreen ? Screen.Width / currentView.Width : 1; } }
-        private float yScale { get { return FitToScreen ? Screen.Height / currentView.Height : 1; } }
+        private float xScale { get { return FitToScreen ? Screen.ViewWidth / currentView.Width : 1; } }
+        private float yScale { get { return FitToScreen ? Screen.ViewHeight / currentView.Height : 1; } }
         internal bool isInsideView(RectangleF r)
         {
             return currentView.Intersects(r);

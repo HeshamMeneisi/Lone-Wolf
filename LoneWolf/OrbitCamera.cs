@@ -68,7 +68,7 @@ namespace LoneWolf
             if (LockMouse)
             {
                 supressmouse = true;
-                InputManager.MoveMouseTo(Screen.Width / 2, Screen.Height / 2);
+                InputManager.MoveMouseTo(Screen.ViewWidth / 2, Screen.ViewHeight / 2);
             }
         }
 

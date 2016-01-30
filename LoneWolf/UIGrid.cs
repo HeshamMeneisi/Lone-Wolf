@@ -165,7 +165,7 @@ namespace LoneWolf
 
         internal void TrimGridToVisible()
         {
-            maxwidth = Math.Min(Screen.Width, Width); maxheight = Math.Min(Screen.Height, Height);            
+            maxwidth = Math.Min(Screen.ViewWidth, Width); maxheight = Math.Min(Screen.ViewHeight, Height);            
             cam = new Camera2D(0, 0, maxwidth, maxheight, TotalWidth, TotalHeight);
             cam.FitToScreen = false;
         }

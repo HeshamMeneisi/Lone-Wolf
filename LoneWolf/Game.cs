@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace LoneWolf
 {
@@ -59,7 +60,7 @@ namespace LoneWolf
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Screen.SetUp(Window, Graphics);
+            Screen.SetUp(Window, Graphics);            
 #if !DEBUG
             Screen.SetFullScreen(true);
             IsMouseVisible = false;

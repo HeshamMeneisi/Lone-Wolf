@@ -134,8 +134,8 @@ namespace LoneWolf
         }
         internal void ArrangeInForm(Orientation mode, float maxwidth = -1, float maxheight = -1)
         {
-            maxwidth = maxwidth > 0 ? maxwidth : Screen.Width - GlobalPosition.X;
-            maxheight = maxheight > 0 ? maxheight : Screen.Height - GlobalPosition.Y;
+            maxwidth = maxwidth > 0 ? maxwidth : Screen.ViewWidth - GlobalPosition.X;
+            maxheight = maxheight > 0 ? maxheight : Screen.ViewHeight - GlobalPosition.Y;
             float x = 0, y = 0;
             foreach (UIVisibleObject obj in children)
                 obj.Position = Vector2.Zero;

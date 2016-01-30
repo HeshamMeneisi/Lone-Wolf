@@ -14,9 +14,9 @@ namespace LoneWolf
         private static bool isVirtual = false;
         private static Vector2 virtualbounds;
         // This is deprecated
-        //internal static int Width{get{return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;}}
-        //internal static int Height { get { return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; } }
-        internal static float Width
+        //public static int Width{get{return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;}}
+        //public static int Height { get { return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; } }
+        public static float ViewWidth
         {
             get
             {
@@ -28,7 +28,7 @@ namespace LoneWolf
 #endif
             }
         }
-        internal static float Height
+        public static float ViewHeight
         {
             get
             {
@@ -40,50 +40,60 @@ namespace LoneWolf
 #endif
             }
         }
+
+        public static int ActualWidth
+        {
+            get { return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; }
+        }
+
+        public static int ActualHeight
+        {
+            get { return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; }
+        }
         // window.CurrentOrientation also works, but this is more literal representation of the concept.
-        internal static Orientation Mode { get { return Width > Height ? Orientation.Landscape : Orientation.Portrait; } }
+        public static Orientation Mode { get { return ViewWidth > ViewHeight ? Orientation.Landscape : Orientation.Portrait; } }
 
-        internal static float BigDim { get { return MathHelper.Max(Width, Height); } }
-        internal static float SmallDim { get { return MathHelper.Min(Width, Height); } }
+        public static float BigDim { get { return MathHelper.Max(ViewWidth, ViewHeight); } }
+        public static float SmallDim { get { return MathHelper.Min(ViewWidth, ViewHeight); } }
 
-        internal static float YAdjustRatio
+        public static float YAdjustRatio
         {
             get
             {
                 return
-                    Height / window.ClientBounds.Height;
+                    ViewHeight / window.ClientBounds.Height;
             }
         }
-        internal static float XAdjustRatio
+        public static float XAdjustRatio
         {
             get
             {
                 return
-                    Width / window.ClientBounds.Width;
+                    ViewWidth / window.ClientBounds.Width;
             }
         }
-        internal static void SetUp(GameWindow gamewindow, GraphicsDeviceManager devicemanager)
+        public static void SetUp(GameWindow gamewindow, GraphicsDeviceManager devicemanager)
         {
             device = devicemanager;
             window = gamewindow;
         }
-        internal static void SetFullScreen(bool state)
+        public static void SetFullScreen(bool state)
         {
             if (device.IsFullScreen != state)
-            { device.ToggleFullScreen(); device.PreferredBackBufferWidth = (int)Width;device.PreferredBackBufferHeight = (int)Height;device.ApplyChanges(); }
+            { device.ToggleFullScreen(); device.PreferredBackBufferWidth = ActualWidth; device.PreferredBackBufferHeight = ActualHeight; device.ApplyChanges(); }
         }
 
-        internal static void MakeVirtual(Vector2 virtualbounds)
+        public static void MakeVirtual(Vector2 virtualbounds)
         {
             Screen.virtualbounds = virtualbounds;
             isVirtual = true;
             Manager.HandleEvent(new DisplaySizeChangedEvent(virtualbounds));
         }
 
-        internal static void MakeReal()
+        public static void MakeReal()
         {
             isVirtual = false;
-            Manager.HandleEvent(new DisplaySizeChangedEvent(new Vector2(Width, Height)));
+            Manager.HandleEvent(new DisplaySizeChangedEvent(new Vector2(ViewWidth, ViewHeight)));
         }
     }
 }

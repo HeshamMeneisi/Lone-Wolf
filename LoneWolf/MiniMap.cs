@@ -14,7 +14,7 @@ namespace LoneWolf
         public static void Draw(SpriteBatch batch, Map map, float rot)
         {
             Texture2D minmap = map.MiniMap;
-            batch.Draw(minmap, new Rectangle(diag / 2, (int)(Screen.Height - diag / 2), dim, dim), null, Color.White, rot, new Vector2(minmap.Width / 2, minmap.Height / 2), SpriteEffects.None, 0);
+            batch.Draw(minmap, new Rectangle(diag / 2, (int)(Screen.ViewHeight - diag / 2), dim, dim), null, Color.White, rot, new Vector2(minmap.Width / 2, minmap.Height / 2), SpriteEffects.None, 0);
         }
     }
 }

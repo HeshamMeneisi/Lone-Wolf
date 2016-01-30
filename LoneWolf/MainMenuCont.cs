@@ -43,7 +43,7 @@ namespace LoneWolf
         {
             menu.setAllSizeRelative(0.2f, Orientation.Landscape);
             menu.ArrangeInForm(Orientation.Portrait);
-            menu.Position = new Vector2((Screen.Width - menu.Width) / 2, (Screen.Height - menu.Height) / 2);
+            menu.Position = new Vector2((Screen.ViewWidth - menu.Width) / 2, (Screen.ViewHeight - menu.Height) / 2);
             Manager.GameSettings.MusicVolume = 0.8f;
             SoundManager.PlaySound(DataHandler.Sounds[SoundType.Loop], SoundCategory.Music, true);
         }

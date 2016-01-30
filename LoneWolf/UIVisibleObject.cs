@@ -97,7 +97,7 @@ namespace LoneWolf
 
         internal void setSizeRelativeToWidth(float perc)
         {
-            float w = Screen.Width * perc;
+            float w = Screen.ViewWidth * perc;
             float h = size.Y / size.X * w;
 
             Vector2 nsize = new Vector2(w, h);
@@ -108,7 +108,7 @@ namespace LoneWolf
         }
         internal void setSizeRelativeToHeight(float perc)
         {
-            float h = Screen.Height * perc;
+            float h = Screen.ViewHeight * perc;
             float w = size.X / size.Y * h;
             Vector2 nsize = new Vector2(w, h);
             foreach (UIVisibleObject obj in children.Where(t => t is UIVisibleObject))

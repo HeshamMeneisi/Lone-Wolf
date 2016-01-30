@@ -150,7 +150,7 @@ namespace LoneWolf
         {
             sign = new UICell(DataHandler.UIObjectsTextureMap[UIObjectType.GameOver], "");
             sign.setSizeRelative(0.4f, Orientation.Portrait);
-            sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
+            sign.Position = new Vector2((Screen.ViewWidth - sign.Width) / 2, Screen.ViewHeight / 2);
             gameover = true;
             Manager.Game.IsMouseVisible = true;
             world.ActiveCam.LockMouse = false;
@@ -160,7 +160,7 @@ namespace LoneWolf
             SoundManager.PlaySound(DataHandler.Sounds[SoundType.Flyaway], SoundCategory.SFX);
             sign = new UICell(DataHandler.UIObjectsTextureMap[UIObjectType.YouWon], "");
             sign.setSizeRelative(0.4f, Orientation.Portrait);
-            sign.Position = new Vector2((Screen.Width - sign.Width) / 2, Screen.Height / 2);
+            sign.Position = new Vector2((Screen.ViewWidth - sign.Width) / 2, Screen.ViewHeight / 2);
             won = true;
             Manager.Game.IsMouseVisible = true;
             world.Destroy(player);
@@ -178,7 +178,7 @@ namespace LoneWolf
             world.Update(time);
             scoretext.Text = Manager.UserData.GameState.Score.ToString();
             healthbar.Progress = (float)Manager.UserData.GameState.Health / Player.MaxHealth;
-            scoretext.Position = new Vector2(Screen.Width - scoretext.Width, 0);
+            scoretext.Position = new Vector2(Screen.ViewWidth - scoretext.Width, 0);
             NPCCoordinator.GetInstance().UpdateEnemies(time);
             main.Update(time);
         }
@@ -206,7 +206,7 @@ namespace LoneWolf
             healthbar = new UIBar(200, 50, hbbg, hb);
             main = new UIButton(DataHandler.UIObjectsTextureMap[UIObjectType.Main], (s) => Manager.StateManager.SwitchTo(GameState.MainMenu));
             main.setSizeRelative(0.2f, Orientation.Portrait);
-            main.Position = new Vector2((Screen.Width - main.Width) / 2, Screen.Height / 2 + Screen.Height / 4);
+            main.Position = new Vector2((Screen.ViewWidth - main.Width) / 2, Screen.ViewHeight / 2 + Screen.ViewHeight / 4);
         }
         #endregion
 

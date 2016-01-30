@@ -157,8 +157,8 @@ namespace LoneWolf
             Vector2 tsize = font.MeasureString(deftext);
             if (trimtoscreen)
             {
-                tsize.X = Math.Min(tsize.X, Screen.Width - GlobalPosition.X);
-                tsize.Y = Math.Min(tsize.Y, Screen.Height - GlobalPosition.Y);
+                tsize.X = Math.Min(tsize.X, Screen.ViewWidth - GlobalPosition.X);
+                tsize.Y = Math.Min(tsize.Y, Screen.ViewHeight - GlobalPosition.Y);
             }
             Size = tsize;
         }
@@ -168,8 +168,8 @@ namespace LoneWolf
             Vector2 tsize = font.MeasureString(t);
             if (trimtoscreen)
             {
-                tsize.X = Math.Min(tsize.X, Screen.Width - GlobalPosition.X);
-                tsize.Y = Math.Min(tsize.Y, Screen.Height - GlobalPosition.Y);
+                tsize.X = Math.Min(tsize.X, Screen.ViewWidth - GlobalPosition.X);
+                tsize.Y = Math.Min(tsize.Y, Screen.ViewHeight - GlobalPosition.Y);
             }
             Size = new Vector2(Math.Max(tsize.X, size.X), Math.Max(tsize.Y, size.Y));
         }

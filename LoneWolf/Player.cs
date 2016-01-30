@@ -109,9 +109,6 @@ namespace LoneWolf
             Vector3 newrot = Rotation;
             if (!Attacking && Alive)
             {
-                float prog = AnimationProgress;
-                if ((int)(prog * 100) % 50 == 0)
-                    SoundManager.PlaySound(StepSounds[ran.Next(StepSounds.Length)], SoundCategory.SFX);
                 // Vector3 is passed on assignment as a clone not a reference
                 if (InputManager.IsKeyDown(Keys.W))
                 {
@@ -138,6 +135,11 @@ namespace LoneWolf
                 else
                     StandStill();
             }
+            float prog = AnimationProgress;
+            if (ismoving && (int)(prog * 100) % 50 == 0)
+                SoundManager.PlaySound(StepSounds[ran.Next(StepSounds.Length)], SoundCategory.SFX);
+            if (Attacking && ((int)(prog * 100) > 50))
+                    OnFinishedPlayingAnimation();
             Position = newpos;
             Rotation = newrot;
             World.GetInstance().ActiveCam.Position = Position + camoffset;
