@@ -15,9 +15,11 @@ namespace LoneWolf
         private Vector3 rotation;
         private float scale = 1f;
         protected Matrix trans;
+        private Vector3 lacache;
+        private Vector3 hacache;
 
         public bool Destroyed { get; set; }
-        protected bool changed = false;
+        protected bool changed = true;
         public Vector3 AbsoluteLowAnchor
         {
             get { return LowAnchor + position; }
@@ -70,18 +72,20 @@ namespace LoneWolf
         {
             get
             {
-                return new Vector3(lowanchor.X * (float)Math.Cos(Rotation.Y) + lowanchor.Z * (float)Math.Sin(Rotation.Y),
+                return changed ? lacache = new Vector3(lowanchor.X * (float)Math.Cos(Rotation.Y) + lowanchor.Z * (float)Math.Sin(Rotation.Y),
                 lowanchor.Y,
-                lowanchor.Z * (float)Math.Cos(Rotation.Y) + lowanchor.X * (float)Math.Sin(Rotation.Y));
+                lowanchor.Z * (float)Math.Cos(Rotation.Y) + lowanchor.X * (float)Math.Sin(Rotation.Y))
+                : lacache;
             }
         }
         public Vector3 HighAnchor
         {
             get
             {
-                return new Vector3(highanchor.X * (float)Math.Cos(Rotation.Y) + highanchor.Z * (float)Math.Sin(Rotation.Y),
+                return changed ? hacache = new Vector3(highanchor.X * (float)Math.Cos(Rotation.Y) + highanchor.Z * (float)Math.Sin(Rotation.Y),
                 highanchor.Y,
-                highanchor.Z * (float)Math.Cos(Rotation.Y) + highanchor.X * (float)Math.Sin(Rotation.Y));
+                highanchor.Z * (float)Math.Cos(Rotation.Y) + highanchor.X * (float)Math.Sin(Rotation.Y))
+                : hacache;
             }
         }
 

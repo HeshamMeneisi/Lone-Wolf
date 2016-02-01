@@ -39,16 +39,22 @@ namespace LoneWolf
             {
                 Attacking = true;
                 Rotation = new Vector3(0, World.GetInstance().ActiveCam.Rotation.Y + (float)Math.PI, 0);
-                SoundManager.PlaySound(DataHandler.Sounds[SoundType.Throw], SoundCategory.SFX);
                 Model = FireModel;
                 StartAnimation(DefaultClip, false);
-                float dist = 10;
-                var daggerpos = Position + new Vector3((float)Math.Sin(Rotation.Y), 0, (float)Math.Cos(Rotation.Y)) * dist;
-                var dir = (daggerpos - Position);
-                dir.Normalize();
-                var dagger = new Dagger(daggerpos, dir);
-                World.GetInstance().Add(dagger);
+                dgthrown = false;
             }
+        }
+
+        private void ThrowDagger()
+        {
+            SoundManager.PlaySound(DataHandler.Sounds[SoundType.Throw], SoundCategory.SFX);
+            float dist = 20;
+            var daggerpos = Position + new Vector3((float)Math.Sin(Rotation.Y), 0, (float)Math.Cos(Rotation.Y)) * dist;
+            var dir = (daggerpos - Position);
+            dir.Normalize();
+            var dagger = new Dagger(daggerpos, dir);
+            World.GetInstance().Add(dagger);
+            dgthrown = true;
         }
 
         internal void TakeDamage(int damage)
@@ -103,6 +109,8 @@ namespace LoneWolf
             }
         }
         static Random ran = new Random();
+        private bool dgthrown;
+
         public override void Update(GameTime time)
         {
             Vector3 newpos = Position;
@@ -135,11 +143,14 @@ namespace LoneWolf
                 else
                     StandStill();
             }
-            float prog = AnimationProgress;
-            if (ismoving && (int)(prog * 100) % 50 == 0)
+            int prog = (int)(AnimationProgress * 100);
+            if (Alive && ismoving && prog % 50 == 0)
                 SoundManager.PlaySound(StepSounds[ran.Next(StepSounds.Length)], SoundCategory.SFX);
-            if (Attacking && ((int)(prog * 100) > 50))
+            if (Attacking)
+                if (prog > 50)
                     OnFinishedPlayingAnimation();
+                else if (prog > 20)
+                    if (!dgthrown) ThrowDagger();
             Position = newpos;
             Rotation = newrot;
             World.GetInstance().ActiveCam.Position = Position + camoffset;

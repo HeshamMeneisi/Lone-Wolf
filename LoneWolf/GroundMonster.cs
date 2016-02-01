@@ -61,9 +61,9 @@ namespace LoneWolf
 
         public bool Dying { get; private set; }
 
-        public abstract uint ScoreIncrement {get; }
+        public abstract uint ScoreIncrement { get; }
 
-        public GroundMonster(Vector3 position, NodedPath path,Vector3 lowanchor,Vector3 highanchor) : base(null, Vector3.Zero, Vector3.Zero, lowanchor, highanchor, 0.25f, "Take 001", false)
+        public GroundMonster(Vector3 position, NodedPath path, Vector3 lowanchor, Vector3 highanchor) : base(null, Vector3.Zero, Vector3.Zero, lowanchor, highanchor, 0.25f, "Take 001", false)
         {
             Position = position;
             Model = WalkingModel;
@@ -95,7 +95,6 @@ namespace LoneWolf
             {
                 lrot = Rotation;
                 Rotation = player.Rotation + new Vector3(0, MathHelper.Pi, 0);
-                UpdateTransformation();
                 attacking = true;
                 Model = AttackModel;
                 StartAnimation(DefaultClip, false);
@@ -123,11 +122,12 @@ namespace LoneWolf
 
         public void Kill()
         {
-            Manager.IncrementScore(ScoreIncrement);
+            if (Dying) return;            
             SoundManager.PlaySound(DataHandler.Sounds[SoundType.Kill], SoundCategory.SFX);
             Dying = true;
             Model = DeathModel;
             StartAnimation(DefaultClip, false);
+            Manager.IncrementScore(ScoreIncrement);
             SoundManager.PlaySound(DataHandler.Sounds[SoundType.Monsterdeath], SoundCategory.SFX);
         }
     }

@@ -13,8 +13,11 @@ namespace LoneWolf
         static World instance;
         LinkedList<WorldElement> obs = new LinkedList<WorldElement>();
         LinkedList<WorldElement> todestroy = new LinkedList<WorldElement>();
+        Stack<WorldElement> waitinglist = new Stack<WorldElement>();
         Terrain floor;
         Camera cam;
+        private bool updating;
+        private bool drawing;
 
         public Camera ActiveCam
         {
@@ -37,7 +40,15 @@ namespace LoneWolf
 
         public void Add(WorldElement model)
         {
-            obs.AddFirst(model);
+            if (updating || drawing)
+                AddToWaitingList(model);
+            else
+                obs.AddFirst(model);
+        }
+
+        private void AddToWaitingList(WorldElement model)
+        {
+            waitinglist.Push(model);
         }
 
         internal void Destroy(WorldElement target)
@@ -48,25 +59,33 @@ namespace LoneWolf
 
         public void Draw()
         {
+            drawing = true;
             //BoundingFrustum frustum = new BoundingFrustum()
-            foreach (WorldElement m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))            
-            {
+            foreach (WorldElement m in obs.Where(obj => obj.DistanceTo(cam.Position) < cam.FarClip))
                 m.Draw(cam);
-            }
             floor.Draw(cam);
+            drawing = false;
+            ServeWaitingModels();
+        }
+
+        private void ServeWaitingModels()
+        {
+            while (waitinglist.Count > 0)
+                obs.AddFirst(waitinglist.Pop());
         }
 
         internal void Update(GameTime time)
         {
+            updating = true;
             foreach (WorldElement tdm in todestroy)
                 obs.Remove(tdm);
             todestroy.Clear();
             foreach (WorldElement m in obs)
-            {
                 m.Update(time);
-            }
             cam.Update(time);
             CollisionHandler.Handle(obs);
+            updating = false;
+            ServeWaitingModels();
         }
 
         internal void Clear()
